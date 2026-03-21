@@ -1,5 +1,5 @@
 // 1. Configuration: Paste your Google Web App URL here
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdEsqm6xFUfAzUYXzauCSpOJEQe1dYNgEsExHeC2NWRqvxKNKXoVblEXPgWS2DZdnFVw/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4PeUf4TR7kIRCDT9xiAfb5dmM2G9A87mYJG5GRuKD2wg-2DLurZK_00uzCSvgxUZKlA/exec';
 
 // This variable will hold our "local copy" of the data for searching
 let allProblems = [];
@@ -31,9 +31,11 @@ async function fetchProblems() {
 
 /**
  * SUBMIT: Sends a new problem to the cloud
+ * UPDATED SUBMIT: Now sends the category too
  */
 async function submitProblem() {
     const input = document.getElementById('problemInput');
+    const category = document.getElementById('categoryInput').value; // Get the chosen category
     const btn = document.getElementById('submitBtn');
     const text = input.value.trim().toLowerCase();
 
@@ -45,7 +47,10 @@ async function submitProblem() {
     try {
         await fetch(SCRIPT_URL, {
             method: 'POST',
-            body: JSON.stringify({ problem: text })
+            body: JSON.stringify({ 
+                problem: text,
+                category: category // SENDING BOTH TO GOOGLE
+            })
         });
         
         input.value = ''; // Clear input
@@ -60,12 +65,20 @@ async function submitProblem() {
 
 /**
  * FILTER: Searches the local array based on user input
+ * UPDATED FILTER: Now checks both the search text AND the category dropdown
  */
 function filterProblems() {
     const query = document.getElementById('searchInput').value.toLowerCase();
+    const catFilter = document.getElementById('categoryFilter').value;
     
     // Create a sub-list of only items that contain the search text
-    const filtered = allProblems.filter(p => p.text.includes(query));
+    const filtered = allProblems.filter(p => {
+        const matchesText = p.text.includes(query);
+        // If "All" is selected, show everything. Otherwise, match the category.
+        const matchesCategory = (catFilter === "All" || p.category === catFilter);
+        
+        return matchesText && matchesCategory;
+    });
     
     renderList(filtered);
 }

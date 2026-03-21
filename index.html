@@ -34,6 +34,32 @@
         </section>
     </div>
 
+    <div class="input-group">
+    <input type="text" id="problemInput" placeholder="Describe the problem...">
+    
+    <select id="categoryInput">
+        <option value="General">General</option>
+        <option value="Personal">Personal</option>
+        <option value="Public">Public/Infrastructure</option>
+        <option value="Environment">Environment</option>
+        <option value="Social">Social/Digital</option>
+    </select>
+    
+    <button id="submitBtn" onclick="submitProblem()">Register</button>
+</div>
+
+<div class="filter-group">
+    <input type="text" id="searchInput" onkeyup="filterProblems()" placeholder="Search...">
+    <select id="categoryFilter" onchange="filterProblems()">
+        <option value="All">All Categories</option>
+        <option value="General">General</option>
+        <option value="Personal">Personal</option>
+        <option value="Public">Public</option>
+        <option value="Environment">Environment</option>
+        <option value="Social">Social</option>
+    </select>
+</div>
+
     <script src="script.js"></script>
 </body>
 </html>

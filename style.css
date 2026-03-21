@@ -81,3 +81,20 @@ button {
     border-radius: 12px;
     font-weight: bold;
 }
+
+select {
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* This ensures the dropdown and input look good side-by-side */
+@media (max-width: 480px) {
+    .input-group select {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
