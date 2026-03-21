@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proglem register</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        input[type="text"] { width: 70%; padding: 10px; }
+        button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; }
+        .problem-item { border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; }
+        .count { font-weight: bold; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h2>Register a Problem</h2>
+    <p>Type a problem below.</p>
+    
+    <input type="text" id="problemInput" placeholder="Enter problem here...">
+    <button onclick="registerProblem()">Register</button>
+
+    <h3>Existing Problems</h3>
+    <div id="problemList"></div>
+
+    <script>
+        // For this prototype, we use LocalStorage so you can see it work immediately.
+        let problems = JSON.parse(localStorage.getItem('problemData')) || {};
+
+        function displayProblems() {
+            const list = document.getElementById('problemList');
+            list.innerHTML = '';
+            // Sort by count (highest first)
+            const sorted = Object.entries(problems).sort((a, b) => b[1] - a[1]);
+            
+            sorted.forEach(([text, count]) => {
+                list.innerHTML += `<div class="problem-item"><span>${text}</span> <span class="count">x${count}</span></div>`;
+            });
+        }
+
+        function registerProblem() {
+            const input = document.getElementById('problemInput');
+            const val = input.value.trim().toLowerCase(); // Case-insensitive matching
+            
+            if (val) {
+                problems[val] = (problems[val] || 0) + 1;
+                localStorage.setItem('problemData', JSON.stringify(problems));
+                input.value = '';
+                displayProblems();
+            }
+        }
+
+        // Initial load
+        displayProblems();
+    </script>
+</body>
+</html>
