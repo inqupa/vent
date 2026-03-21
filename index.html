@@ -3,110 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Problem Registry</title>
-    <style>
-        :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); max-width: 800px; margin: 0 auto; padding: 20px; }
-        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); margin-bottom: 2rem; }
-        h1 { text-align: center; color: var(--primary); }
-        .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        input[type="text"] { flex-grow: 1; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; }
-        button { padding: 12px 24px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
-        button:disabled { opacity: 0.5; cursor: not-allowed; }
-        .problem-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #f1f5f9; }
-        .problem-text { font-size: 1.1rem; }
-        .count-badge { background: #dbeafe; color: var(--primary); padding: 4px 12px; border-radius: 999px; font-weight: bold; }
-        #loading { text-align: center; font-style: italic; color: #64748b; }
-    </style>
+    <title>Problem Registry | Community Insights</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Problem Registry</h1>
-    
-    <div class="card">
-        <h3>Submit a Problem</h3>
-        <p>Type a problem below. If someone else already listed it, we'll just count it up!</p>
-        <div class="input-group">
-            <input type="text" id="problemInput" placeholder="e.g., Potholes on Main St...">
-            <button id="submitBtn" onclick="submitProblem()">Register</button>
-        </div>
+    <div class="container">
+        <header>
+            <h1>Problem Registry</h1>
+            <p>Register a problem or see what others are facing.</p>
+        </header>
+
+        <section class="card">
+            <h3>Register New Problem</h3>
+            <div class="input-group">
+                <input type="text" id="problemInput" placeholder="Describe the problem...">
+                <button id="submitBtn" onclick="submitProblem()">Register</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="list-header">
+                <h3>Current Database</h3>
+                <input type="text" id="searchInput" onkeyup="filterProblems()" placeholder="Search existing problems...">
+            </div>
+            
+            <div id="loading" class="status-msg">Connecting to database...</div>
+            <div id="registryList">
+                </div>
+        </section>
     </div>
 
-    <div class="card">
-        <h3>Current Registry</h3>
-        <div id="loading">Connecting to database...</div>
-        <div id="registryList"></div>
-    </div>
-
-    <script>
-        // REPLACE THE URL BELOW WITH YOUR GOOGLE WEB APP URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzdEsqm6xFUfAzUYXzauCSpOJEQe1dYNgEsExHeC2NWRqvxKNKXoVblEXPgWS2DZdnFVw/exec';
-
-        // 1. Fetch data from Google Sheets on load
-        async function fetchProblems() {
-            try {
-                const response = await fetch(scriptURL);
-                const data = await response.json();
-                renderList(data);
-            } catch (error) {
-                console.error('Error!', error.message);
-                document.getElementById('loading').innerText = "Error loading data.";
-            }
-        }
-
-        // 2. Send new problem to Google Sheets
-        async function submitProblem() {
-            const input = document.getElementById('problemInput');
-            const btn = document.getElementById('submitBtn');
-            const problem = input.value.trim();
-
-            if (!problem) return;
-
-            btn.disabled = true;
-            btn.innerText = "Saving...";
-
-            try {
-                await fetch(scriptURL, {
-                    method: 'POST',
-                    body: JSON.stringify({ problem: problem })
-                });
-                input.value = '';
-                await fetchProblems(); // Refresh the list
-            } catch (error) {
-                alert("Something went wrong. Please try again.");
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "Register";
-            }
-        }
-
-        // 3. Draw the list on the screen
-        function renderList(problems) {
-            const listDiv = document.getElementById('registryList');
-            const loading = document.getElementById('loading');
-            loading.style.display = 'none';
-            listDiv.innerHTML = '';
-
-            const sorted = Object.entries(problems).sort((a, b) => b[1] - a[1]);
-
-            if (sorted.length === 0) {
-                listDiv.innerHTML = "<p>No problems registered yet. Be the first!</p>";
-                return;
-            }
-
-            sorted.forEach(([text, count]) => {
-                const item = document.createElement('div');
-                item.className = 'problem-item';
-                item.innerHTML = `
-                    <span class="problem-text">${text}</span>
-                    <span class="count-badge">${count}</span>
-                `;
-                listDiv.appendChild(item);
-            });
-        }
-
-        // Initial fetch
-        fetchProblems();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
