@@ -1,100 +1,65 @@
-/* General Reset & Variables */
 :root {
     --primary: #2563eb;
-    --bg: #f1f5f9;
-    --card-bg: #ffffff;
-    --text: #334155;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
     padding: 20px;
-    display: flex;
-    justify-content: center;
+    margin: 0;
 }
 
-.container {
-    width: 100%;
-    max-width: 800px; /* Limits width on desktop for readability */
-}
+.container { max-width: 800px; margin: 0 auto; }
 
-/* The Cards */
 .card {
-    background: var(--card-bg);
-    padding: 1.5rem;
+    background: var(--card);
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
 }
 
-/* Responsive Input Groups */
-.input-group {
+/* Layout for the inputs */
+.input-row, .filter-row {
     display: flex;
     gap: 10px;
+    margin-top: 10px;
 }
 
-/* Mobile Adjustment: Stack input and button on small screens */
-@media (max-width: 480px) {
-    .input-group {
-        flex-direction: column;
-    }
-    
-    .list-header {
-        flex-direction: column;
-        align-items: flex-start !important;
-    }
-}
-
-input[type="text"] {
-    flex-grow: 1;
+input, select, button {
     padding: 12px;
-    border: 2px solid #e2e8f0;
     border-radius: 8px;
-    font-size: 16px; /* 16px prevents iOS from auto-zooming on focus */
+    border: 1px solid var(--border);
+    font-size: 16px;
 }
 
-button {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
+input { flex: 2; }
+select { flex: 1; background: white; cursor: pointer; }
+button { background: var(--primary); color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+button:hover { opacity: 0.9; }
+
+/* Responsive Adjustments for Phones */
+@media (max-width: 600px) {
+    .input-row, .filter-row { flex-direction: column; }
 }
 
-/* The List Items */
 .problem-item {
     display: flex;
     justify-content: space-between;
     padding: 15px 0;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--bg);
 }
 
-.count-badge {
-    background: #e0e7ff;
-    color: var(--primary);
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-weight: bold;
+.category-tag {
+    font-size: 12px;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
 }
 
-select {
-    padding: 12px;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    background: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* This ensures the dropdown and input look good side-by-side */
-@media (max-width: 480px) {
-    .input-group select {
-        width: 100%;
-        margin-top: 10px;
-    }
-}
+.count-badge { font-weight: bold; color: var(--primary); }
