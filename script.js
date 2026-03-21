@@ -1,45 +1,29 @@
-// 1. Configuration: Paste your Google Web App URL here
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4PeUf4TR7kIRCDT9xiAfb5dmM2G9A87mYJG5GRuKD2wg-2DLurZK_00uzCSvgxUZKlA/exec';
+// 1. YOUR CONFIGURATION
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyijExtk-RwB_JFCvX31dNzVSV05nXkl7-fIDo_6yHRh5M_6yE4kcrY691Cj-OasafDKg/exec'; 
 
-// This variable will hold our "local copy" of the data for searching
-let allProblems = [];
+let allProblems = []; // This holds our data locally so search is instant
 
-/**
- * FETCH: Gets data from Google Sheets when the page loads
- */
+// 2. FETCH DATA FROM GOOGLE
 async function fetchProblems() {
-    const listDiv = document.getElementById('registryList');
-    const loading = document.getElementById('loading');
-
     try {
         const response = await fetch(SCRIPT_URL);
-        const data = await response.json();
-        
-        // Convert the Object { "problem": count } into an Array for easier sorting/filtering
-        allProblems = Object.entries(data).map(([text, count]) => ({ text, count }));
-        
-        // Sort: Highest count first
+        allProblems = await response.json();
+        // Sort by count (highest first)
         allProblems.sort((a, b) => b.count - a.count);
-        
         renderList(allProblems);
-        loading.style.display = 'none';
-    } catch (error) {
-        loading.innerText = "Error loading data. Check SCRIPT_URL.";
-        console.error(error);
+        document.getElementById('loading').style.display = 'none';
+    } catch (err) {
+        document.getElementById('loading').innerText = "Database Error.";
     }
 }
 
-/**
- * SUBMIT: Sends a new problem to the cloud
- * UPDATED SUBMIT: Now sends the category too
- */
+// 3. SUBMIT NEW PROBLEM
 async function submitProblem() {
-    const input = document.getElementById('problemInput');
-    const category = document.getElementById('categoryInput').value; // Get the chosen category
+    const textInput = document.getElementById('problemInput');
+    const catInput = document.getElementById('categoryInput');
     const btn = document.getElementById('submitBtn');
-    const text = input.value.trim().toLowerCase();
 
-    if (!text) return; // Don't submit empty strings
+    if (!textInput.value.trim()) return;
 
     btn.disabled = true;
     btn.innerText = "Saving...";
@@ -47,64 +31,53 @@ async function submitProblem() {
     try {
         await fetch(SCRIPT_URL, {
             method: 'POST',
-            body: JSON.stringify({ 
-                problem: text,
-                category: category // SENDING BOTH TO GOOGLE
+            body: JSON.stringify({
+                problem: textInput.value,
+                category: catInput.value
             })
         });
-        
-        input.value = ''; // Clear input
-        fetchProblems();  // Refresh the list to show the update
-    } catch (e) {
-        alert("Upload failed. Check console.");
+        textInput.value = ''; // Clear input
+        fetchProblems(); // Refresh list
+    } catch (err) {
+        alert("Submission failed.");
     } finally {
         btn.disabled = false;
         btn.innerText = "Register";
     }
 }
 
-/**
- * FILTER: Searches the local array based on user input
- * UPDATED FILTER: Now checks both the search text AND the category dropdown
- */
+// 4. FILTERING LOGIC (SEARCH + DROPDOWN)
 function filterProblems() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
+    const searchText = document.getElementById('searchInput').value.toLowerCase();
     const catFilter = document.getElementById('categoryFilter').value;
-    
-    // Create a sub-list of only items that contain the search text
+
     const filtered = allProblems.filter(p => {
-        const matchesText = p.text.includes(query);
-        // If "All" is selected, show everything. Otherwise, match the category.
-        const matchesCategory = (catFilter === "All" || p.category === catFilter);
-        
-        return matchesText && matchesCategory;
+        const matchesText = p.text.toLowerCase().includes(searchText);
+        const matchesCat = (catFilter === "All" || p.category === catFilter);
+        return matchesText && matchesCat;
     });
-    
+
     renderList(filtered);
 }
 
-/**
- * RENDER: Takes an array of problems and draws them on the screen
- */
-function renderList(dataArray) {
+// 5. DRAW THE LIST
+function renderList(data) {
     const listDiv = document.getElementById('registryList');
-    listDiv.innerHTML = ''; // Clear current display
+    listDiv.innerHTML = '';
 
-    if (dataArray.length === 0) {
-        listDiv.innerHTML = "<p style='text-align:center; color:#94a3b8;'>No matches found.</p>";
-        return;
-    }
-
-    dataArray.forEach(item => {
-        const row = document.createElement('div');
-        row.className = 'problem-item';
-        row.innerHTML = `
-            <span>${item.text}</span>
-            <span class="count-badge">x${item.count}</span>
+    data.forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'problem-item';
+        item.innerHTML = `
+            <div>
+                <strong>${p.text}</strong>
+                <span class="category-tag">${p.category}</span>
+            </div>
+            <span class="count-badge">x${p.count}</span>
         `;
-        listDiv.appendChild(row);
+        listDiv.appendChild(item);
     });
 }
 
-// Kick off the initial load
+// Load data when page opens
 fetchProblems();
