@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Problem Registry | Community Insights</title>
+    <title>Problem Registry</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,54 +11,42 @@
     <div class="container">
         <header>
             <h1>Problem Registry</h1>
-            <p>Register a problem or see what others are facing.</p>
+            <p>An anonymous space to log and track shared issues.</p>
         </header>
 
-        <section class="card">
-            <h3>Register New Problem</h3>
-            <div class="input-group">
-                <input type="text" id="problemInput" placeholder="Describe the problem...">
+        <div class="card">
+            <h3>Register a Problem</h3>
+            <div class="input-row">
+                <input type="text" id="problemInput" placeholder="What is the problem?">
+                <select id="categoryInput">
+                    <option value="General">General</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Public">Public</option>
+                    <option value="Social">Social</option>
+                </select>
                 <button id="submitBtn" onclick="submitProblem()">Register</button>
             </div>
-        </section>
+        </div>
 
-        <section class="card">
-            <div class="list-header">
-                <h3>Current Database</h3>
-                <input type="text" id="searchInput" onkeyup="filterProblems()" placeholder="Search existing problems...">
+        <div class="card">
+            <div class="list-controls">
+                <h3>The Registry</h3>
+                <div class="filter-row">
+                    <input type="text" id="searchInput" onkeyup="filterProblems()" placeholder="Search problems...">
+                    <select id="categoryFilter" onchange="filterProblems()">
+                        <option value="All">All Categories</option>
+                        <option value="General">General</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Public">Public</option>
+                        <option value="Social">Social</option>
+                    </select>
+                </div>
             </div>
             
-            <div id="loading" class="status-msg">Connecting to database...</div>
-            <div id="registryList">
-                </div>
-        </section>
+            <div id="loading">Connecting to database...</div>
+            <div id="registryList"></div>
+        </div>
     </div>
-
-    <div class="input-group">
-    <input type="text" id="problemInput" placeholder="Describe the problem...">
-    
-    <select id="categoryInput">
-        <option value="General">General</option>
-        <option value="Personal">Personal</option>
-        <option value="Public">Public/Infrastructure</option>
-        <option value="Environment">Environment</option>
-        <option value="Social">Social/Digital</option>
-    </select>
-    
-    <button id="submitBtn" onclick="submitProblem()">Register</button>
-</div>
-
-<div class="filter-group">
-    <input type="text" id="searchInput" onkeyup="filterProblems()" placeholder="Search...">
-    <select id="categoryFilter" onchange="filterProblems()">
-        <option value="All">All Categories</option>
-        <option value="General">General</option>
-        <option value="Personal">Personal</option>
-        <option value="Public">Public</option>
-        <option value="Environment">Environment</option>
-        <option value="Social">Social</option>
-    </select>
-</div>
 
     <script src="script.js"></script>
 </body>
