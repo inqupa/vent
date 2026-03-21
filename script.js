@@ -1,5 +1,5 @@
 // 1. Configuration: Paste your Google Web App URL here
-const SCRIPT_URL = 'REPLACE_WITH_YOUR_URL';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdEsqm6xFUfAzUYXzauCSpOJEQe1dYNgEsExHeC2NWRqvxKNKXoVblEXPgWS2DZdnFVw/exec';
 
 // This variable will hold our "local copy" of the data for searching
 let allProblems = [];
