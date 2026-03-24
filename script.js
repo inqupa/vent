@@ -22,3 +22,24 @@ const DataService = {
         });
     }
 };
+
+/**
+ * 3. UI MODULE (The View)
+ * Handles everything you SEE on the screen
+ */
+const UIManager = {
+    elements: {
+        list: document.getElementById('list-container'),
+        status: document.getElementById('status-message'),
+        btn: document.getElementById('btn-submit')
+    },
+
+    showStatus(msg) {
+        this.elements.status.innerText = msg;
+        this.elements.status.classList.remove('hidden');
+    },
+
+    hideStatus() {
+        this.elements.status.classList.add('hidden');
+    },
+    
