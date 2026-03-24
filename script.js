@@ -2,7 +2,7 @@
  * 1. CONFIGURATION 
  */
 const CONFIG = {
-    URL: 'YOUR_NEW_WEB_APP_URL_HERE',
+    URL: 'https://script.google.com/macros/s/AKfycbyijExtk-RwB_JFCvX31dNzVSV05nXkl7-fIDo_6yHRh5M_6yE4kcrY691Cj-OasafDKg/exec',
     DEBUG: true
 };
 
