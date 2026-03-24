@@ -3,49 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Problem Registry</title>
+    <title>Problem Registry Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <header>
+    <div class="app-container">
+        <header class="main-header">
             <h1>Problem Registry</h1>
-            <p>An anonymous space to log and track shared issues.</p>
+            <p>Community-driven data for a better future.</p>
         </header>
 
-        <div class="card">
-            <h3>What problem are you facing</h3>
-            <div class="input-row">
-                <input type="text" id="problemInput" placeholder="What is the problem?">
-                <select id="categoryInput">
+        <section class="card" id="registration-section">
+            <h3>Register New Entry</h3>
+            <div class="form-grid">
+                <input type="text" id="input-problem" placeholder="Describe the problem...">
+                <input type="text" id="input-location" placeholder="Neighborhood/City">
+                <select id="input-category">
                     <option value="General">General</option>
-                    <option value="Personal">Personal</option>
+                    <option value="Public">Public Infrastructure</option>
+                    <option value="Social">Social Issues</option>
+                    <option value="Environment">Environment</option>
+                </select>
+                <button id="btn-submit" class="primary-btn">Register</button>
+            </div>
+        </section>
+
+        <section class="card" id="display-section">
+            <div class="filter-bar">
+                <input type="text" id="filter-search" placeholder="Search problems or locations...">
+                <select id="filter-category">
+                    <option value="All">All Categories</option>
+                    <option value="General">General</option>
                     <option value="Public">Public</option>
                     <option value="Social">Social</option>
+                    <option value="Environment">Environment</option>
                 </select>
-                <button id="submitBtn" onclick="submitProblem()">Register</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="list-controls">
-                <h3>See what other find problematic</h3>
-                <div class="filter-row">
-                    <input type="text" id="searchInput" onkeyup="filterProblems()" placeholder="Search problems...">
-                    <select id="categoryFilter" onchange="filterProblems()">
-                        <option value="All">All Categories</option>
-                        <option value="General">General</option>
-                        <option value="Personal">Personal</option>
-                        <option value="Public">Public</option>
-                        <option value="Social">Social</option>
-                    </select>
-                </div>
             </div>
             
-            <div id="loading">Connecting to database...</div>
-            <div id="registryList"></div>
-        </div>
+            <div id="status-message" class="hidden">Connecting...</div>
+            <div id="list-container">
+                </div>
+        </section>
     </div>
 
     <script src="script.js"></script>
