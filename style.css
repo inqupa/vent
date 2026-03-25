@@ -1,129 +1,127 @@
-/* 1. SETUP: Variables for Light & Dark Mode */
+/* 1. VARIABLES */
 :root {
     --bg: #ffffff;
     --text: #1a1a1a;
-    --subtle: #888888;
-    --accent: #000000;
     --input-bg: #f5f5f5;
-    --border-radius: 16px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --accent: #000000;
 }
 
-/* These swap automatically when we trigger 'dark-mode' in JS */
 body.dark-mode {
     --bg: #121212;
     --text: #f0f0f0;
-    --subtle: #a0a0a0;
-    --accent: #ffffff;
     --input-bg: #1e1e1e;
+    --accent: #ffffff;
 }
 
-/* 2. BASE STYLES */
+/* 2. CORE LAYOUT - Fixing the "Shrinking" issue */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: sans-serif;
     background-color: var(--bg);
     color: var(--text);
-    height: 100vh;
+    height: 100vh; /* Force the body to be exactly the screen height */
     display: flex;
-    flex-direction: column; /* Stack: Header -> Main -> Footer */
-    transition: background-color 0.4s ease;
-    overflow: hidden; /* Prevents awkward double scrolling */
+    flex-direction: column;
+    overflow: hidden; /* Prevents the whole page from bouncing */
 }
 
-/* 3. HEADER & MENU */
+/* 3. HEADER - Fixing the "Vanishing" Hamburger */
 .main-header {
-    padding: 20px 30px;
+    height: 80px; /* Fixed height so it doesn't vanish */
+    padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
+    position: relative;
+    z-index: 1001; /* Keep it above the drawer */
 }
 
-.logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; }
+.logo { font-size: 1.8rem; font-weight: 800; }
 
-.menu-icon { cursor: pointer; z-index: 110; }
+.menu-icon { 
+    cursor: pointer; 
+    width: 30px; 
+    height: 20px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .bar { 
-    width: 25px; height: 2px; background: var(--text); 
-    margin: 5px 0; transition: var(--transition); 
+    width: 100%; 
+    height: 3px; 
+    background: var(--text); /* This ensures it's visible */
+    border-radius: 2px;
 }
 
-/* The Slide-out Drawer */
+/* 4. THE DRAWER */
 .menu-drawer {
     position: fixed;
-    top: 0; right: -300px; /* Start off-screen */
-    width: 280px; height: 100%;
+    top: 0; 
+    right: -300px; 
+    width: 280px; 
+    height: 100%;
     background: var(--bg);
-    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
     padding: 100px 30px;
-    transition: var(--transition);
+    transition: 0.3s ease;
+    z-index: 1000;
 }
+.menu-drawer.open { right: 0; }
 
-.menu-drawer.open { right: 0; } /* When JS adds 'open' class */
-
-.menu-drawer ul { list-style: none; }
-.menu-drawer li { margin-bottom: 25px; }
-.menu-drawer a { text-decoration: none; color: var(--text); font-size: 1.1rem; }
-
-/* 4. THE MAIN VENT AREA (The Stretch Logic) */
+/* 5. THE MAIN AREA - Fixing the "Square Box" and "Small Button" */
 .app-viewport {
-    flex: 1; /* Takes all available middle space */
+    flex: 1; /* Take all remaining height */
+    padding: 0 20px 20px 20px;
     display: flex;
     justify-content: center;
-    padding: 10px 20px;
 }
 
 .vent-container {
     width: 100%;
-    max-width: 900px; /* Stretches on desktop, stays neat on mobile */
+    max-width: 1000px; /* This allows it to be wide on Desktop */
     display: flex;
     flex-direction: column;
+    height: 100%; /* Fill the viewport */
 }
 
 textarea {
-    flex: 1; /* This makes the box stretch to fill the screen height */
     width: 100%;
+    flex: 1; /* FORCES the textbox to grow and take all available space */
     border: none;
     outline: none;
     background: var(--input-bg);
-    padding: 25px;
-    font-size: 1.2rem;
-    border-radius: var(--border-radius);
+    padding: 30px;
+    font-size: 1.3rem;
+    border-radius: 20px;
     color: var(--text);
     resize: none;
-    transition: var(--transition);
+    margin-bottom: 20px; /* Space between text and button */
 }
 
-/* 5. SUBMIT BUTTON (Reduced Gaps) */
 #submitBtn {
-    margin: 15px 0; /* Tightened the gap */
+    width: 100%; /* Ensure it spans the width */
+    height: 60px; /* Fixed height so it NEVER shrinks */
     background: var(--accent);
     color: var(--bg);
     border: none;
-    padding: 18px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    border-radius: var(--border-radius);
+    border-radius: 15px;
     cursor: pointer;
+    flex-shrink: 0; /* Prevents the button from getting squashed */
 }
 
-/* 6. SUBTLE FOOTER */
+/* 6. FOOTER */
 .minimal-footer {
-    padding-bottom: 20px;
+    height: 50px;
     text-align: center;
 }
 
 .think-tank-link {
     font-size: 0.8rem;
-    color: var(--subtle);
+    color: var(--text);
+    opacity: 0.4;
     text-decoration: none;
-    opacity: 0.5;
-}
-
-/* 7. RESPONSIVENESS */
-@media (min-width: 768px) {
-    .logo { font-size: 2.2rem; }
-    textarea { font-size: 1.5rem; padding: 40px; }
-    .app-viewport { padding: 20px 50px; }
 }
