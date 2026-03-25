@@ -1,127 +1,137 @@
-/* 1. VARIABLES */
 :root {
     --bg: #ffffff;
     --text: #1a1a1a;
-    --input-bg: #f5f5f5;
+    --input-bg: #f4f4f4;
     --accent: #000000;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 body.dark-mode {
-    --bg: #121212;
-    --text: #f0f0f0;
-    --input-bg: #1e1e1e;
+    --bg: #171717;
+    --text: #ececec;
+    --input-bg: #212121;
     --accent: #ffffff;
 }
 
-/* 2. CORE LAYOUT - Fixing the "Shrinking" issue */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: sans-serif;
+    font-family: -apple-system, system-ui, sans-serif;
     background-color: var(--bg);
     color: var(--text);
-    height: 100vh; /* Force the body to be exactly the screen height */
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Prevents the whole page from bouncing */
+    transition: background 0.3s ease;
 }
 
-/* 3. HEADER - Fixing the "Vanishing" Hamburger */
+/* HEADER - Centered Logo & "v" Toggle */
 .main-header {
-    height: 80px; /* Fixed height so it doesn't vanish */
-    padding: 0 30px;
+    padding: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centers the logo */
     align-items: center;
     position: relative;
-    z-index: 1001; /* Keep it above the drawer */
 }
 
-.logo { font-size: 1.8rem; font-weight: 800; }
-
-.menu-icon { 
-    cursor: pointer; 
-    width: 30px; 
-    height: 20px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.logo {
+    font-size: 2.5rem; /* Bigger, bolder font */
+    font-weight: 700;
+    letter-spacing: -1.5px;
 }
 
-.bar { 
-    width: 100%; 
-    height: 3px; 
-    background: var(--text); /* This ensures it's visible */
-    border-radius: 2px;
+.menu-trigger {
+    position: absolute;
+    right: 30px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    text-transform: lowercase;
+    opacity: 0.6;
 }
 
-/* 4. THE DRAWER */
-.menu-drawer {
-    position: fixed;
-    top: 0; 
-    right: -300px; 
-    width: 280px; 
-    height: 100%;
-    background: var(--bg);
-    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    padding: 100px 30px;
-    transition: 0.3s ease;
-    z-index: 1000;
-}
-.menu-drawer.open { right: 0; }
-
-/* 5. THE MAIN AREA - Fixing the "Square Box" and "Small Button" */
+/* THE FLOATING INPUT (AI Style) */
 .app-viewport {
-    flex: 1; /* Take all remaining height */
-    padding: 0 20px 20px 20px;
+    flex: 1;
     display: flex;
+    align-items: center; /* Vertically centered */
     justify-content: center;
+    padding: 0 20px;
 }
 
 .vent-container {
     width: 100%;
-    max-width: 1000px; /* This allows it to be wide on Desktop */
+    max-width: 750px; /* Modern "chat" width */
+}
+
+.input-wrapper {
+    background: var(--input-bg);
+    border-radius: 28px;
+    padding: 15px 20px;
     display: flex;
-    flex-direction: column;
-    height: 100%; /* Fill the viewport */
+    align-items: flex-end; /* Keeps button at bottom of text */
+    box-shadow: var(--shadow);
 }
 
 textarea {
-    width: 100%;
-    flex: 1; /* FORCES the textbox to grow and take all available space */
+    flex: 1;
+    background: transparent;
     border: none;
     outline: none;
-    background: var(--input-bg);
-    padding: 30px;
-    font-size: 1.3rem;
-    border-radius: 20px;
     color: var(--text);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    padding: 10px;
     resize: none;
-    margin-bottom: 20px; /* Space between text and button */
+    min-height: 50px;
+    max-height: 200px; /* Grows but stays tidy */
 }
 
 #submitBtn {
-    width: 100%; /* Ensure it spans the width */
-    height: 60px; /* Fixed height so it NEVER shrinks */
     background: var(--accent);
     color: var(--bg);
     border: none;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     cursor: pointer;
-    flex-shrink: 0; /* Prevents the button from getting squashed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    transition: opacity 0.2s;
 }
 
-/* 6. FOOTER */
+#submitBtn:disabled { opacity: 0.3; }
+
+.arrow { font-size: 1.2rem; font-weight: bold; }
+
+/* DRAWER MENU */
+.menu-drawer {
+    position: fixed;
+    top: 0; right: -300px;
+    width: 280px; height: 100%;
+    background: var(--bg);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    padding: 100px 40px;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+.menu-drawer.open { right: 0; }
+
+.menu-drawer ul { list-style: none; }
+.menu-drawer li { margin-bottom: 25px; }
+.menu-drawer a { text-decoration: none; color: var(--text); font-size: 1.1rem; }
+
+/* FOOTER */
 .minimal-footer {
-    height: 50px;
+    padding: 40px; /* Created that fair gap you wanted */
     text-align: center;
 }
 
 .think-tank-link {
     font-size: 0.8rem;
     color: var(--text);
-    opacity: 0.4;
+    opacity: 0.3;
     text-decoration: none;
 }
