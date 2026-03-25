@@ -1,79 +1,92 @@
 :root {
     --bg: #ffffff;
     --text: #1a1a1a;
-    --input-bg: #f4f4f4;
+    --input-bg: #f2f2f2;
     --accent: #000000;
-    /* Subtler color for logo and "v" */
-    --subtle-accent: #d1d1d1; 
+    --logo-color: #eeeeee; /* Subtler than before for a premium feel */
 }
 
 body.dark-mode {
-    --bg: #121212;
-    --text: #f0f0f0;
-    --input-bg: #1e1e1e;
+    --bg: #0a0a0a;
+    --text: #ffffff;
+    --input-bg: #1a1a1a;
     --accent: #ffffff;
-    --subtle-accent: #333333;
+    --logo-color: #1a1a1a;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; padding: 0; 
+    -webkit-tap-highlight-color: transparent; /* Clean touch on mobile */
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* STOPS ALL SCROLLING */
+    position: fixed; /* Extra lock for mobile Safari */
+}
 
 body {
-    font-family: -apple-system, system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
     background-color: var(--bg);
     color: var(--text);
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
-/* 1. THE "v" TOGGLE */
+/* 1. TOP RIGHT TRIGGER */
 .main-header {
-    padding: 30px;
+    padding: 30px 40px;
     display: flex;
-    justify-content: flex-end; /* Pushes "v" to the right */
+    justify-content: flex-end;
 }
 
 .menu-trigger {
-    font-size: 1.8rem;
-    color: var(--subtle-accent); /* Matches logo color */
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent); /* Now black/white like the button */
     cursor: pointer;
-    font-weight: 300;
+    letter-spacing: -0.5px;
 }
 
-/* 2. THE STACKED CENTER LAYOUT */
+/* 2. THE STACKED CENTER */
 .app-viewport {
     flex: 1;
     display: flex;
-    align-items: flex-end; /* Pushes content toward bottom */
+    align-items: center; 
     justify-content: center;
-    padding-bottom: 15vh; /* This creates the "Fair Gap" from bottom */
+    padding-bottom: 80px; /* Adjusted gap from bottom */
 }
 
 .vent-container {
     width: 100%;
-    max-width: 700px;
-    text-align: center;
-    padding: 0 20px;
+    max-width: 800px;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.logo {
-    font-size: 5rem; /* Massive font */
-    font-weight: 800;
-    letter-spacing: -3px;
-    color: var(--subtle-accent); /* Subtler color */
-    margin-bottom: 20px; /* Space between logo and box */
-    user-select: none;
+.hero-logo {
+    font-size: 15vw; /* Massive proportional size */
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: var(--logo-color);
+    margin-bottom: 100px; /* Huge gap between logo and box */
+    line-height: 1;
+    pointer-events: none; /* User can't click it */
 }
 
-/* 3. THE INPUT BOX (Aligned horizontally) */
+/* 3. THE PREMIUM INPUT */
 .input-wrapper {
     background: var(--input-bg);
-    border-radius: 35px;
-    padding: 10px 15px 10px 30px;
+    width: 100%;
+    border-radius: 40px;
+    padding: 12px 12px 12px 30px;
     display: flex;
-    align-items: center; /* PERFECT HORIZONTAL ALIGNMENT */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+    align-items: center;
+    transition: transform 0.2s ease;
 }
 
 textarea {
@@ -82,41 +95,60 @@ textarea {
     border: none;
     outline: none;
     color: var(--text);
-    font-size: 1.2rem;
-    padding: 15px 0;
+    font-size: 1.1rem;
+    padding: 10px 0;
     resize: none;
-    height: 60px; /* Base height for alignment */
-    line-height: 30px; /* Centers text vertically in the row */
+    height: 44px; /* Perfectly aligned with button height */
+    line-height: 24px;
 }
 
 #submitBtn {
-    background: var(--accent); /* Paperplane background is sharp black/white */
+    background: var(--accent);
     color: var(--bg);
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    transition: opacity 0.2s;
+    padding: 10px; /* Gives the SVG some breathing room */
 }
 
-.icon { font-size: 1.4rem; transform: rotate(-10deg); } /* Tilts the paperplane */
+#submitBtn svg {
+    width: 100%;
+    height: 100%;
+    transform: translateX(-2px) translateY(1px); /* Precision centering */
+}
 
-/* 4. DRAWER & FOOTER */
+/* 4. MENU DRAWER */
 .menu-drawer {
     position: fixed;
     top: 0; right: -300px;
     width: 280px; height: 100%;
     background: var(--bg);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
     padding: 100px 40px;
-    transition: 0.4s ease;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1000;
+    border-left: 1px solid var(--input-bg);
 }
 .menu-drawer.open { right: 0; }
 
-.minimal-footer { padding: 20px; text-align: center; }
-.think-tank-link { font-size: 0.8rem; color: var(--subtle-accent); text-decoration: none; }
+.menu-drawer ul { list-style: none; }
+.menu-drawer li { margin-bottom: 20px; }
+.menu-drawer a { text-decoration: none; color: var(--text); font-weight: 500; }
+
+/* 5. FOOTER */
+.minimal-footer {
+    padding: 20px;
+    text-align: center;
+}
+
+.think-tank-link {
+    font-size: 0.75rem;
+    color: var(--text);
+    opacity: 0.2;
+    text-decoration: none;
+}
