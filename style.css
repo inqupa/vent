@@ -3,13 +3,12 @@
     --text: #1a1a1a;
     --input-bg: #f4f4f4;
     --accent: #000000;
-    --shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 body.dark-mode {
-    --bg: #171717;
-    --text: #ececec;
-    --input-bg: #212121;
+    --bg: #111111;
+    --text: #ffffff;
+    --input-bg: #222222;
     --accent: #ffffff;
 }
 
@@ -22,55 +21,50 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    transition: background 0.3s ease;
+    overflow: hidden; /* Stops accidental scrolling */
 }
 
-/* HEADER - Centered Logo & "v" Toggle */
+/* HEADER: Logo Centered, Toggle Fixed Right */
 .main-header {
-    padding: 30px;
+    padding: 40px;
     display: flex;
-    justify-content: center; /* Centers the logo */
+    justify-content: center;
     align-items: center;
     position: relative;
 }
 
-.logo {
-    font-size: 2.5rem; /* Bigger, bolder font */
-    font-weight: 700;
-    letter-spacing: -1.5px;
-}
+.logo { font-size: 2.5rem; font-weight: 700; letter-spacing: -1.5px; }
 
 .menu-trigger {
     position: absolute;
-    right: 30px;
+    right: 40px;
     font-size: 1.5rem;
-    font-weight: 300;
     cursor: pointer;
-    text-transform: lowercase;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
-/* THE FLOATING INPUT (AI Style) */
+/* MAIN: The Floating AI-style Input */
 .app-viewport {
     flex: 1;
     display: flex;
-    align-items: center; /* Vertically centered */
-    justify-content: center;
+    align-items: center; /* Vertical Center */
+    justify-content: center; /* Horizontal Center */
     padding: 0 20px;
 }
 
 .vent-container {
     width: 100%;
-    max-width: 750px; /* Modern "chat" width */
+    max-width: 700px;
 }
 
+/* THE PILL BOX: Button is INSIDE here */
 .input-wrapper {
     background: var(--input-bg);
-    border-radius: 28px;
-    padding: 15px 20px;
+    border-radius: 30px;
+    padding: 10px 15px 10px 25px;
     display: flex;
-    align-items: flex-end; /* Keeps button at bottom of text */
-    box-shadow: var(--shadow);
+    align-items: flex-end; /* Keeps button at bottom if text grows */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 textarea {
@@ -79,34 +73,31 @@ textarea {
     border: none;
     outline: none;
     color: var(--text);
-    font-size: 1.1rem;
-    line-height: 1.5;
-    padding: 10px;
+    font-size: 1.2rem;
+    padding: 15px 0;
     resize: none;
-    min-height: 50px;
-    max-height: 200px; /* Grows but stays tidy */
+    min-height: 60px;
+    max-height: 250px;
 }
 
 #submitBtn {
     background: var(--accent);
     color: var(--bg);
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     cursor: pointer;
+    margin-left: 10px;
+    flex-shrink: 0; /* Prevents button from squashing */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 10px;
-    transition: opacity 0.2s;
 }
 
-#submitBtn:disabled { opacity: 0.3; }
+.arrow { font-size: 1.5rem; font-weight: bold; }
 
-.arrow { font-size: 1.2rem; font-weight: bold; }
-
-/* DRAWER MENU */
+/* DRAWER */
 .menu-drawer {
     position: fixed;
     top: 0; right: -300px;
@@ -114,24 +105,15 @@ textarea {
     background: var(--bg);
     box-shadow: -10px 0 30px rgba(0,0,0,0.1);
     padding: 100px 40px;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: 0.4s ease;
     z-index: 1000;
 }
 .menu-drawer.open { right: 0; }
 
 .menu-drawer ul { list-style: none; }
 .menu-drawer li { margin-bottom: 25px; }
-.menu-drawer a { text-decoration: none; color: var(--text); font-size: 1.1rem; }
+.menu-drawer a { text-decoration: none; color: var(--text); font-size: 1.2rem; }
 
 /* FOOTER */
-.minimal-footer {
-    padding: 40px; /* Created that fair gap you wanted */
-    text-align: center;
-}
-
-.think-tank-link {
-    font-size: 0.8rem;
-    color: var(--text);
-    opacity: 0.3;
-    text-decoration: none;
-}
+.minimal-footer { padding: 40px; text-align: center; }
+.think-tank-link { font-size: 0.8rem; color: var(--text); opacity: 0.3; text-decoration: none; }
