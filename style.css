@@ -3,7 +3,7 @@
     --text: #1a1a1a;
     --input-bg: #f2f2f2;
     --accent: #000000;
-    --logo-color: #eeeeee; /* Subtler than before for a premium feel */
+    --logo-color: #eeeeee;
 }
 
 body.dark-mode {
@@ -14,49 +14,27 @@ body.dark-mode {
     --logo-color: #1a1a1a;
 }
 
-* { 
-    box-sizing: border-box; 
-    margin: 0; padding: 0; 
-    -webkit-tap-highlight-color: transparent; /* Clean touch on mobile */
-}
+/* Base resets & no-scroll lock */
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; background-color: var(--bg); color: var(--text); display: flex; flex-direction: column; }
 
-html, body {
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* STOPS ALL SCROLLING */
-    position: fixed; /* Extra lock for mobile Safari */
-}
+/* 1. TOP TRIGGER */
+.main-header { padding: 30px 40px; display: flex; justify-content: flex-end; }
+.menu-trigger { font-size: 1.2rem; font-weight: 700; color: var(--accent); cursor: pointer; letter-spacing: -0.5px; }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
-}
-
-/* 1. TOP RIGHT TRIGGER */
-.main-header {
-    padding: 30px 40px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.menu-trigger {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--accent); /* Now black/white like the button */
-    cursor: pointer;
-    letter-spacing: -0.5px;
-}
-
-/* 2. THE STACKED CENTER */
+/* 2. THE STACKED CENTER (Responsive Spacing) */
 .app-viewport {
     flex: 1;
     display: flex;
     align-items: center; 
     justify-content: center;
-    padding-bottom: 80px; /* Adjusted gap from bottom */
+    padding-bottom: 5vh; /* Standard gap from bottom */
+}
+
+/* MOBILE FIX: Reduce the massive gap on small screens so everything fits */
+@media (max-width: 600px) {
+    .app-viewport { padding-bottom: 20px; }
 }
 
 .vent-container {
@@ -68,17 +46,32 @@ body {
     align-items: center;
 }
 
+/* 3. RESPONSIVE LOGO SIZE */
 .hero-logo {
-    font-size: 15vw; /* Massive proportional size */
     font-weight: 900;
     letter-spacing: -0.05em;
     color: var(--logo-color);
-    margin-bottom: 100px; /* Huge gap between logo and box */
     line-height: 1;
-    pointer-events: none; /* User can't click it */
+    pointer-events: none;
 }
 
-/* 3. THE PREMIUM INPUT */
+/* Default: Massive on big screens (Chef's kiss!) */
+@media (min-width: 601px) {
+    .hero-logo {
+        font-size: 15vw; 
+        margin-bottom: 100px;
+    }
+}
+
+/* MOBILE FIX: Lock the logo to a bold 70px minimum so it's readable */
+@media (max-width: 600px) {
+    .hero-logo {
+        font-size: 70px;
+        margin-bottom: 60px; /* Reduced gap to keep input visible on mobile */
+    }
+}
+
+/* 4. THE PREMIUM INPUT */
 .input-wrapper {
     background: var(--input-bg);
     width: 100%;
@@ -86,7 +79,6 @@ body {
     padding: 12px 12px 12px 30px;
     display: flex;
     align-items: center;
-    transition: transform 0.2s ease;
 }
 
 textarea {
@@ -98,10 +90,11 @@ textarea {
     font-size: 1.1rem;
     padding: 10px 0;
     resize: none;
-    height: 44px; /* Perfectly aligned with button height */
+    height: 44px; /* Flawless horizontal alignment */
     line-height: 24px;
 }
 
+/* 5. SVG CENTERING (Absolute Lock) */
 #submitBtn {
     background: var(--accent);
     color: var(--bg);
@@ -110,45 +103,29 @@ textarea {
     height: 44px;
     border-radius: 50%;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.2s;
-    padding: 10px; /* Gives the SVG some breathing room */
+    flex-shrink: 0;
+    position: relative; /* REQUIRED FOR ABSOLUTE CENTERING */
+    overflow: hidden;
 }
 
 #submitBtn svg {
-    width: 100%;
-    height: 100%;
-    transform: translateX(-2px) translateY(1px); /* Precision centering */
+    /* Larger size: increased from 10px padding to 12px absolute size */
+    width: 24px; 
+    height: 24px;
+    
+    /* MATHEMATICAL CENTERING */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Precision Lock */
 }
 
-/* 4. MENU DRAWER */
-.menu-drawer {
-    position: fixed;
-    top: 0; right: -300px;
-    width: 280px; height: 100%;
-    background: var(--bg);
-    padding: 100px 40px;
-    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1000;
-    border-left: 1px solid var(--input-bg);
-}
+/* 6. DRAWER & FOOTER */
+.menu-drawer { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background: var(--bg); padding: 100px 40px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1000; border-left: 1px solid var(--input-bg); }
 .menu-drawer.open { right: 0; }
-
 .menu-drawer ul { list-style: none; }
 .menu-drawer li { margin-bottom: 20px; }
 .menu-drawer a { text-decoration: none; color: var(--text); font-weight: 500; }
 
-/* 5. FOOTER */
-.minimal-footer {
-    padding: 20px;
-    text-align: center;
-}
-
-.think-tank-link {
-    font-size: 0.75rem;
-    color: var(--text);
-    opacity: 0.2;
-    text-decoration: none;
-}
+.minimal-footer { padding: 20px; text-align: center; }
+.think-tank-link { font-size: 0.75rem; color: var(--text); opacity: 0.2; text-decoration: none; }
