@@ -3,49 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Problem Registry Pro</title>
+    <title>Vent | Express Yourself</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="app-container">
-        <header class="main-header">
-            <h1>Problem Registry</h1>
-            <p>Community-driven data for a better future.</p>
-        </header>
+    <header class="main-header">
+        <div class="logo">vent</div>
+        
+        <nav class="menu-container">
+            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+            </label>
 
-        <section class="card" id="registration-section">
-            <h3>Register New Entry</h3>
-            <div class="form-grid">
-                <input type="text" id="input-problem" placeholder="Describe the problem...">
-                <input type="text" id="input-location" placeholder="Neighborhood/City">
-                <select id="input-category">
-                    <option value="General">General</option>
-                    <option value="Public">Public Infrastructure</option>
-                    <option value="Social">Social Issues</option>
-                    <option value="Environment">Environment</option>
-                </select>
-                <button id="btn-submit" class="primary-btn">Register</button>
-            </div>
-        </section>
+            <ul class="menu-drawer">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#" id="theme-slider">Dark Mode</a></li>
+                <li><hr></li>
+                <li><a href="#" class="think-tank-link">Think Tank</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <section class="card" id="display-section">
-            <div class="filter-bar">
-                <input type="text" id="filter-search" placeholder="Search problems or locations...">
-                <select id="filter-category">
-                    <option value="All">All Categories</option>
-                    <option value="General">General</option>
-                    <option value="Public">Public</option>
-                    <option value="Social">Social</option>
-                    <option value="Environment">Environment</option>
-                </select>
-            </div>
-            
-            <div id="status-message" class="hidden">Connecting...</div>
-            <div id="list-container">
-                </div>
+    <main class="app-viewport">
+        <section class="vent-area">
+            <div id="location-indicator" class="hidden-metadata"></div>
+
+            <textarea 
+                id="problemInput" 
+                placeholder="What's on your mind?" 
+                spellcheck="false"
+            ></textarea>
+
+            <button id="submitBtn" onclick="handleVent()">Submit</button>
         </section>
-    </div>
+    </main>
+
+    <footer class="minimal-footer">
+        <a href="https://your-think-tank-link.com" class="subtle-link">
+            Seeking solutions? Visit the Think Tank.
+        </a>
+    </footer>
 
     <script src="script.js"></script>
 </body>
