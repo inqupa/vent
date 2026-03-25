@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vent</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="main-header">
-        <div class="menu-trigger" onclick="toggleMenu()">v</div>
+        <div class="menu-trigger" onclick="toggleMenu()">vent</div>
 
         <nav id="side-menu" class="menu-drawer">
             <ul>
@@ -22,12 +22,14 @@
 
     <main class="app-viewport">
         <div class="vent-container">
-            <div class="logo">vent</div>
+            <div class="hero-logo">vent</div>
             
             <div class="input-wrapper">
                 <textarea id="problemInput" placeholder="What's on your mind?"></textarea>
                 <button id="submitBtn" onclick="handleVent()">
-                    <span class="icon">➤</span>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9L22 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </button>
             </div>
         </div>
