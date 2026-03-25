@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vent | Express Yourself</title>
+    <title>Vent</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,38 +11,30 @@
     <header class="main-header">
         <div class="logo">vent</div>
         
-        <nav class="menu-container">
-            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-            <label for="menu-toggle" class="hamburger">
-                <span></span>
-            </label>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
 
-            <ul class="menu-drawer">
+        <nav id="side-menu" class="menu-drawer">
+            <ul>
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Login</a></li>
-                <li><a href="#" id="theme-slider">Dark Mode</a></li>
-                <li><hr></li>
-                <li><a href="#" class="think-tank-link">Think Tank</a></li>
+                <li><a href="#" id="theme-toggle">Dark Mode</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="app-viewport">
-        <section class="vent-area">
-            <div id="location-indicator" class="hidden-metadata"></div>
-
-            <textarea 
-                id="problemInput" 
-                placeholder="What's on your mind?" 
-                spellcheck="false"
-            ></textarea>
-
+        <div class="vent-container">
+            <textarea id="problemInput" placeholder="What's on your mind?"></textarea>
             <button id="submitBtn" onclick="handleVent()">Submit</button>
-        </section>
+        </div>
     </main>
 
     <footer class="minimal-footer">
-        <a href="https://your-think-tank-link.com" class="subtle-link">
+        <a href="https://your-think-tank-site.com" class="think-tank-link">
             Seeking solutions? Visit the Think Tank.
         </a>
     </footer>
