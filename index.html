@@ -9,7 +9,6 @@
 <body>
 
     <header class="main-header">
-        <div class="logo">vent</div>
         <div class="menu-trigger" onclick="toggleMenu()">v</div>
 
         <nav id="side-menu" class="menu-drawer">
@@ -23,10 +22,12 @@
 
     <main class="app-viewport">
         <div class="vent-container">
+            <div class="logo">vent</div>
+            
             <div class="input-wrapper">
                 <textarea id="problemInput" placeholder="What's on your mind?"></textarea>
                 <button id="submitBtn" onclick="handleVent()">
-                    <span class="arrow">↑</span>
+                    <span class="icon">➤</span>
                 </button>
             </div>
         </div>
