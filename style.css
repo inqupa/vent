@@ -1,162 +1,129 @@
-/* 1. RESET & BASE STYLES */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Prevents padding from breaking layout */
+/* 1. SETUP: Variables for Light & Dark Mode */
+:root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --subtle: #888888;
+    --accent: #000000;
+    --input-bg: #f5f5f5;
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-:root {
-    --bg-color: #ffffff;
-    --text-main: #1a1a1a;
-    --text-subtle: #888888;
-    --accent: #000000; /* Sharp, high-contrast black */
-    --input-bg: #f9f9f9;
-    --transition: all 0.3s ease;
+/* These swap automatically when we trigger 'dark-mode' in JS */
+body.dark-mode {
+    --bg: #121212;
+    --text: #f0f0f0;
+    --subtle: #a0a0a0;
+    --accent: #ffffff;
+    --input-bg: #1e1e1e;
 }
+
+/* 2. BASE STYLES */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
+    background-color: var(--bg);
+    color: var(--text);
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack: Header -> Main -> Footer */
+    transition: background-color 0.4s ease;
+    overflow: hidden; /* Prevents awkward double scrolling */
 }
 
-/* 2. HEADER & LOGO */
+/* 3. HEADER & MENU */
 .main-header {
-    padding: 20px;
+    padding: 20px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
 }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: -1px;
-    text-transform: lowercase;
-    cursor: pointer;
+.logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; }
+
+.menu-icon { cursor: pointer; z-index: 110; }
+.bar { 
+    width: 25px; height: 2px; background: var(--text); 
+    margin: 5px 0; transition: var(--transition); 
 }
 
-/* 3. TOGGLE MENU (The Future-Proof Drawer) */
-.menu-checkbox { display: none; }
-
-.hamburger {
-    cursor: pointer;
-    width: 24px;
-    height: 18px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.hamburger span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background: var(--accent);
-    transition: var(--transition);
-}
-
+/* The Slide-out Drawer */
 .menu-drawer {
     position: fixed;
-    top: 0;
-    right: -100%; /* Hidden by default */
-    width: 250px;
-    height: 100%;
-    background: white;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-    padding: 80px 30px;
-    list-style: none;
+    top: 0; right: -300px; /* Start off-screen */
+    width: 280px; height: 100%;
+    background: var(--bg);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+    padding: 100px 30px;
     transition: var(--transition);
-    z-index: 90;
 }
 
+.menu-drawer.open { right: 0; } /* When JS adds 'open' class */
+
+.menu-drawer ul { list-style: none; }
 .menu-drawer li { margin-bottom: 25px; }
-.menu-drawer a {
-    text-decoration: none;
-    color: var(--text-main);
-    font-size: 1.1rem;
-}
+.menu-drawer a { text-decoration: none; color: var(--text); font-size: 1.1rem; }
 
-/* Toggle Logic: When checkbox is checked, move drawer in */
-.menu-checkbox:checked ~ .menu-drawer { right: 0; }
-
-/* 4. THE CORE INPUT AREA */
+/* 4. THE MAIN VENT AREA (The Stretch Logic) */
 .app-viewport {
-    flex: 1; /* Takes up all remaining space */
+    flex: 1; /* Takes all available middle space */
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
-.vent-area {
+.vent-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 900px; /* Stretches on desktop, stays neat on mobile */
     display: flex;
     flex-direction: column;
 }
 
 textarea {
+    flex: 1; /* This makes the box stretch to fill the screen height */
     width: 100%;
-    min-height: 200px;
     border: none;
     outline: none;
     background: var(--input-bg);
-    padding: 20px;
+    padding: 25px;
     font-size: 1.2rem;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
+    color: var(--text);
     resize: none;
-    color: var(--text-main);
     transition: var(--transition);
 }
 
-textarea:focus {
-    background: #f2f2f2;
-}
-
-/* 5. THE SUBMIT BUTTON */
+/* 5. SUBMIT BUTTON (Reduced Gaps) */
 #submitBtn {
-    margin-top: 20px;
+    margin: 15px 0; /* Tightened the gap */
     background: var(--accent);
-    color: white;
+    color: var(--bg);
     border: none;
     padding: 18px;
     font-size: 1rem;
-    font-weight: 600;
-    border-radius: 12px;
+    font-weight: 700;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: var(--transition);
 }
 
-#submitBtn:active {
-    transform: scale(0.98);
-    opacity: 0.9;
-}
-
-/* 6. MINIMAL FOOTER */
+/* 6. SUBTLE FOOTER */
 .minimal-footer {
-    padding: 30px;
+    padding-bottom: 20px;
     text-align: center;
 }
 
-.subtle-link {
+.think-tank-link {
     font-size: 0.8rem;
-    color: var(--text-subtle);
+    color: var(--subtle);
     text-decoration: none;
-    opacity: 0.6;
-    transition: var(--transition);
+    opacity: 0.5;
 }
-
-.subtle-link:hover { opacity: 1; }
 
 /* 7. RESPONSIVENESS */
 @media (min-width: 768px) {
-    textarea { min-height: 300px; font-size: 1.4rem; }
     .logo { font-size: 2.2rem; }
+    textarea { font-size: 1.5rem; padding: 40px; }
+    .app-viewport { padding: 20px 50px; }
 }
