@@ -3,13 +3,16 @@
     --text: #1a1a1a;
     --input-bg: #f4f4f4;
     --accent: #000000;
+    /* Subtler color for logo and "v" */
+    --subtle-accent: #d1d1d1; 
 }
 
 body.dark-mode {
-    --bg: #111111;
-    --text: #ffffff;
-    --input-bg: #222222;
+    --bg: #121212;
+    --text: #f0f0f0;
+    --input-bg: #1e1e1e;
     --accent: #ffffff;
+    --subtle-accent: #333333;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,50 +24,56 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Stops accidental scrolling */
+    overflow: hidden;
 }
 
-/* HEADER: Logo Centered, Toggle Fixed Right */
+/* 1. THE "v" TOGGLE */
 .main-header {
-    padding: 40px;
+    padding: 30px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    justify-content: flex-end; /* Pushes "v" to the right */
 }
-
-.logo { font-size: 2.5rem; font-weight: 700; letter-spacing: -1.5px; }
 
 .menu-trigger {
-    position: absolute;
-    right: 40px;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--subtle-accent); /* Matches logo color */
     cursor: pointer;
-    opacity: 0.5;
+    font-weight: 300;
 }
 
-/* MAIN: The Floating AI-style Input */
+/* 2. THE STACKED CENTER LAYOUT */
 .app-viewport {
     flex: 1;
     display: flex;
-    align-items: center; /* Vertical Center */
-    justify-content: center; /* Horizontal Center */
-    padding: 0 20px;
+    align-items: flex-end; /* Pushes content toward bottom */
+    justify-content: center;
+    padding-bottom: 15vh; /* This creates the "Fair Gap" from bottom */
 }
 
 .vent-container {
     width: 100%;
     max-width: 700px;
+    text-align: center;
+    padding: 0 20px;
 }
 
-/* THE PILL BOX: Button is INSIDE here */
+.logo {
+    font-size: 5rem; /* Massive font */
+    font-weight: 800;
+    letter-spacing: -3px;
+    color: var(--subtle-accent); /* Subtler color */
+    margin-bottom: 20px; /* Space between logo and box */
+    user-select: none;
+}
+
+/* 3. THE INPUT BOX (Aligned horizontally) */
 .input-wrapper {
     background: var(--input-bg);
-    border-radius: 30px;
-    padding: 10px 15px 10px 25px;
+    border-radius: 35px;
+    padding: 10px 15px 10px 30px;
     display: flex;
-    align-items: flex-end; /* Keeps button at bottom if text grows */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    align-items: center; /* PERFECT HORIZONTAL ALIGNMENT */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
 }
 
 textarea {
@@ -76,28 +85,27 @@ textarea {
     font-size: 1.2rem;
     padding: 15px 0;
     resize: none;
-    min-height: 60px;
-    max-height: 250px;
+    height: 60px; /* Base height for alignment */
+    line-height: 30px; /* Centers text vertically in the row */
 }
 
 #submitBtn {
-    background: var(--accent);
+    background: var(--accent); /* Paperplane background is sharp black/white */
     color: var(--bg);
     border: none;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     cursor: pointer;
-    margin-left: 10px;
-    flex-shrink: 0; /* Prevents button from squashing */
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
-.arrow { font-size: 1.5rem; font-weight: bold; }
+.icon { font-size: 1.4rem; transform: rotate(-10deg); } /* Tilts the paperplane */
 
-/* DRAWER */
+/* 4. DRAWER & FOOTER */
 .menu-drawer {
     position: fixed;
     top: 0; right: -300px;
@@ -110,10 +118,5 @@ textarea {
 }
 .menu-drawer.open { right: 0; }
 
-.menu-drawer ul { list-style: none; }
-.menu-drawer li { margin-bottom: 25px; }
-.menu-drawer a { text-decoration: none; color: var(--text); font-size: 1.2rem; }
-
-/* FOOTER */
-.minimal-footer { padding: 40px; text-align: center; }
-.think-tank-link { font-size: 0.8rem; color: var(--text); opacity: 0.3; text-decoration: none; }
+.minimal-footer { padding: 20px; text-align: center; }
+.think-tank-link { font-size: 0.8rem; color: var(--subtle-accent); text-decoration: none; }
