@@ -144,6 +144,7 @@ textarea {
     /* Larger size: increased from 10px padding to 12px absolute size */
     width: 24px; 
     height: 24px;
+    transition: transform 0.3s ease;
     
     /* MATHEMATICAL CENTERING */
     position: absolute;
