@@ -1,24 +1,30 @@
 /**
- * APP MODULE (The Boss)
- * The central entry point that coordinates all other modules.
+ * APP.JS - The "Boss" Module
+ * ---------------------------------------------------------
+ * This is the central entry point. Its only job is to 
+ * import other specialized modules and "wake them up" 
+ * once the browser has finished loading the HTML.
  */
 
-// 1. IMPORTS (Always at the very top)
+// Import specialized logic from separate files
 import { initIdentity } from './identity.js';
 import { initMenu } from './menu.js';
 
-// 2. THE CONDUCTOR (Waiting for the page to be ready)
+// Wait for the DOM (HTML structure) to be fully ready
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Vent System: Initializing...");
+    console.log("Vent System: Booting up...");
 
-    // 3. INITIALIZE MODULES (One by one)
-    
-    // Wake up Identity first (so other modules can use the token if needed)
+    /** * 1. IDENTITY SETUP
+     * We initialize the identity first to ensure the 'userToken' 
+     * is available for any subsequent data tracking.
+     */
     const userToken = initIdentity();
-    console.log("Active Session Token:", userToken);
+    console.log("Session Identity Locked:", userToken);
 
-    // Wake up the Menu (the 'vent/close' toggle)
+    /** * 2. UI INTERACTION SETUP
+     * Initialize the 'vent/close' toggle functionality.
+     */
     initMenu();
 
-    // FUTURE: We will add initTheme(), initRegistry(), etc. right here
+    // Future modules (Theme, Registry, History) will be initialized here.
 });
