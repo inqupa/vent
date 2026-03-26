@@ -53,7 +53,7 @@ export function initRegistry(userToken) {
          * We send the data to Google's 'formResponse' endpoint.
          * Replace 'YOUR_FORM_ID' with your actual long Google Form ID.
          */
-        const formURL = `https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse`;
+        const formURL = `https://docs.google.com/forms/d/e/1FAIpQLSfe8sG42l5SRFwryTNZYo0z7GDYsUidfs4OaED-JT7Fnf4EqQ/formResponse`;
 
         // Using 'fetch' with 'no-cors' allows us to send data without 
         // Google blocking us for "Cross-Origin" security reasons.
