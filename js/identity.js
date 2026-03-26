@@ -1,50 +1,60 @@
 /**
- * IDENTITY MODULE
- * Responsible for generating and managing the Pseudonymous "Ghost Token".
+ * IDENTITY.JS - The "Ghost" Module
+ * ---------------------------------------------------------
+ * Manages the generation and retrieval of the unique 
+ * Pseudonymous Token (vnt-xxxx) stored in the browser.
  */
 
+/**
+ * Initializes the user's identity.
+ * @returns {string} The active user token.
+ */
 export function initIdentity() {
-    // 1. Attempt to retrieve an existing token
+    // Look for a pre-existing token in the browser's 'LocalStorage'
     let token = localStorage.getItem('vent_user_token');
 
-    // 2. If no token exists, create a fresh one
+    // If the user is new (no token found), generate a fresh one
     if (!token) {
         token = generateNewToken();
-        console.log("Identity: New Ghost Token generated.");
-    } else {
-        console.log("Identity: Returning user detected.");
     }
 
     return token;
 }
 
 /**
- * Generates a random, unique string.
- * Example: vnt-k3j9n2p1
+ * Creates a unique random ID string and saves it locally.
+ * Uses Base36 math to create a short, alphanumeric string.
  */
 function generateNewToken() {
+    // Generate a random string (e.g., 'k3j9n2p1')
     const randomStr = Math.random().toString(36).substring(2, 10);
     const newToken = `vnt-${randomStr}`;
+    
+    // Save to LocalStorage so it persists even if the tab is closed
     localStorage.setItem('vent_user_token', newToken);
+    
     return newToken;
 }
 
 /**
- * EXPORT: Returns the current token so the user can save it.
+ * Returns the current token for the "Recovery Key" feature.
  */
 export function getRecoveryKey() {
     return localStorage.getItem('vent_user_token');
 }
 
 /**
- * IMPORT: Allows a user to paste a key from another device.
- * It validates that it starts with 'vnt-' before saving.
+ * Replaces the local token with one provided by the user (Import).
+ * @param {string} manualKey - The vnt-xxxx key from another device.
  */
 export function importRecoveryKey(manualKey) {
     const cleanKey = manualKey.trim();
+    
+    // Basic validation to ensure the key follows our 'vnt-' format
     if (cleanKey.startsWith('vnt-') && cleanKey.length > 5) {
         localStorage.setItem('vent_user_token', cleanKey);
-        // We reload so the entire app (History, etc.) syncs to the new key
+        
+        // Reload the page to reset the app state with the new identity
         window.location.reload(); 
         return true;
     }
