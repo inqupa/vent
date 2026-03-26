@@ -9,6 +9,7 @@
 // Import specialized logic from separate files
 import { initIdentity } from './identity.js';
 import { initMenu } from './menu.js';
+import { initTheme } from './theme.js';
 
 // Wait for the DOM (HTML structure) to be fully ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
      * Initialize the 'vent/close' toggle functionality.
      */
     initMenu();
+
+    /** * 3. THEME SETUP (Dark Mode)
+     * We wake up the theme so it can check if the user
+     * previously preferred Dark Mode and apply it.
+     */
+    initTheme();
 
     // Future modules (Theme, Registry, History) will be initialized here.
 });
