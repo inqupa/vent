@@ -128,32 +128,23 @@ textarea {
 
 /* 5. SVG CENTERING (Absolute Lock) */
 #submitBtn {
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    width: 44px;
-    height: 44px;
+    position: relative;
+    display: flex;          /* Use Flexbox */
+    align-items: center;    /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    overflow: hidden;       /* Keep the plane inside the circle boundary */
+    width: 50px;            /* Ensure width/height are equal for a perfect circle */
+    height: 50px;
     border-radius: 50%;
+    border: none;
+    background: var(--input-bg);
     cursor: pointer;
-    flex-shrink: 0;
-    position: relative; /* REQUIRED FOR ABSOLUTE CENTERING */
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #submitBtn svg {
-    /* Larger size: increased from 10px padding to 12px absolute size */
-    width: 24px; 
-    height: 24px;
     display: block;
-    
-    /* MATHEMATICAL CENTERING */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Precision Lock */
+    margin: 0;              /* Remove any default margins that cause displacement */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
 }
 
 /* 6. DRAWER & FOOTER */
