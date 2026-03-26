@@ -6,6 +6,7 @@ import { initIdentity } from './identity.js';
 import { initMenu } from './menu.js';
 import { initTheme } from './theme.js';
 import { initRegistry } from './registry.js';
+import { renderHistory } from './history.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Generate or retrieve the Ghost Token
@@ -17,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 3. Initialize Registry and hand it the token for the database
     initRegistry(userToken); 
+
+    // Load existing history into the menu
+    renderHistory();
     
     console.log("Vent System: Fully Operational.");
 });
