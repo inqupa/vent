@@ -31,9 +31,9 @@ export function initRegistry(userToken) {
         const formData = new FormData();
         
         // --- REPLACE THE NUMBERS BELOW WITH YOUR ENTRY IDs ---
-        formData.append('entry.628764968', ventText);       
-        formData.append('entry.372239352', userToken);      
-        formData.append('entry.511616533', locationContext);
+        formData.append('entry.2052451228', ventText);       
+        formData.append('entry.1743406016', userToken);      
+        formData.append('entry.1684232655', locationContext);
 
         // --- REPLACE THE ID BELOW WITH YOUR FORM ID ---
         const formURL = `https://docs.google.com/forms/d/e/1FAIpQLSfe8sG42l5SRFwryTNZYo0z7GDYsUidfs4OaED-JT7Fnf4EqQ/formResponse`;
