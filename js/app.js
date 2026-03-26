@@ -1,37 +1,28 @@
 /**
  * APP.JS - The "Boss" Module
  * ---------------------------------------------------------
- * This is the central entry point. Its only job is to 
- * import other specialized modules and "wake them up" 
- * once the browser has finished loading the HTML.
+ * Coordinates the initialization of all specialized modules.
  */
 
-// Import specialized logic from separate files
 import { initIdentity } from './identity.js';
 import { initMenu } from './menu.js';
 import { initTheme } from './theme.js';
+import { initRegistry } from './registry.js'; //
 
-// Wait for the DOM (HTML structure) to be fully ready
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Vent System: Booting up...");
+    console.log("Vent System: Booting...");
 
-    /** * 1. IDENTITY SETUP
-     * We initialize the identity first to ensure the 'userToken' 
-     * is available for any subsequent data tracking.
-     */
+    // 1. Identity first (generates the token used by other modules)
     const userToken = initIdentity();
     console.log("Session Identity Locked:", userToken);
 
-    /** * 2. UI INTERACTION SETUP
-     * Initialize the 'vent/close' toggle functionality.
-     */
+    // 2. Menu (vent/close toggle)
     initMenu();
 
-    /** * 3. THEME SETUP (Dark Mode)
-     * We wake up the theme so it can check if the user
-     * previously preferred Dark Mode and apply it.
-     */
+    // 3. Theme (Dark Mode)
     initTheme();
 
-    // Future modules (Theme, Registry, History) will be initialized here.
+    // 4. Registry (Paperplane logic)
+    // We pass 'userToken' so the Registry knows which ID to send to Google.
+    initRegistry(userToken);
 });
