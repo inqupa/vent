@@ -3,6 +3,7 @@
  * Sends vents to Google Sheets and triggers UI feedback.
  */
 import { triggerHaptic, playSendAnimation } from './ui-effects.js';
+import { saveToHistory } from './history.js';
 
 export function initRegistry(userToken) {
     const submitBtn = document.getElementById('submitBtn');
@@ -46,6 +47,8 @@ export function initRegistry(userToken) {
         })
         .then(() => {
             console.log("Registry: Vent recorded successfully.");
+            // saves it locally
+            saveToHistory(ventText);
             // Trigger the fade-out animation
             playSendAnimation(inputField);
         })
