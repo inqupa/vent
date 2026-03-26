@@ -24,7 +24,7 @@ export function initRegistry(userToken) {
         formData.append('entry.372239352', userToken);      // <--- CHANGE THIS
         formData.append('entry.511616533', locationContext);// <--- CHANGE THIS
 
-        const formURL = `https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/formResponse`;
+        const formURL = `https://docs.google.com/forms/d/e/1FAIpQLSfe8sG42l5SRFwryTNZYo0z7GDYsUidfs4OaED-JT7Fnf4EqQ/formResponse`;
 
         fetch(formURL, {
             method: 'POST',
