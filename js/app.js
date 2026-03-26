@@ -3,19 +3,22 @@
  * The central entry point that coordinates all other modules.
  */
 
-// We import the 'init' function from our Identity module
+// 1. IMPORTS (Always at the very top)
 import { initIdentity } from './identity.js';
+import { initMenu } from './menu.js';
 
-// This listener waits until the HTML is fully loaded before running
+// 2. THE CONDUCTOR (Waiting for the page to be ready)
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Vent System: Initializing...");
 
-    // 1. Wake up the Identity module and get our Ghost Token
-    const userToken = initIdentity();
+    // 3. INITIALIZE MODULES (One by one)
     
-    // 2. Log it so we can verify it's working in the browser console
+    // Wake up Identity first (so other modules can use the token if needed)
+    const userToken = initIdentity();
     console.log("Active Session Token:", userToken);
 
-    // FUTURE: We will initialize the Menu, Theme, and Registry here 
-    // as we create their respective files.
+    // Wake up the Menu (the 'vent/close' toggle)
+    initMenu();
+
+    // FUTURE: We will add initTheme(), initRegistry(), etc. right here
 });
