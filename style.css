@@ -138,6 +138,9 @@ textarea {
     flex-shrink: 0;
     position: relative; /* REQUIRED FOR ABSOLUTE CENTERING */
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #submitBtn svg {
