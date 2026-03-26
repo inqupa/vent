@@ -15,13 +15,45 @@ body.dark-mode {
 }
 
 /* Base resets & no-scroll lock */
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; background-color: var(--bg); color: var(--text); display: flex; flex-direction: column; }
+* {
+    box-sizing: 
+    border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: fixed; 
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+}
 
 /* 1. TOP TRIGGER */
-.main-header { padding: 30px 40px; display: flex; justify-content: flex-end; }
-.menu-trigger { font-size: 1.2rem; font-weight: 700; color: var(--accent); cursor: pointer; letter-spacing: -0.5px; }
+.main-header { 
+    padding: 30px 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu-trigger {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent); 
+    cursor: pointer;
+    letter-spacing: -0.5px;
+    position: relative;
+    z-index: 1001;
+}
 
 /* 2. THE STACKED CENTER (Responsive Spacing) */
 .app-viewport {
@@ -121,11 +153,45 @@ textarea {
 }
 
 /* 6. DRAWER & FOOTER */
-.menu-drawer { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background: var(--bg); padding: 100px 40px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1000; border-left: 1px solid var(--input-bg); }
-.menu-drawer.open { right: 0; }
-.menu-drawer ul { list-style: none; }
-.menu-drawer li { margin-bottom: 20px; }
-.menu-drawer a { text-decoration: none; color: var(--text); font-weight: 500; }
+.menu-drawer {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100%;
+    background: var(--bg);
+    padding: 100px 40px;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+    border-left: 1px solid var(--input-bg);
+}
 
-.minimal-footer { padding: 20px; text-align: center; }
-.think-tank-link { font-size: 0.75rem; color: var(--text); opacity: 0.2; text-decoration: none; }
+.menu-drawer.open { 
+    right: 0;
+}
+
+.menu-drawer ul {
+    list-style: none;
+}
+
+.menu-drawer li {
+    margin-bottom: 20px;
+}
+
+.menu-drawer a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.minimal-footer {
+    padding: 20px;
+    text-align: center;
+}
+
+.think-tank-link { 
+    font-size: 0.75rem;
+    color: var(--text);
+    opacity: 0.2;
+    text-decoration: none; 
+}
