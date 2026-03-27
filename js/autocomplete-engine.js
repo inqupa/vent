@@ -1,15 +1,17 @@
+/**
+ * AUTOCOMPLETE-ENGINE.JS - Final Modular Version
+ */
 import { INLINE_PHRASES } from './suggestions-db.js';
 
-// Initialize as an empty array immediately to avoid the "before initialization" error
-let globalTrends = []; 
+let globalTrends = [];
 
-console.log("Autocomplete Engine: Initializing...");
 export async function initAutocompleteSystem() {
+    console.log("Autocomplete Engine: Initializing...");
     const input = document.getElementById('problemInput');
-    const container = document.querySelector('.input-container');
+    const container = document.querySelector('.input-wrapper');
     if (!input || !container) return;
 
-    // UI Setup
+    // 1. Setup UI Elements
     const ghost = document.createElement('div');
     ghost.id = 'autocomplete-ghost';
     const dropdown = document.createElement('ul');
@@ -18,21 +20,24 @@ export async function initAutocompleteSystem() {
     container.appendChild(ghost);
     container.appendChild(dropdown);
 
-    // Fetch trends
+    // 2. Fetch Global Data
     try {
         const response = await fetch('./data/global-suggestions.json');
-        if (response.ok) {
-            const data = await response.json();
-            globalTrends = data.trends || [];
-        }
+        const data = await response.json();
+        globalTrends = data.trends || [];
     } catch (e) {
-        console.warn("Using local trends only.");
+        console.warn("Global trends unavailable.");
     }
 
+    // 3. Listen for Typing
     input.addEventListener('input', () => {
+        // A. AUTO-RESIZE BOX (Gemini Style)
+        input.style.height = 'auto';
+        input.style.height = input.scrollHeight + 'px';
+
         const val = input.value.toLowerCase();
         
-        // 1. Ghost Logic
+        // B. GHOST LOGIC (Inline)
         let match = "";
         if (val.length > 2) {
             for (const key in INLINE_PHRASES) {
@@ -44,7 +49,7 @@ export async function initAutocompleteSystem() {
         }
         ghost.innerHTML = match ? `<span style="color:transparent">${input.value}</span>${match}` : "";
 
-        // 2. Dropdown Logic
+        // C. DROPDOWN LOGIC (Trends)
         if (val.length > 3 && globalTrends.length > 0) {
             const matches = globalTrends.filter(t => t.toLowerCase().includes(val)).slice(0, 3);
             if (matches.length > 0) {
@@ -55,6 +60,7 @@ export async function initAutocompleteSystem() {
                     li.onclick = () => {
                         input.value = li.innerText;
                         dropdown.classList.add('hidden');
+                        input.dispatchEvent(new Event('input')); // Re-trigger resize
                         input.focus();
                     };
                 });
