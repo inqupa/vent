@@ -29,8 +29,11 @@ export async function initAutocompleteSystem() {
     // 3. Listen for Typing
     input.addEventListener('input', () => {
         // A. AUTO-RESIZE BOX (Gemini Style)
-        input.style.height = 'auto';
-        input.style.height = input.scrollHeight + 'px';
+        input.style.height = '54px'; // reset to base height first
+        if (input.value.length > 0) {
+            // only grow if there is content
+            input.style.height = input.scrollHeight + 'px';
+        }
 
         const val = input.value.toLowerCase();
         
