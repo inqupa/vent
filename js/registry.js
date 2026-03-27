@@ -4,6 +4,7 @@
  */
 import { triggerHaptic, playSendAnimation } from './ui-effects.js';
 import { saveToHistory } from './history.js';
+import { trackWords } from './lexicon.js';
 
 export function initRegistry(userToken) {
     const submitBtn = document.getElementById('submitBtn');
@@ -49,6 +50,8 @@ export function initRegistry(userToken) {
             console.log("Registry: Vent recorded successfully.");
             // saves it locally
             saveToHistory(ventText);
+            // LEARN: Save the words to the local lexicon before clearing
+            trackWords(ventText);
             // Trigger the fade-out animation
             playSendAnimation(inputField);
         })
