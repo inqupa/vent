@@ -29,13 +29,13 @@ export async function initAutocompleteSystem() {
 
     // 3. Listen for Typing
     input.addEventListener('input', () => {
-        if (val.length > 2) {
+        if (input.length > 2) {
             // 1. Get Private/Local suggestions first
-            const localMatches = getLocalSuggestions(val);
+            const localMatches = getLocalSuggestions(input);
             
             // 2. Get Global trends second
             const globalMatches = globalTrends
-                .filter(t => t.toLowerCase().includes(val))
+                .filter(t => t.toLowerCase().includes(input))
                 .filter(t => !localMatches.includes(t.toLowerCase())) // Avoid duplicates
                 .slice(0, 3);
         
