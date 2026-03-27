@@ -19,22 +19,24 @@
 .input-wrapper {
     background: var(--input-bg);
     width: 100%;
-    border-radius: 25px;
-    padding: 8px 12px 8px 30px; /* Left padding matches text start */
+    border-radius: 40px;
+    padding: 0 8px 0 30px;
     display: flex;
-    align-items: flex-end; /* keeps button at the bottom as box grows */
+    align-items: center; /* Perfectly centers text and button vertically */
     position: relative; /* Anchor for Absolute Ghost/Dropdown */
+    min-height: 56px;
+    transition: border-radius 0.3s ease;
 }
 
 /* 3. THE GHOST LAYER (Middle Layer) 
    Must match #problemInput font/padding perfectly to overlap. */
 #autocomplete-ghost {
     position: absolute;
-    top: 22px;             /* Vertical alignment to match textarea */
+    top: 16px;             /* Vertical alignment to match textarea */
     left: 30px;            /* Horizontal alignment to match textarea */
     font-size: 1.1rem;
     font-family: inherit;
-    line-height: 24px;
+    line-height: 22px;
     color: var(--text);
     opacity: 0.2;          /* Faint suggestion */
     pointer-events: none;  /* Allows clicks to pass through to the real input */
@@ -56,17 +58,17 @@ textarea#problemInput {
     outline: none;
     color: var(--text);
     font-size: 1.1rem;
-    padding: 10px 0;
+    padding: 16px 0;
     resize: none;
-    min-height: 24px;
+    height: 54px;
     max-height: 200px;
-    line-height: 24px;
+    line-height: 22px;
     z-index: 2; /* Sits on top of the Ghost */
     caret-color: var(--accent); /* Ensures the blinking cursor is visible */
 
     /* --- THE MOBILE SCROLL FIX --- */
     white-space: pre-wrap;
-    overflow-y: auto;   /* shows scrollbar only when max-height is hit */
+    overflow-y: hidden;
 }
 
 /* 5. THE SUBMIT BUTTON (Paperplane Circle) */
