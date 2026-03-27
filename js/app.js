@@ -58,8 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (input && footer) {
             input.addEventListener('focus', () => {
-                footer.style.opacity = '0'; // Hide footer when typing
+                // only hide the footer if the screen is narrow (mobile)
+                if (window.innerWidth < 768) {
+                    footer.style.opacity = '0'; // Hide footer when typing
+                }
             });
+            
             input.addEventListener('blur', () => {
                 footer.style.opacity = '1'; // Show footer when done
             });
