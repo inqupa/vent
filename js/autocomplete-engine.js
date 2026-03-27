@@ -1,53 +1,55 @@
 import { INLINE_PHRASES } from './suggestions-db.js';
-// FORCING A TEST - Remove this once you see it working!
-let globalTrends = ["i am feeling much better now", "it was a long day"];
 
-// let globalTrends = [];
+// Initialize as an empty array immediately to avoid the "before initialization" error
+let globalTrends = []; 
 
 export async function initAutocompleteSystem() {
     const input = document.getElementById('problemInput');
     const container = document.querySelector('.input-container');
     if (!input || !container) return;
 
-    // 1. Fetch the pre-calculated trends (The JSON the robot creates)
-    try {
-        const response = await fetch('./data/global-suggestions.json');
-        const data = await response.json();
-        globalTrends = data.trends;
-    } catch (e) {
-        globalTrends = ["let it all out..."];
-    }
-
-    // 2. Setup UI Elements
+    // UI Setup
     const ghost = document.createElement('div');
     ghost.id = 'autocomplete-ghost';
     const dropdown = document.createElement('ul');
     dropdown.id = 'autocomplete-dropdown';
     dropdown.className = 'hidden';
-
     container.appendChild(ghost);
     container.appendChild(dropdown);
 
-    // 3. Listen for Typing
+    // Fetch trends
+    try {
+        const response = await fetch('./data/global-suggestions.json');
+        if (response.ok) {
+            const data = await response.json();
+            globalTrends = data.trends || [];
+        }
+    } catch (e) {
+        console.warn("Using local trends only.");
+    }
+
     input.addEventListener('input', () => {
         const val = input.value.toLowerCase();
         
-        // Handle Inline (Ghost Text)
+        // 1. Ghost Logic
         let match = "";
-        for (const key in INLINE_PHRASES) {
-            if (val.startsWith(key)) {
-                match = INLINE_PHRASES[key][0];
-                break;
+        if (val.length > 2) {
+            for (const key in INLINE_PHRASES) {
+                if (val.startsWith(key)) {
+                    match = INLINE_PHRASES[key][0];
+                    break;
+                }
             }
         }
         ghost.innerHTML = match ? `<span style="color:transparent">${input.value}</span>${match}` : "";
 
-        // Handle Dropdown (Community Trends)
-        if (val.length > 2) {
+        // 2. Dropdown Logic
+        if (val.length > 3 && globalTrends.length > 0) {
             const matches = globalTrends.filter(t => t.toLowerCase().includes(val)).slice(0, 3);
             if (matches.length > 0) {
-                dropdown.classList.remove('hidden');
                 dropdown.innerHTML = matches.map(m => `<li class="suggestion-item">${m}</li>`).join('');
+                dropdown.classList.remove('hidden');
+                
                 dropdown.querySelectorAll('li').forEach(li => {
                     li.onclick = () => {
                         input.value = li.innerText;
