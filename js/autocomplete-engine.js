@@ -2,7 +2,7 @@ import { INLINE_PHRASES } from './suggestions-db.js';
 // FORCING A TEST - Remove this once you see it working!
 globalTrends = ["i am feeling much better now", "it was a long day"];
 
-let globalTrends = [];
+// let globalTrends = [];
 
 export async function initAutocompleteSystem() {
     const input = document.getElementById('problemInput');
