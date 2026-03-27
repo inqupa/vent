@@ -41,7 +41,9 @@ export function playSendAnimation(inputField) {
         setTimeout(() => {
             inputField.placeholder = originalPlaceholder;
             inputField.style.opacity = '1';
-
+            // THE SNAP-BACK FIX: Force the height back to default
+            inputField.style.height = '54px';
+            
             if (planeIcon) {
                 // Kill transition for the 'Teleport' back to center
                 planeIcon.style.transition = 'none';
@@ -55,5 +57,5 @@ export function playSendAnimation(inputField) {
             }
         }, 300);
 
-    }, 1800); // Success message visible for 1.8s
+    }, 1500); // Success message visible for 1.5s
 }
