@@ -9,6 +9,7 @@ export function initMenu() {
     // Select the elements from the HTML
     const trigger = document.querySelector('.menu-trigger');
     const drawer = document.querySelector('.menu-drawer');
+    const body = document.body;
 
     // Safety Check: Only proceed if the elements exist in the DOM
     if (!trigger || !drawer) {
@@ -24,6 +25,7 @@ export function initMenu() {
          * 2. Removes 'open' class if it's there (slides menu out)
          */
         const isOpen = drawer.classList.toggle('open');
+        body.classList.toggle('menu-open', isOpen);
         
         /**
          * TERNARY OPERATOR (Short-hand IF/ELSE)
