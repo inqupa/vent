@@ -1,0 +1,36 @@
+.menu-drawer {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100%;
+    background: var(--bg);
+    padding: 100px 40px;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+    border-left: 1px solid var(--input-bg);
+}
+
+.menu-drawer.open { right: 0; }
+
+.history-section { margin-top: 40px; }
+.history-item {
+    margin-bottom: 25px;
+    border-left: 1px solid var(--accent);
+    padding-left: 15px;
+}
+
+.identity-settings {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settings-link {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.4;
+    text-decoration: none;
+    color: var(--accent);
+}
