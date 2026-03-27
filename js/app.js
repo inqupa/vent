@@ -8,6 +8,7 @@ import { initTheme } from './theme.js';
 import { initRegistry } from './registry.js';
 import { renderHistory } from './history.js';
 import { initIdentityTools } from './identity-tools.js';
+import { initAutocompleteSystem } from './autocomplete-engine.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Generate or retrieve the Ghost Token
@@ -22,8 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load existing history into the menu
     renderHistory();
-    // Initialize the Export/Import buttons
+    
+    // Initialize the user token Export/Import buttons
     initIdentityTools();
+
+    // autocomplete
+    initAutocompleteSystem();
     
     console.log("Vent System: Fully Operational.");
 });
