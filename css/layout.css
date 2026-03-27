@@ -1,3 +1,10 @@
+/* Ensure the body allows the flex layout to work */
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 .main-header { 
     padding: 30px 40px;
     display: flex;
@@ -18,11 +25,12 @@
 }
 
 .app-viewport {
-    height: 100vh;
+    flex: 1; /* takes up all available space EXCEPT header and footer */
     display: flex;
     flex-direction: column;
     align-items: center; 
     justify-content: center;
+    position: relative;
 }
 
 .hero-logo {
@@ -36,9 +44,25 @@
 }
 
 @media (min-width: 601px) {
-    .hero-logo { font-size: 15vw; margin-bottom: 60px; }
+    .hero-logo { font-size: 20vw; margin-bottom: 60px; }
 }
 
 @media (max-width: 600px) {
-    .hero-logo { font-size: 70px; margin-bottom: 40px; }
+    .hero-logo { font-size: 100px; margin-bottom: 50px; }
+}
+
+.minimal-footer {
+    padding: 20px;
+    width: 100%;
+    background: transparent;
+    z-index: 5;
+}
+
+.think-tank-link { 
+    font-size: 0.7rem;
+    color: var(--text);
+    opacity: 0.3;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
