@@ -5,12 +5,20 @@
 }
 
 .menu-trigger {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--accent); 
+    text-transform: lowercase;
+    color: var(--text); /* matches the theme text color */
     cursor: pointer;
     position: fixed;
-    z-index: 999;
+    top: 30px;
+    right: 40px;
+    z-index: 1100;
+    transition: color 0.3s ease;
+}
+
+.menu-trigger:hover {
+    color: var(--accent);
 }
 
 .app-viewport {
