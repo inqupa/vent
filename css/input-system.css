@@ -88,12 +88,18 @@ textarea#problemInput {
     flex-shrink: 0;        /* Prevents button from squishing */
     z-index: 3;
     pointer-events: auto !important; /* Ensures button is always clickable */
+    color: var(--accent); /* This sets the 'current color' for the button */
 }
 
 #submitBtn svg {
     display: block;
     margin: 0;
-    fill: var(--accent);
+    /* FORCE the SVG to use the color of the button */
+    fill: currentColor;
+    /* If the SVG has internal paths, force them too */
+    path {
+        fill: currentColor;
+    }
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
 }
 
