@@ -48,14 +48,16 @@ export function playSendAnimation(inputField) {
                 // Kill transition for the 'Teleport' back to center
                 planeIcon.style.transition = 'none';
                 
+                // Force a browser paint to ensure the 'none' was registered
+                void planeIcon.offsetWidth;
+                
                 // Reset position to (0,0) - Flexbox handles the centering
                 planeIcon.style.transform = 'translate(0, 0) scale(1)';
                 planeIcon.style.opacity = '1';
-                
-                // Force a browser paint to ensure the 'none' was registered
-                void planeIcon.offsetWidth;
             }
-        }, 300);
+            // re-focus the input so the cursor reappears immediately
+            inputField.focus();
+        }, 1500);
 
     }, 1500); // Success message visible for 1.5s
 }
