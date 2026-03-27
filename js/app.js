@@ -33,14 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
     //7. always ready cursor or auto-focus
     const input = document.getElementById('problemInput');
     if (input) {
-        // 1. Focus the element
-        input.focus();
-        
-        // 2. Ensure cursor is at the end if there's existing text (for refreshes)
-        const val = input.value;
-        input.value = '';
-        input.value = val;
+        // use a 100ms delay to let the modular CSS settle
+        SetTimeout(() => {
+             // 1. Focus the element
+            input.focus();
+
+            // 2. Force the cursor to the end (essential for mobile)
+            const length = input.value.length;
+            input.setSelectionRange(length, length);
+            
+            // 3. Ensure cursor is at the end if there's existing text (for refreshes)
+            const val = input.value;
+            input.value = '';
+            input.value = val;
+
+            // Trigger an input event so the 'Ghost' and 'Height' logic syncs up
+            input.dispatchEvent(new Event('input'));
+        }, 100);
     }
-    
     console.log("Vent System: Fully Operational.");
 });
