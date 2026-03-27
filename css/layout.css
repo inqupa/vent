@@ -20,7 +20,7 @@ body {
     position: fixed;
     top: 30px;
     right: 40px;
-    z-index: 1100;
+    z-index: 2100;
     transition: color 0.3s ease;
 }
 
