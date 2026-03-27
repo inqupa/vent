@@ -1,6 +1,3 @@
-/**
- * AUTOCOMPLETE-ENGINE.JS - Final Modular Version
- */
 import { INLINE_PHRASES } from './suggestions-db.js';
 
 let globalTrends = [];
