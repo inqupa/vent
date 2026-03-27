@@ -50,30 +50,36 @@ export async function initAutocompleteSystem() {
         const val = input.value.toLowerCase();
         
         // B. Ghost Logic (Inline suggestions from suggestions-db.js)
+        // IMPROVED GHOST (Still shows the very first match for speed)
         let ghostMatch = "";
-        if (val.length > 1) {
-            for (const key in INLINE_PHRASES) {
-                if (val.startsWith(key)) {
-                    ghostMatch = INLINE_PHRASES[key][0];
-                    break;
-                }
+        for (const key in INLINE_PHRASES) {
+            if (val === key || val.startsWith(key + " ")) { // Match "i feel" or "i feel "
+                ghostMatch = INLINE_PHRASES[key][0];
+                break;
             }
         }
         ghost.innerHTML = ghostMatch ? `<span style="color:transparent">${input.value}</span>${ghostMatch}` : "";
-
+        
         // C. Combined Dropdown Logic (Local + Global)
         if (val.length > 2) {
-            // Priority 1: Get words you use often (from lexicon.js)
-            const localMatches = getLocalSuggestions(val);
+            // Get words you use often (from lexicon.js)
+            // 2. IMPROVED DROPDOWN (Adds Intent-based emotions)
+            let intentMatches = [];
+            for (const key in INLINE_PHRASES) {
+                if (val.startsWith(key)) {
+                    // If user typed "i feel", suggest all feelings tied to that key
+                    intentMatches = INLINE_PHRASES[key].map(feeling => key + feeling);
+                }
+            }
             
-            // Priority 2: Get community trends (filter out duplicates of local matches)
+            // 3. COMBINE EVERYTHING (Priority: Intent > Local Lexicon > Global Trends)
+            const localMatches = getLocalSuggestions(val);
             const globalMatches = globalTrends
                 .filter(t => t.toLowerCase().includes(val))
-                .filter(t => !localMatches.includes(t.toLowerCase())) 
-                .slice(0, 3);
+                .slice(0, 2);
 
             // Merge them: Local first, then Global
-            const allMatches = [...localMatches, ...globalMatches];
+            const allMatches = [...new Set([...intentMatches, ...localMatches, ...globalMatches])].slice(0,5);
 
             if (allMatches.length > 0) {
                 renderDropdown(allMatches, val, dropdown, input, ghost);
