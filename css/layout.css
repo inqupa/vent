@@ -17,10 +17,6 @@
     transition: color 0.3s ease;
 }
 
-.menu-trigger:hover {
-    color: var(--accent);
-}
-
 .app-viewport {
     height: 100vh;
     display: flex;
