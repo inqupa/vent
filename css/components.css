@@ -3,19 +3,20 @@
     top: 0;
     right: -320px;
     width: 320px;
-    height: 100%;
+    height: 100vh; /* used vh to ensure it fills the screen */
     /* force colors */
     background-color: var(--bg) !important;
-    color: var(--text) !important;
-    padding: 80px 30px 40px 30px;
+    padding: 100px 30px 40px 30px;
     transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    /* stacking fix */
     z-index: 2000; /* higher than EVERYTHING else */
-    border-left: 1px solid rgba(128, 128, 128, 0.1);
-    
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
+}
+
+.menu-drawer.open {
+    right: 0; /* slide into view */
 }
 
 .menu-section {
@@ -41,6 +42,14 @@
 
 .menu-drawer h3 {
     opacity: 0.4; /* Keep headers faint but visible */
+}
+
+/* Ensure every child of the drawer has a physical size */
+.menu-section, .identity-settings {
+    width: 100%;
+    display: block;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* History Item Polish */
