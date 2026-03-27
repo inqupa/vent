@@ -21,14 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Initialize Registry and hand it the token for the database
     initRegistry(userToken); 
 
-    // Load existing history into the menu
+    // 4. Load existing history into the menu
     renderHistory();
     
-    // Initialize the user token Export/Import buttons
+    // 5.Initialize the user token Export/Import buttons
     initIdentityTools();
 
-    // autocomplete
+    // 6. autocomplete
     initAutocompleteSystem();
+
+    //7. always ready cursor or auto-focus
+    const input = document.getElementById('problemInput');
+    if (input) {
+        // 1. Focus the element
+        input.focus();
+        
+        // 2. Ensure cursor is at the end if there's existing text (for refreshes)
+        const val = input.value;
+        input.value = '';
+        input.value = val;
+    }
     
     console.log("Vent System: Fully Operational.");
 });
