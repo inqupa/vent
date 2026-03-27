@@ -129,6 +129,9 @@ textarea#problemInput {
     font-size: 0.95rem;
     transition: background 0.2s ease;
     border-bottom: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .suggestion-item:last-child {
@@ -137,6 +140,20 @@ textarea#problemInput {
 
 .suggestion-item:hover {
     background: var(--input-bg);
+}
+
+.suggestion-item b {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Add a subtle indicator that this is a 'feeling' suggestion */
+.suggestion-item::after {
+    content: 'prompt';
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    opacity: 0.3;
+    letter-spacing: 1px;
 }
 
 /* 7. ANIMATIONS */
