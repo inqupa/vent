@@ -10,21 +10,24 @@ import { getLocalSuggestions } from './lexicon.js'; // The "Mirror" Engine
 
 let globalTrends = [];
 let activeIndex = -1; // Track which suggestion is highlighte
+let dropdown;
 
 export async function initAutocompleteSystem() {
     console.log("Autocomplete Engine: Initializing...");
     
     const input = document.getElementById('problemInput');
-    const dropdown = document.querySelector('#autocomplete-dropdown'); // Ensure this selector works
     const container = document.querySelector('.input-wrapper');
+   
     if (!input || !container) return;
 
     // 1. Setup UI Elements
     const ghost = document.createElement('div');
     ghost.id = 'autocomplete-ghost';
-    const dropdown = document.createElement('ul');
+    
+    dropdown = document.createElement('ul');
     dropdown.id = 'autocomplete-dropdown';
     dropdown.className = 'hidden';
+    
     container.appendChild(ghost);
     container.appendChild(dropdown);
 
@@ -125,6 +128,8 @@ export async function initAutocompleteSystem() {
     });
 }
 
+// This helper function should sit at the bottom of the file, 
+// not inside initAutocompleteSystem.
 function updateSelection(items) {
     items.forEach((item, index) => {
         if (index === activeIndex) {
