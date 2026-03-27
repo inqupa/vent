@@ -40,9 +40,14 @@ export function playSendAnimation(inputField) {
 
         setTimeout(() => {
             inputField.placeholder = originalPlaceholder;
-            inputField.style.opacity = '1';
             // THE SNAP-BACK FIX: Force the height back to default
             inputField.style.height = '54px';
+            inputField.value = ''; // ensure it's empty
+            inputField.style.opacity = '1';
+
+            // THE FOOTER FIX: Manually force the footer back to visible
+            const footer = document.querySelector('.minimal-footer');
+            if (footer) footer.style.opacity = '1';
             
             if (planeIcon) {
                 // Kill transition for the 'Teleport' back to center
