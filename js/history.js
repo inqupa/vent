@@ -55,3 +55,13 @@ export function renderHistory() {
         </li>
     `).join('');
 }
+
+/**
+ * Wipes all local history and refreshes the UI.
+ */
+export function clearHistory() {
+    if (confirm("Are you sure? This will permanently delete your local vent history.")) {
+        localStorage.removeItem('vent_history');
+        renderHistory(); // Refresh the list to show 'empty state'
+    }
+}
