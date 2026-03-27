@@ -156,6 +156,14 @@ textarea#problemInput {
     letter-spacing: 1px;
 }
 
+/* The 'Active' state for keyboard navigation */
+.suggestion-item.active {
+    background: var(--input-bg);
+    border-left: 4px solid var(--accent);
+    padding-left: 26px; /* Shift slightly to emphasize selection */
+    outline: none;
+}
+
 /* 7. ANIMATIONS */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
