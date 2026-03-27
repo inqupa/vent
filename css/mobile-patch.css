@@ -11,16 +11,21 @@
     }
 
     .app-viewport {
-        padding: 0 20px;
-        justify-content: flex-start; /* Move content up slightly to make room for keyboard */
-        padding-top: 15vh; 
+       justify-content: center;
+       padding-top: 0;
+       padding-bottom: 80px; /* space for the absolute footer */        
     }
 
     .hero-logo {
         font-size: 60px !important;
         margin-bottom: 30px !important;
+       opacity: 0.05 !important;
     }
 
+   .vent-container {
+        padding: 0 15px; /* More horizontal room on small screens */
+    }
+   
     .input-wrapper {
         padding: 5px 5px 5px 20px; /* Tighter padding for mobile */
         border-radius: 30px;
@@ -33,11 +38,11 @@
 
     .minimal-footer {
         position: absolute;
-        bottom: 10px;
+        bottom: 5px;
         left: 0;
         width: 100%;
-        padding: 10px 0;
         background: transparent;
+       transition: opacity 0.3s ease; /*smooth transition when typing */
     }
 
     /* Make the menu slightly narrower on small phones */
