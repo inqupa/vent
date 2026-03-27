@@ -3,6 +3,7 @@ import { INLINE_PHRASES } from './suggestions-db.js';
 // Initialize as an empty array immediately to avoid the "before initialization" error
 let globalTrends = []; 
 
+console.log("Autocomplete Engine: Initializing...");
 export async function initAutocompleteSystem() {
     const input = document.getElementById('problemInput');
     const container = document.querySelector('.input-container');
