@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('problemInput');
     if (input) {
         // use a 100ms delay to let the modular CSS settle
-        SetTimeout(() => {
+        setTimeout(() => {
              // 1. Focus the element
             input.focus();
 
