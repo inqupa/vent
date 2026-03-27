@@ -86,3 +86,13 @@
     text-decoration: none;
     color: var(--accent);
 }
+
+/* Create a dimming effect on the main app when menu is open */
+body.menu-open .app-viewport,
+body.menu-open .hero-logo,
+body.menu-open .minimal-footer {
+    filter: blur(4px);
+    opacity: 0.3;
+    transition: 0.4s ease;
+    pointer-events: none; /* User can't click the app while menu is open */
+}
