@@ -39,7 +39,7 @@
     line-height: 22px;
     color: var(--text);
     opacity: 0.2;          /* Faint suggestion */
-    pointer-events: none;  /* Allows clicks to pass through to the real input */
+    pointer-events: none !important;  /* Allows clicks to pass through to the real input */
     white-space: nowrap;
     overflow: hidden;
     z-index: 1;
@@ -65,7 +65,8 @@ textarea#problemInput {
     line-height: 22px;
     z-index: 2; /* Sits on top of the Ghost */
     caret-color: var(--accent); /* Ensures the blinking cursor is visible */
-
+    pointer-events: auto !important;
+    display: block;
     /* --- THE MOBILE SCROLL FIX --- */
     white-space: pre-wrap;
     overflow-y: hidden;
