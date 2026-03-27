@@ -6,6 +6,7 @@
  */
 
 import { getRecoveryKey, importRecoveryKey } from './identity.js';
+import { clearHistory } from './history.js';
 
 export function initIdentityTools() {
     const exportBtn = document.getElementById('export-id');
@@ -39,6 +40,15 @@ export function initIdentityTools() {
                     alert("Invalid key format.");
                 }
             }
+        });
+    }
+
+    // 3. wipe the locally available vent history
+    const shredBtn = document.getElementById('shred-history');
+    if (shredBtn) {
+        shredBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            clearHistory();
         });
     }
 }
