@@ -20,7 +20,9 @@
 }
 
 .menu-section {
-    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .menu-drawer h3 {
@@ -42,6 +44,28 @@
 
 .menu-drawer h3 {
     opacity: 0.4; /* Keep headers faint but visible */
+}
+
+.menu-drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-drawer li {
+    margin-bottom: 15px;
+}
+
+.menu-drawer a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text);
+    transition: opacity 0.2s;
+}
+
+.menu-drawer a:hover {
+    opacity: 0.6;
 }
 
 /* Ensure every child of the drawer has a physical size */
@@ -82,10 +106,10 @@
 .identity-settings {
     margin-top: auto;
     padding-top: 20px;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    border-top: none; /* We used menu-section borders instead */
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .settings-link {
