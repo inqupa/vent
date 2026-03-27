@@ -9,10 +9,13 @@ import { INLINE_PHRASES } from './suggestions-db.js';
 import { getLocalSuggestions } from './lexicon.js'; // The "Mirror" Engine
 
 let globalTrends = [];
+let activeIndex = -1; // Track which suggestion is highlighte
 
 export async function initAutocompleteSystem() {
     console.log("Autocomplete Engine: Initializing...");
+    
     const input = document.getElementById('problemInput');
+    const dropdown = document.querySelector('#autocomplete-dropdown'); // Ensure this selector works
     const container = document.querySelector('.input-wrapper');
     if (!input || !container) return;
 
@@ -39,8 +42,33 @@ export async function initAutocompleteSystem() {
         console.warn("Global trends unavailable, using local only.");
     }
 
+    input.addEventListener('keydown', (e) => {
+        const items = dropdown.querySelectorAll('.suggestion-item');
+        
+        if (dropdown.classList.contains('hidden') || items.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIndex = (activeIndex + 1) % items.length;
+            updateSelection(items);
+        } 
+        else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIndex = (activeIndex - 1 + items.length) % items.length;
+            updateSelection(items);
+        } 
+        else if (e.key === 'Enter' && activeIndex > -1) {
+            e.preventDefault();
+            items[activeIndex].click(); // Trigger the existing click logic
+        }
+        else if (e.key === 'Escape') {
+            dropdown.classList.add('hidden');
+        }
+    });
+
     // 3. Main Input Listener
     input.addEventListener('input', () => {
+        activeIndex = -1;
         // A. Resize Logic
         input.style.height = '54px'; 
         if (input.value.length > 0) {
@@ -94,6 +122,17 @@ export async function initAutocompleteSystem() {
     // Close dropdown if user clicks away
     document.addEventListener('click', (e) => {
         if (!container.contains(e.target)) dropdown.classList.add('hidden');
+    });
+}
+
+function updateSelection(items) {
+    items.forEach((item, index) => {
+        if (index === activeIndex) {
+            item.classList.add('active');
+            item.scrollIntoView({ block: 'nearest' });
+        } else {
+            item.classList.remove('active');
+        }
     });
 }
 
