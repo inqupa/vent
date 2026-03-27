@@ -52,6 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.dispatchEvent(new Event('input'));
             }, 100);
         }
+
+        // Detect when keyboard is open to hide footer (keeps UI clean)
+        const input = document.getElementById('problemInput');
+        const footer = document.querySelector('.minimal-footer');
+        
+        if (input && footer) {
+            input.addEventListener('focus', () => {
+                footer.style.opacity = '0'; // Hide footer when typing
+            });
+            input.addEventListener('blur', () => {
+                footer.style.opacity = '1'; // Show footer when done
+            });
+        }
+        
         console.log("Vent System: Fully Operational.");
     } catch (error) {
         console.error("App Init Error:", error);
