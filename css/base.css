@@ -1,17 +1,18 @@
 :root {
-    --bg: #0a0a0a;         
-    --input-bg: #1a1a1a;   
-    --accent: #00ffcc;      
-    --text: #ffffff;
-    --logo-color: #eeeeee;
+    --bg: #ffffff;         /* Clean White */
+    --input-bg: #f5f5f5;   /* Soft Gray for the box */
+    --accent: #007bff;      /* Professional Blue for cursor/highlights */
+    --text: #1a1a1a;       /* Dark Text */
+    --logo-color: #333333;
 }
 
+/* Dark Mode is now the ALTERNATE state */
 body.dark-mode {
     --bg: #0a0a0a;
     --text: #ffffff;
     --input-bg: #1a1a1a;
-    --accent: #ffffff;
-    --logo-color: #1a1a1a;
+    --accent: #00ffcc;
+    --logo-color: #eeeeee;
 }
 
 * {
