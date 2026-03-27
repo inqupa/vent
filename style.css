@@ -51,8 +51,8 @@ body {
     color: var(--accent); 
     cursor: pointer;
     letter-spacing: -0.5px;
-    position: relative;
-    z-index: 1001;
+    position: fixed;
+    z-index: 999;
 }
 
 /* 2. THE STACKED CENTER (Responsive Spacing) */
@@ -196,7 +196,7 @@ textarea {
     text-decoration: none; 
 }
 
-/* History Section Styling */
+/* 7. History Section Styling */
 .history-section {
     margin-top: 40px;
     padding-top: 20px;
@@ -270,35 +270,46 @@ textarea {
     margin: 30px 0;
 }
 
-/* styles for autocomplete features */
+/* 8. styles for autocomplete features */
 .input-container { 
     position: relative;
-    display: block;
     width: 100%;
+    background: var(--input-bf) /* give the container the color, not the textarea */
+    border-radius: 15px;
+    margin-bottom: 20px;
 }
 
-/* force the ghost to sit EXACTLY behind the cursor */
+/* The Ghost - The 'Middle Layer' */
 #autocomplete-ghost {
     position: absolute;
     top: 0;
     left: 0;
-    padding: 20px; /* must match textarea padding */
-    font-size: 1.5rem; /* must match textarea font size */
+    padding: 20px; /* MUST MATCH #problemInput padding exactly */
+    font-size: 1.5rem; /* MUST MATCH #problemInput font size exactly */
     font-family: inherit;
-    line-height: 1.5;
-    color: #888; /* a visible gray */
-    opacity: 0.4;
-    pointer-events: none;
+    line-height: 1.2; /* Match the textarea's line height */
+    color: rgba(255, 255, 255, 0.2); /* Faint white/gray */
+    pointer-events: none; /* Crucial: clicks go THROUGH this to the textarea */
     white-space: pre-wrap;
     word-wrap: break-word;
-    z-index: 0; /* behind the text */
+    z-index: 1; /* Sits between the background and the textarea */
 }
 
+/* the textarea - the 'top layer' */
 #problemInput {
     position: relative;
-    z-index: 1; /* above the ghost */
-    background: transparent !important; /* this is crucial */
-    color: white;
+    width: 100%;
+    min-height: 150px;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: white; 
+    background: transparent !important; /* Let the ghost show through */
+    border: none;
+    outline: none;
+    resize: none;
+    z-index: 2; /* Sits on top of everything */
+    caret-color: var(--accent); /* FORCES the cursor to be visible and colored */
 }
 
 #autocomplete-dropdown {
