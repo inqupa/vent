@@ -1,0 +1,83 @@
+.vent-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 0 30px;
+    z-index: 5; /* Ensure it stays below menu but above background */
+}
+
+/* The Container holds the Background color */
+.input-wrapper {
+    background: var(--input-bg);
+    width: 100%;
+    border-radius: 40px;
+    padding: 5px 5px 5px 30px;
+    display: flex;
+    align-items: center;
+    position: relative; /* Anchor for Ghost and Dropdown */
+}
+
+/* The Ghost (Middle Layer) */
+#autocomplete-ghost {
+    position: absolute;
+    top: 15px; /* Adjust to match textarea padding */
+    left: 30px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    color: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* The Textarea (Top Layer) */
+textarea#problemInput {
+    flex: 1;
+    background: transparent !important;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 1.1rem;
+    padding: 10px 0;
+    resize: none;
+    height: 44px;
+    line-height: 24px;
+    z-index: 2;
+    caret-color: var(--accent);
+}
+
+/* The Submit Button (Fixed Centering) */
+#submitBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--input-bg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+#submitBtn svg {
+    transition: transform 0.4s ease;
+}
+
+/* Dropdown Subsystem */
+#autocomplete-dropdown {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    list-style: none;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.suggestion-item {
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
