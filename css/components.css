@@ -4,11 +4,15 @@
     right: -320px;
     width: 320px;
     height: 100%;
-    background: var(--bg);
+    /* force colors */
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
     padding: 80px 30px 40px 30px;
     transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1000;
-    border-left: 1px solid rgba(0,0,0,0.05);
+    /* stacking fix */
+    z-index: 2000; /* higher than EVERYTHING else */
+    border-left: 1px solid rgba(128, 128, 128, 0.1);
+    
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -24,6 +28,19 @@
     letter-spacing: 2px;
     margin-bottom: 20px;
     opacity: 0.4;
+}
+
+/* Ensure links inside the drawer are visible */
+.menu-drawer a, 
+.menu-drawer h3, 
+.menu-drawer li,
+.history-content {
+    color: var(--text) !important;
+    opacity: 1; /* Reset any accidental transparency */
+}
+
+.menu-drawer h3 {
+    opacity: 0.4; /* Keep headers faint but visible */
 }
 
 /* History Item Polish */
