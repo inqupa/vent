@@ -45,7 +45,6 @@ export async function initAutocompleteSystem() {
             if (allMatches.length > 0) {
                 dropdown.innerHTML = allMatches.map(m => `<li class="suggestion-item"><b>${m.slice(0, val.length)}</b>${m.slice(val.length)}</li>`).join('');
                 dropdown.classList.remove('hidden');
-                // ... rest of your click/select logic ...
             }
         }
         
