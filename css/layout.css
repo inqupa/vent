@@ -1,0 +1,39 @@
+.main-header { 
+    padding: 30px 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu-trigger {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent); 
+    cursor: pointer;
+    position: fixed;
+    z-index: 999;
+}
+
+.app-viewport {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
+.hero-logo {
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: var(--logo-color);
+    line-height: 1;
+    pointer-events: none;
+    text-align: center;
+}
+
+@media (min-width: 601px) {
+    .hero-logo { font-size: 15vw; margin-bottom: 60px; }
+}
+
+@media (max-width: 600px) {
+    .hero-logo { font-size: 70px; margin-bottom: 40px; }
+}
