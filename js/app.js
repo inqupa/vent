@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Detect when keyboard is open to hide footer (keeps UI clean)
-        const input = document.getElementById('problemInput');
         const footer = document.querySelector('.minimal-footer');
         
         if (input && footer) {
