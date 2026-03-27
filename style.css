@@ -126,6 +126,11 @@ textarea {
     line-height: 24px;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* 5. SVG CENTERING (Absolute Lock) */
 #submitBtn {
     position: relative;
@@ -265,7 +270,17 @@ textarea {
     margin: 30px 0;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* styles for autocomplete features */
+.input-container { position: relative; }
+#autocomplete-ghost {
+    position: absolute; top: 0; left: 0; padding: 20px;
+    font-size: 1.5rem; color: var(--accent); opacity: 0.3;
+    pointer-events: none; z-index: 0;
 }
+#autocomplete-dropdown {
+    position: absolute; top: 100%; left: 0; width: 100%;
+    background: var(--bg); border: 1px solid var(--accent);
+    list-style: none; padding: 0; z-index: 10;
+}
+.suggestion-item { padding: 12px; cursor: pointer; border-bottom: 1px solid #333; }
+.hidden { display: none; }
