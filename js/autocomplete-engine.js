@@ -1,5 +1,12 @@
+/**
+ * AUTOCOMPLETE-ENGINE.JS - Phase 2 Integrated Version
+ * Combines: 
+ * 1. Inline Ghost (Static DB)
+ * 2. Local Lexicon (Personal Learning)
+ * 3. Global Trends (Community Data)
+ */
 import { INLINE_PHRASES } from './suggestions-db.js';
-import { getLocalSuggestions } from './lexicon.js'; // Import the new logic
+import { getLocalSuggestions } from './lexicon.js'; // The "Mirror" Engine
 
 let globalTrends = [];
 
@@ -18,93 +25,98 @@ export async function initAutocompleteSystem() {
     container.appendChild(ghost);
     container.appendChild(dropdown);
 
-    // 2. Fetch Global Data
+    // 2. Fetch Global Data (Background Sync)
     try {
         const response = await fetch('./data/global-suggestions.json');
-        const data = await response.json();
-        globalTrends = data.trends || [];
+        if (response.ok) {
+            const data = await response.json();
+            globalTrends = data.trends || [];
+        } else {
+            // Fallback if bot hasn't run yet
+            globalTrends = ["today was hard", "feeling much better", "just need to vent"];
+        }
     } catch (e) {
-        console.warn("Global trends unavailable.");
+        console.warn("Global trends unavailable, using local only.");
     }
 
-    // 3. Listen for Typing
+    // 3. Main Input Listener
     input.addEventListener('input', () => {
-        if (input.length > 2) {
-            // 1. Get Private/Local suggestions first
-            const localMatches = getLocalSuggestions(input);
-            
-            // 2. Get Global trends second
-            const globalMatches = globalTrends
-                .filter(t => t.toLowerCase().includes(input))
-                .filter(t => !localMatches.includes(t.toLowerCase())) // Avoid duplicates
-                .slice(0, 3);
-        
-            // 3. Combine them (Local ones appear first!)
-            const allMatches = [...localMatches, ...globalMatches];
-        
-            if (allMatches.length > 0) {
-                dropdown.innerHTML = allMatches.map(m => `<li class="suggestion-item"><b>${m.slice(0, val.length)}</b>${m.slice(val.length)}</li>`).join('');
-                dropdown.classList.remove('hidden');
-            }
-        }
-        
-        // A. AUTO-RESIZE BOX (Gemini Style)
-        input.style.height = '54px'; // reset to base height first
-        
+        // A. Resize Logic
+        input.style.height = '54px'; 
         if (input.value.length > 0) {
-            // only grow if there is content
-            const newHeight = input.scrollHeight;
-            input.style.height = (newHeight > 54 ? newHeight : 54) + 'px';
+            input.style.height = (input.scrollHeight > 54 ? input.scrollHeight : 54) + 'px';
         }
 
         const val = input.value.toLowerCase();
         
-        // B. GHOST LOGIC (Inline)
-        let match = "";
-        if (val.length > 2) {
+        // B. Ghost Logic (Inline suggestions from suggestions-db.js)
+        let ghostMatch = "";
+        if (val.length > 1) {
             for (const key in INLINE_PHRASES) {
                 if (val.startsWith(key)) {
-                    match = INLINE_PHRASES[key][0];
+                    ghostMatch = INLINE_PHRASES[key][0];
                     break;
                 }
             }
         }
-        ghost.innerHTML = match ? `<span style="color:transparent">${input.value}</span>${match}` : "";
+        ghost.innerHTML = ghostMatch ? `<span style="color:transparent">${input.value}</span>${ghostMatch}` : "";
 
-        // C. DROPDOWN LOGIC (Trends)
-        if (val.length > 3 && globalTrends.length > 0) {
-            const matches = globalTrends.filter(t => t.toLowerCase().includes(val)).slice(0, 3);
-            if (matches.length > 0) {
-                dropdown.innerHTML = matches.map(m => `<li class="suggestion-item">${m}</li>`).join('');
-                dropdown.classList.remove('hidden');
-                
-                dropdown.querySelectorAll('li').forEach(li => {
-                    li.onclick = () => {
-                        // 1. set the value
-                        input.value = li.innerText;
+        // C. Combined Dropdown Logic (Local + Global)
+        if (val.length > 2) {
+            // Priority 1: Get words you use often (from lexicon.js)
+            const localMatches = getLocalSuggestions(val);
+            
+            // Priority 2: Get community trends (filter out duplicates of local matches)
+            const globalMatches = globalTrends
+                .filter(t => t.toLowerCase().includes(val))
+                .filter(t => !localMatches.includes(t.toLowerCase())) 
+                .slice(0, 3);
 
-                        // 2. IMMEDIATELY hide the menu
-                        dropdown.classList.add('hidden');
-                        dropdown.innerHTML = ''; // clear the items
+            // Merge them: Local first, then Global
+            const allMatches = [...localMatches, ...globalMatches];
 
-                        // 3. sync UI (Ghost and Height)
-                        ghost.innerHTML = '';
-                        input.style.height = 'auto';
-                        input.style.height = input.scrollHeigh + 'px';
-
-                        // 4. return focus to the cursor
-                        input.dispatchEvent(new Event('input')); // Re-trigger resize
-                        input.focus();
-                    };
-                });
-            } else { dropdown.classList.add('hidden'); }
-        } else { dropdown.classList.add('hidden'); }
-    });
-
-    // Hide dropdown if user clicks anywhere else on the page
-    document.addEventListener('click', (e) => {
-        if (!container.contains(e.target)) {
+            if (allMatches.length > 0) {
+                renderDropdown(allMatches, val, dropdown, input, ghost);
+            } else {
+                dropdown.classList.add('hidden');
+            }
+        } else {
             dropdown.classList.add('hidden');
         }
+    });
+
+    // Close dropdown if user clicks away
+    document.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) dropdown.classList.add('hidden');
+    });
+}
+
+/**
+ * Helper to render the dropdown list
+ */
+function renderDropdown(matches, query, dropdown, input, ghost) {
+    dropdown.innerHTML = matches.map(m => {
+        // Bold the part that matches what the user typed
+        const index = m.toLowerCase().indexOf(query);
+        const before = m.slice(0, index);
+        const match = m.slice(index, index + query.length);
+        const after = m.slice(index + query.length);
+        return `<li class="suggestion-item">${before}<b>${match}</b>${after}</li>`;
+    }).join('');
+
+    dropdown.classList.remove('hidden');
+
+    // Handle selection
+    dropdown.querySelectorAll('li').forEach(li => {
+        li.onclick = () => {
+            input.value = li.innerText;
+            dropdown.classList.add('hidden');
+            ghost.innerHTML = '';
+            
+            // Re-trigger height adjustment for the selected text
+            input.style.height = 'auto';
+            input.style.height = input.scrollHeight + 'px';
+            input.focus();
+        };
     });
 }
