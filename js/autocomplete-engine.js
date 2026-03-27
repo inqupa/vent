@@ -60,13 +60,31 @@ export async function initAutocompleteSystem() {
                 
                 dropdown.querySelectorAll('li').forEach(li => {
                     li.onclick = () => {
+                        // 1. set the value
                         input.value = li.innerText;
+
+                        // 2. IMMEDIATELY hide the menu
                         dropdown.classList.add('hidden');
+                        dropdown.innerHTML = ''; // clear the items
+
+                        // 3. sync UI (Ghost and Height)
+                        ghost.innerHTML = '';
+                        input.style.height = 'auto';
+                        input.style.height = input.scrollHeigh + 'px';
+
+                        // 4. return focus to the cursor
                         input.dispatchEvent(new Event('input')); // Re-trigger resize
                         input.focus();
                     };
                 });
             } else { dropdown.classList.add('hidden'); }
         } else { dropdown.classList.add('hidden'); }
+    });
+
+    // Hide dropdown if user clicks anywhere else on the page
+    document.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
     });
 }
