@@ -1,4 +1,5 @@
 import { INLINE_PHRASES } from './suggestions-db.js';
+import { getLocalSuggestions } from './lexicon.js'; // Import the new logic
 
 let globalTrends = [];
 
@@ -28,6 +29,26 @@ export async function initAutocompleteSystem() {
 
     // 3. Listen for Typing
     input.addEventListener('input', () => {
+        if (val.length > 2) {
+            // 1. Get Private/Local suggestions first
+            const localMatches = getLocalSuggestions(val);
+            
+            // 2. Get Global trends second
+            const globalMatches = globalTrends
+                .filter(t => t.toLowerCase().includes(val))
+                .filter(t => !localMatches.includes(t.toLowerCase())) // Avoid duplicates
+                .slice(0, 3);
+        
+            // 3. Combine them (Local ones appear first!)
+            const allMatches = [...localMatches, ...globalMatches];
+        
+            if (allMatches.length > 0) {
+                dropdown.innerHTML = allMatches.map(m => `<li class="suggestion-item"><b>${m.slice(0, val.length)}</b>${m.slice(val.length)}</li>`).join('');
+                dropdown.classList.remove('hidden');
+                // ... rest of your click/select logic ...
+            }
+        }
+        
         // A. AUTO-RESIZE BOX (Gemini Style)
         input.style.height = '54px'; // reset to base height first
         
