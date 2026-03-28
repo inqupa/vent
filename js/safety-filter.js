@@ -1,10 +1,15 @@
 /**
- * THE LOGIC COG
- * Pure function: (input, list) => Boolean
+ * SAFETY-FILTER.JS
+ * The "Machine" - Pure functional logic.
  */
-export function validateSafety(word, blockedList) {
-    if (!word || !blockedList) return true;
+export function validateSafety(input, blockedList, isStrict = true) {
+    if (!input || !blockedList) return true;
     
-    const target = word.toLowerCase();
-    return !blockedList.some(forbidden => target.includes(forbidden.toLowerCase()));
+    const target = input.toLowerCase();
+    
+    return !blockedList.some(forbidden => {
+        const term = forbidden.toLowerCase();
+        // Strict mode checks if the forbidden word is anywhere inside the string
+        return isStrict ? target.includes(term) : target === term;
+    });
 }
