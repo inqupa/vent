@@ -1,30 +1,35 @@
-import { Registry } from '../../registry/app-registry.js';
-
 /**
  * DATA-SERVICE.JS
  * Service: Handles all external data fetching.
  */
+import { Registry } from '../../registry/app-registry.js';
+
 export const DataService = {
     /**
-     * Fetches the safety blocklist using the Registry path.
-     * @returns {Promise<Array>}
+     * Fetch the Safety Blocklist
      */
     async getSafetyBlocklist() {
         try {
             const response = await fetch(Registry.PATHS.DATA.SAFETY);
-            if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
-            return data.prohibited;
+            return data.prohibited; // Returns the array of bad words
         } catch (error) {
-            console.error("DataService Error:", error);
-            // Return a safe fallback so the app doesn't crash
-            return ["harm", "hate"]; 
+            console.error("DataService (Safety) Error:", error);
+            return []; // Fallback to empty array
         }
-    }
-    
+    },
+
+    /**
+     * Fetch the Emotion Vectors
+     */
     async getEmotionVectors() {
-        const response = await fetch(Registry.PATHS.DATA.EMOTIONS);
-        const data = await response.json();
-        return data.vectors; // This returns the "i feel", "i am" dictionary
+        try {
+            const response = await fetch(Registry.PATHS.DATA.EMOTIONS);
+            const data = await response.json();
+            return data.vectors; // Returns the "i feel" dictionary
+        } catch (error) {
+            console.error("DataService (Emotions) Error:", error);
+            return {}; // Fallback to empty object
+        }
     }
 };
