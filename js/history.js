@@ -60,8 +60,19 @@ export function renderHistory() {
  * Wipes all local history and refreshes the UI.
  */
 export function clearHistory() {
-    if (confirm("Are you sure? This will permanently delete your local vent history.")) {
+    // 1. Ask for permission (Safety first)
+    if (confirm("Shred everything? This will delete your vents and the app's memory of your common words.")) {
+        
+        // 2. Wipe the actual text of your vents
         localStorage.removeItem('vent_history');
-        renderHistory(); // Refresh the list to show 'empty state'
+        
+        // 3. Wipe the 'Local Lexicon' (the frequency map of your words)
+        localStorage.removeItem('local_lexicon');
+        
+        // 4. Update the screen so the history list disappears
+        // If renderHistory() is in THIS file, just call it:
+        renderHistory(); 
+        
+        alert("System memory wiped. You are starting fresh.");
     }
 }
