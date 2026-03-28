@@ -1,0 +1,8 @@
+{
+  "emotions": ["overwhelmed", "exhausted", "lonely", "anxious", "invisible"],
+  "starters": {
+    "i feel": [" overwhelmed", " lonely", " tired"],
+    "it is": [" too much", " unfair", " heavy"]
+  },
+  "blocklist": ["suicide", "kill", "harm", "hate", "fuck", "lund", "bkl", "chut", "pussy", "nigga", "boner"]
+}
