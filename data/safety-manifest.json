@@ -2,13 +2,14 @@
   "prohibited": [
     "suicide",
     "kill",
-    "harm",
+    "self-harm",
     "hate",
     "abuse",
     "violence"
   ],
   "metadata": {
+    "version": "1.0.0",
     "last_updated": "2026-03-28",
-    "version": "1.0.1"
+    "type": "blocklist"
   }
 }
