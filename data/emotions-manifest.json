@@ -1,0 +1,8 @@
+{
+  "vectors": {
+    "i feel": [" overwhelmed", " exhausted", " lonely", " anxious", " invisible"],
+    "i am": [" struggling", " tired of trying", " lost", " hurt"],
+    "it's just": [" too much", " unfair", " hard to explain", " heavy"],
+    "nobody": [" understands", " listens", " cares", " sees me"]
+  }
+}
