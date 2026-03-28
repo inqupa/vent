@@ -1,7 +1,16 @@
-// Note: In modern browsers, you use 'fetch' or a build tool to get JSON. 
-// For this 'Cog' setup, we define the source here.
+/**
+ * SAFETY-SETTINGS.JS
+ * The "How" - Defines behavioral parameters for the safety cog.
+ */
 export const SafetySettings = {
+    // Points to the data layer
     dataPath: './data/safety-manifest.json',
-    strictMode: true,
-    allowOverride: false
+    
+    // Logic parameters
+    enabled: true,
+    strictMode: true, // If true, matches partial words; if false, matches exact
+    caseSensitive: false,
+    
+    // Fallback in case the JSON fails to load
+    fallbackTerms: ["harm", "hate"]
 };
