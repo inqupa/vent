@@ -21,4 +21,10 @@ export const DataService = {
             return ["harm", "hate"]; 
         }
     }
+    
+    async getEmotionVectors() {
+        const response = await fetch(Registry.PATHS.DATA.EMOTIONS);
+        const data = await response.json();
+        return data.vectors; // This returns the "i feel", "i am" dictionary
+    }
 };
