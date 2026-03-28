@@ -40,52 +40,45 @@ export const VentBridge = {
         }
     },
 
-    /**
+   /**
      * HANDLE INPUT: This runs every time you type a letter.
-     * It sends the text through the "Assembly Line."
      */
     handleInput(value) {
-        // STEP 1: The Safety Middleware (The Guard)
+        // 1. Run the Safety Shield Cog
         const isSafe = SafetyShield.validate(value, this.blocklist);
 
+        // 2. Call the NEW unified UI function
+        // This replaces showSafetyWarning() and clearSafetyWarning()
+        this.updateUIForSafety(isSafe);
+
+        // 3. If unsafe, stop here
         if (!isSafe) {
-            this.updateUIForSafety(false);
-            return; // STOP everything if the text is prohibited
+            return; 
         }
 
-        this.updateUIForSafety(true); // Clear warnings if safe
-
-        // STEP 2: The Emotion Logic (The Thinker)
-        // Check if what the user typed matches an "i feel" or "i am" vector
+        // 4. If safe, proceed to Emotion Matching
         const matches = EmotionMatcher.findMatches(value, this.emotionVectors);
         
         if (matches.length > 0) {
-            // For now, we just log it. 
-            // Next, we will send these to the "Factory" to build the UI!
             console.log("Bridge found suggestions:", matches);
         }
     },
 
     /**
-     * UI FEEDBACK: Simple visual changes
+     * UI FEEDBACK: The new unified function
      */
     updateUIForSafety(isSafe) {
         const input = document.querySelector(Registry.DOM.INPUT);
+        if (!input) return; // Safety check for the DOM element
+
         if (!isSafe) {
+            // What used to be showSafetyWarning
             input.style.boxShadow = "0 0 10px red";
+            input.style.border = "1px solid red";
         } else {
+            // What used to be clearSafetyWarning
             input.style.boxShadow = "none";
+            input.style.border = "1px solid #ccc"; // or your default color
         }
-    }
-
-    showSafetyWarning() {
-        const input = document.querySelector(Registry.DOM.INPUT);
-        input.style.border = "2px solid #ff4d4d"; // Temporary UI feedback
-        console.warn("Safety Triggered: Prohibited content detected.");
-    },
-
-    clearSafetyWarning() {
-        const input = document.querySelector(Registry.DOM.INPUT);
-        input.style.border = "none";
     }
 };
