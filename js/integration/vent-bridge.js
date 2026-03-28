@@ -1,47 +1,82 @@
+/**
+ * VENT-BRIDGE.JS
+ * This is the "General" of your app. It coordinates all other cogs.
+ */
+
+// 1. THE IMPORTS (Gathering all the specialist cogs)
 import { Registry } from '../../registry/app-registry.js';
 import { DataService } from '../services/data-service.js';
 import { SafetyShield } from '../middlewares/safety-shield.js';
+import { EmotionMatcher } from '../logic/emotion-matcher.js';
 
-/**
- * VENT-BRIDGE.JS
- * The Integration Hub: Orchestrates the flow between Data, Logic, and UI.
- */
 export const VentBridge = {
+    // These are "Internal State" - they hold the data once loaded
     blocklist: [],
+    emotionVectors: {},
 
     /**
-     * Initialize the system: Load data and bind UI events.
+     * INIT: This runs once when the app starts.
+     * It prepares the data and sets up the "ears" (event listeners).
      */
     async init() {
-        console.log("Vent System: Initializing Bridge...");
+        console.log("Vent System: Initializing...");
 
-        // 1. Fetch Data via Service
-        this.blocklist = await DataService.getSafetyBlocklist();
+        // A. Load all raw data from your /data/ folder via the Service
+        const [safetyData, emotionData] = await Promise.all([
+            DataService.getSafetyBlocklist(),
+            DataService.getEmotionVectors()
+        ]);
 
-        // 2. Bind the Input Event via Registry
+        this.blocklist = safetyData;
+        this.emotionVectors = emotionData;
+
+        // B. Find the input box using the Registry (The GPS)
         const inputElement = document.querySelector(Registry.DOM.INPUT);
         
         if (inputElement) {
+            // Start listening to every keystroke
             inputElement.addEventListener('input', (e) => this.handleInput(e.target.value));
-            console.log("Vent System: Input Bound.");
-        } else {
-            console.error("Vent System: Could not find input element in DOM.");
+            console.log("Vent System: Online and Listening.");
         }
     },
 
     /**
-     * Logic Flow: Input -> Middleware -> UI Feedback
+     * HANDLE INPUT: This runs every time you type a letter.
+     * It sends the text through the "Assembly Line."
      */
     handleInput(value) {
-        // Run the Middleware Cog
+        // STEP 1: The Safety Middleware (The Guard)
         const isSafe = SafetyShield.validate(value, this.blocklist);
 
         if (!isSafe) {
-            this.showSafetyWarning();
-        } else {
-            this.clearSafetyWarning();
+            this.updateUIForSafety(false);
+            return; // STOP everything if the text is prohibited
+        }
+
+        this.updateUIForSafety(true); // Clear warnings if safe
+
+        // STEP 2: The Emotion Logic (The Thinker)
+        // Check if what the user typed matches an "i feel" or "i am" vector
+        const matches = EmotionMatcher.findMatches(value, this.emotionVectors);
+        
+        if (matches.length > 0) {
+            // For now, we just log it. 
+            // Next, we will send these to the "Factory" to build the UI!
+            console.log("Bridge found suggestions:", matches);
         }
     },
+
+    /**
+     * UI FEEDBACK: Simple visual changes
+     */
+    updateUIForSafety(isSafe) {
+        const input = document.querySelector(Registry.DOM.INPUT);
+        if (!isSafe) {
+            input.style.boxShadow = "0 0 10px red";
+        } else {
+            input.style.boxShadow = "none";
+        }
+    }
 
     showSafetyWarning() {
         const input = document.querySelector(Registry.DOM.INPUT);
