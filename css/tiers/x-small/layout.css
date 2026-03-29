@@ -1,0 +1,11 @@
+.vent-container {
+    /* Extra padding for tiny screens */
+    padding: calc(15px * var(--is-xs));
+    width: 100%;
+}
+
+.hero-logo {
+    /* Shrink the logo significantly for XS */
+    font-size: calc(2.5rem * var(--is-xs));
+    letter-spacing: -2px;
+}

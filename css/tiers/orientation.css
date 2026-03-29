@@ -1,0 +1,11 @@
+/* LANDSCAPE OVERRIDES (Mobile specific) */
+.hero-logo {
+    /* If it's a small screen AND landscape, hide the logo or shrink it to 0 */
+    display: calc(block * var(--is-portrait) + none * var(--is-landscape) * var(--is-sm));
+    margin-top: calc(10px * var(--is-landscape));
+}
+
+#problemInput {
+    /* Give more room to type when the keyboard takes up half the screen */
+    min-height: calc(80px * var(--is-landscape) * var(--is-sm) + 150px * var(--is-portrait));
+}

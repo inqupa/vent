@@ -1,0 +1,21 @@
+.side-menu {
+    /* On mobile, sidebars take up 85% of the screen width */
+    width: calc(85% * var(--is-sm));
+    position: fixed;
+    z-index: 200;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hidden state for Small Tier */
+.side-menu.left {
+    transform: translateX(calc(-100% * var(--is-sm)));
+}
+
+.side-menu.right {
+    transform: translateX(calc(100% * var(--is-sm)));
+}
+
+/* JS will add .is-open to bring them to 0 */
+.side-menu.is-open {
+    transform: translateX(0);
+}

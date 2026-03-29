@@ -13,6 +13,10 @@
     --is-sm: 0;
     --is-xs: 0;
 
+    /* ORIENTATION GATES */
+    --is-landscape: 0;
+    --is-portrait: 0;
+
     /* 3. Colors */
     --bg-color: #0a0a0a;
     --panel-bg: #151515;
@@ -51,4 +55,12 @@
 /* X-Small: 480px and below */
 @media (max-width: 480px) {
     :root { --is-xs: 1; }
+}
+
+@media (orientation: landscape) {
+    :root { --is-landscape: 1; }
+}
+
+@media (orientation: portrait) {
+    :root { --is-portrait: 1; }
 }
