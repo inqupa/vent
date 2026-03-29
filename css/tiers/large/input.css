@@ -1,0 +1,10 @@
+@media (min-width: 1025px) {
+    #problemInput {
+        font-size: 2rem; /* Make the text even bigger on Desktop */
+        max-width: 800px;
+    }
+
+    .hero-logo {
+        margin-bottom: 60px;
+    }
+}
