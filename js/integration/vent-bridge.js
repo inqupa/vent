@@ -7,6 +7,7 @@ import { DataService } from '../services/data-service.js';
 import { SafetyShield } from '../middlewares/safety-shield.js';
 import { EmotionMatcher } from '../logic/emotion-matcher.js';
 import { PillFactory } from '../factories/pill-factory.js';
+import { SessionManager } from '../state/session-manager.js';
 
 export const VentBridge = {
     blocklist: [],
@@ -31,16 +32,24 @@ export const VentBridge = {
     },
 
     handleInput(value) {
-        // A. Check Safety
+        // A. Update the State (Memory)
+        SessionManager.set('currentInput', value);
+
+        // B. Run Safety Check
         const isSafe = SafetyShield.validate(value, this.blocklist);
+        SessionManager.set('isSafe', isSafe);
         this.updateUIForSafety(isSafe);
 
-        if (!isSafe) return; // Stop if unsafe
-
-        // B. Check for Emotion Matches
+        // C. Run Emotion Logic
         const matches = EmotionMatcher.findMatches(value, this.emotionVectors);
-        
-        this.renderSuggestions(matches);
+        SessionManager.set('lastMatchCount', matches.length);
+
+        // D. Ask the State: "Should I show the UI right now?"
+        if (SessionManager.shouldShowSuggestions()) {
+            this.renderSuggestions(matches);
+        } else {
+            this.renderSuggestions([]); // Hide/Clear them
+        }
     },
 
     /**
