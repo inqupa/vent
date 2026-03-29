@@ -1,34 +1,19 @@
 /**
  * APP-REGISTRY.JS
- * The "Single Source of Truth" for all Paths and DOM Elements.
+ * The "Single Source of Truth" for all DOM selectors.
  */
-
 export const Registry = {
-    // 1. PHYSICAL PATHS (Where the data lives)
-    PATHS: {
-        DATA: {
-            SAFETY: './data/safety-manifest.json',
-            EMOTIONS: './data/emotions-manifest.json',
-            TRENDS: './data/global-suggestions.json'
-        },
-        CONFIG: './config/app-settings.js'
-    },
-
-    // 2. DOM SELECTORS (Where the HTML lives)
-    // If you change an ID in index.html, change it HERE only.
+    // These IDs MUST match what we put in your index.html
     DOM: {
-        INPUT: '#problemInput',
-        FORM: '#ventForm',
-        GHOST: '#autocomplete-ghost',
-        DROPDOWN: '#autocomplete-dropdown',
-        FOOTER: '.minimal-footer',
-        HISTORY_LIST: '#ventHistory'
+        INPUT: '#problemInput',           // The main text box where the user types
+        DROPDOWN: '#autocomplete-dropdown', // The container for emotion pills
+        HISTORY: '#history-list',         // The container for past vents
+        SAFETY_INDICATOR: '#safety-dot'   // (Optional) UI feedback for the shield
     },
 
-    // 3. EVENT IDENTIFIERS (The "Postman" signals)
-    EVENTS: {
-        VENT_SUBMITTED: 'vent:submitted',
-        VENT_CLEARED: 'vent:cleared',
-        SUGGESTION_SELECTED: 'suggestion:selected'
+    // Global settings that Cogs might need
+    CONFIG: {
+        MIN_CHAR_FOR_SUGGESTIONS: 3,
+        MAX_HISTORY_ITEMS: 50
     }
 };
