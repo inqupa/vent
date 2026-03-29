@@ -1,0 +1,19 @@
+/* THE XL CHASSIS */
+.vent-container {
+    /* Expand to 1000px only if on an XL screen */
+    max-width: calc(600px + (400px * var(--is-xl)));
+}
+
+.side-menu {
+    /* Make sidebars wider on 4K monitors */
+    width: calc(320px + (80px * var(--is-xl)));
+}
+
+.side-menu.left {
+    /* Slide out based on the XL width */
+    transform: translateX(calc(-400px * var(--is-xl)));
+}
+
+.side-menu.right {
+    transform: translateX(calc(400px * var(--is-xl)));
+}
