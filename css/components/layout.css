@@ -1,20 +1,32 @@
 .app-viewport {
-    height: 100vh;
-    width: 100vw;
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* This keeps the logo/input centered */
+    height: 100vh;
+    width: 100vw;
     position: relative;
+    overflow: hidden;
+    background-color: var(--bg-color);
 }
 
 .vent-container {
-    width: 100%;
-    max-width: 600px;
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex: 1; /* This takes up all available space, pushing footer down */
+    width: 100%;
+    z-index: 10;
+}
+
+.minimal-footer {
+    width: 100%;
+    padding: 20px;
     text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    z-index: 5;
 }
 
 .side-menu {

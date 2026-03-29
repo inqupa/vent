@@ -1,20 +1,36 @@
-@media (min-width: 1025px) {
-    .side-menu.left {
-        transform: translateX(-320px); /* Use the exact width to be safe */
-    }
+/* LAPTOP CHASSIS: Large Tier */
 
-    .side-menu.right {
-        transform: translateX(320px);
-    }
+.side-menu {
+    /* Fixed width for laptop displays */
+    width: calc(320px * var(--is-lg));
+    
+    /* Ensure they are invisible and non-interactive by default */
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 150;
+}
 
-    /* Ensure they are truly hidden */
-    .side-menu {
-        visibility: hidden;
-        transition: transform var(--transition), visibility var(--transition);
-    }
+#history-drawer.left {
+    left: 0;
+    /* Slide out exactly by its width */
+    transform: translateX(calc(-320px * var(--is-lg)));
+}
 
-    .side-menu.is-open {
-        visibility: visible;
-        transform: translateX(0);
-    }
+#settings-drawer.right {
+    right: 0;
+    transform: translateX(calc(320px * var(--is-lg)));
+}
+
+/* The Content Container: Balanced for Laptops */
+.vent-container {
+    max-width: calc(800px * var(--is-lg));
+    padding: calc(40px * var(--is-lg));
+}
+
+/* When the drawer opens on Laptop, it should look clean */
+.side-menu.is-open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }

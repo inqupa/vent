@@ -1,37 +1,27 @@
-/* THE AREA: Sits below the input */
 .suggestions-area {
+    /* Ensure it is ABOVE the background but BELOW menus */
+    position: relative;
+    z-index: 10;
+    
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    max-width: 500px;
     width: 100%;
-    transition: var(--transition);
+    max-width: 500px;
+    /* Force visibility */
+    opacity: 1 !important;
+    display: flex !important;
 }
 
-/* THE PILL: Individual emotion button */
 .pill {
-    padding: 8px 16px;
+    /* Use a base size + a tiny growth for large screens */
+    padding: 8px 16px; 
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-dim, #888);
-    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.pill:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--accent, #ffffff);
-    border-color: var(--accent, #ffffff);
-    transform: translateY(-2px);
-}
-
-/* For when a pill is selected/active */
-.pill.active {
-    background: var(--accent, #ffffff);
-    color: var(--bg-color, #0a0a0a);
 }

@@ -1,21 +1,28 @@
+/* MOBILE LOGIC: Small Tier */
+
 .side-menu {
-    /* On mobile, sidebars take up 85% of the screen width */
+    /* Set width to 85% only when --is-sm is 1 */
     width: calc(85% * var(--is-sm));
-    position: fixed;
-    z-index: 200;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* HARD HIDE: Prevents the "shadow" or blocking of the screen */
+    visibility: hidden;
+    pointer-events: none;
 }
 
-/* Hidden state for Small Tier */
-.side-menu.left {
-    transform: translateX(calc(-100% * var(--is-sm)));
+#history-drawer.left {
+    left: 0;
+    transform: translateX(calc(-101% * var(--is-sm)));
 }
 
-.side-menu.right {
-    transform: translateX(calc(100% * var(--is-sm)));
+#settings-drawer.right {
+    right: 0;
+    transform: translateX(calc(101% * var(--is-sm)));
 }
 
-/* JS will add .is-open to bring them to 0 */
+/* THE TOGGLE: This is what your JS will trigger */
 .side-menu.is-open {
-    transform: translateX(0);
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
 }
