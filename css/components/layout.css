@@ -1,0 +1,27 @@
+.app-viewport {
+    height: 100vh;
+    width: 100vw;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.vent-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 320px;
+    background: #151515;
+    z-index: 100;
+}

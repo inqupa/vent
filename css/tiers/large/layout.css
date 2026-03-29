@@ -1,0 +1,12 @@
+/* Slide them out of view */
+.side-menu.left {
+    transform: translateX(-100%);
+}
+
+.side-menu.right {
+    transform: translateX(100%);
+}
+
+/* JS Classes to bring them back */
+.side-menu.left.is-open { transform: translateX(0); }
+.side-menu.right.is-open { transform: translateX(0); }

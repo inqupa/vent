@@ -1,24 +1,20 @@
-/* 1. INTERNAL BRAIN */
-@import url('./abstracts/variables.css');
-@import url('./abstracts/animations.css');
+@import url("./abstracts/variables.css"); /* The Brain: Colors & Breakpoints */
+@import url("./components/layout.css");    /* The Chassis: Centering & Viewport */
+@import url("./components/navigation.css"); /* The Triggers: History & Settings */
+@import url("./tiers/large.css");           /* The Body: Desktop Overrides */
 
-/* 2. GLOBAL RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-    background-color: var(--bg-color); 
-    color: var(--text-main); 
-    font-family: 'Inter', sans-serif;
-    overflow: hidden; 
+/* --- end of imports --- */
+/* Reset code goes BELOW the imports */
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
 }
 
-/* 3. COMPONENT DNA (Identity) */
-@import url('./components/layout.css');
-@import url('./components/input-system.css');
-@import url('./components/navigation.css');
-
-/* 4. TIER OVERRIDES (Physicality) */
-@import url('./tiers/large.css');
-@import url('./tiers/medium.css');
-@import url('./tiers/small.css');
-@import url('./tiers/x-small.css');
-@import url('./tiers/orientation.css');
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: #0a0a0a;
+    overflow: hidden;
+}
