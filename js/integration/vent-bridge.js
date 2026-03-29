@@ -27,6 +27,7 @@ export const VentBridge = {
         const input = document.querySelector(Registry.DOM.INPUT);
         if (input) {
             input.addEventListener('input', (e) => this.handleInput(e.target.value));
+            input.addEventListener('keydown', (e) => this.handleKeyDown(e));
             console.log("Vent System: Connected to Input.");
         }
     },
@@ -52,6 +53,40 @@ export const VentBridge = {
         }
     },
 
+    handleKeyDown(e) {
+        if (!SessionManager.get('isDropdownOpen')) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault(); // Stop cursor from moving
+            SessionManager.moveSelection(1);
+            this.refreshUI();
+        } 
+        else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            SessionManager.moveSelection(-1);
+            this.refreshUI();
+        } 
+        else if (e.key === 'Enter') {
+            const index = SessionManager.get('activePillIndex');
+            if (index >= 0) {
+                // Find the text of the currently highlighted pill
+                const pills = document.querySelectorAll('.emotion-pill');
+                this.selectSuggestion(pills[index].innerText);
+            }
+        }
+    },
+
+    /**
+     * Re-renders the list so the 'is-active' class moves to the right pill
+     */
+    refreshUI() {
+        const matches = EmotionMatcher.findMatches(
+            SessionManager.get('currentInput'), 
+            this.emotionVectors
+        );
+        this.renderSuggestions(matches);
+    },
+
     /**
      * Unified UI feedback for safety status
      */
@@ -73,18 +108,12 @@ export const VentBridge = {
      */
     renderSuggestions(matches) {
         const container = document.querySelector(Registry.DOM.DROPDOWN);
-        if (!container) return;
-
-        // 1. Clear the old pills
+        const activeIndex = SessionManager.get('activePillIndex');
         container.innerHTML = '';
 
-        // 2. Manufacture and attach new pills
-        matches.forEach(text => {
-            const pill = PillFactory.create(text);
-            
-            // Add a click listener so it fills the input
+        matches.forEach((text, index) => {
+            const pill = PillFactory.create(text, index === activeIndex);
             pill.addEventListener('click', () => this.selectSuggestion(text));
-            
             container.appendChild(pill);
         });
     },

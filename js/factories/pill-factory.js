@@ -1,26 +1,21 @@
-/**
- * PILL-FACTORY.JS
- * Factory: Manufactures the HTML elements for suggestions.
- */
 import { Registry } from '../../registry/app-registry.js';
 
 export const PillFactory = {
     /**
-     * Creates a single suggestion pill element.
-     * @param {string} text - The emotion text (e.g., "overwhelmed")
-     * @returns {HTMLElement}
+     * Creates a pill and optionally marks it as active.
      */
-    create(text) {
+    create(text, isActive = false) {
         const pill = document.createElement('div');
-        
-        // Add classes for styling
         pill.classList.add('emotion-pill');
-        pill.setAttribute('role', 'button');
         
-        // Set the text
+        // If this index is the one the user arrowed to, add a class
+        if (isActive) {
+            pill.classList.add('is-active');
+        }
+        
+        pill.setAttribute('role', 'button');
         pill.innerText = text;
 
-        // Return the "Manufactured" object
         return pill;
     }
 };

@@ -29,3 +29,11 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/* The style for the keyboard-selected pill */
+.emotion-pill.is-active {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
