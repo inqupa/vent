@@ -1,10 +1,12 @@
-/* TIER 1: LARGE (Desktop) */
+@import url("./x-large/x-large.css"); /* TIER 1: The XL Captain */
+/* TIER 2: LARGE (Desktop) */
 @import url("./large/large.css");
-/* TIER 2: MEDIUM (Tablet) */
+/* TIER 3: MEDIUM (Tablet) */
 @import url("./medium/medium.css");
-/* TIER 3: SMALL (Phone) */
+/* TIER 4: SMALL (Phone) */
 @import url("./small/small.css");
-/* TIER 4: X-SMALL (Compact) */
+/* TIER 5: X-SMALL (Compact) */
 @import url("./x-small/x-small.css");
+
 /* GLOBAL ORIENTATION */
 @import url("./orientation.css");
