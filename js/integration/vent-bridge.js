@@ -2,6 +2,7 @@
  * VENT-BRIDGE.JS
  * The Integration Hub: Orchestrates the system flow.
  */
+import { PathsConfig } from '../../config/paths-config.js';
 import { Registry } from '../../registry/app-registry.js';
 import { DataService } from '../services/data-service.js';
 import { SafetyShield } from '../middlewares/safety-shield.js';

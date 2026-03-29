@@ -1,39 +1,30 @@
-.emotion-pill {
-    display: inline-block;
-    padding: 8px 16px;
-    margin: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.9rem;
-    backdrop-filter: blur(5px);
-}
-
-.emotion-pill:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.5);
-}
-
-/* This ensures the suggestions don't jump around */
-#autocomplete-dropdown {
+.suggestions-area {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centers the pills under the input */
-    margin-top: 15px;
-    min-height: 40px; /* Prevents layout flickering */
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    gap: 8px;
+    padding-top: 15px;
+    z-index: 10;
 }
 
-/* The style for the keyboard-selected pill */
-.emotion-pill.is-active {
-    background: rgba(255, 255, 255, 0.4);
-    border-color: #fff;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
+.emotion-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.emotion-pill:hover, .emotion-pill.is-active {
+    background: var(--accent);
+    color: var(--bg-color);
+    border-color: var(--accent);
+    transform: translateY(-2px);
 }

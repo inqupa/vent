@@ -5,40 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vent</title>
     <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/components.css">
-    <link rel="stylesheet" href="./css/input-system.css">
-    <link rel="stylesheet" href="./css/mobile-patch.css">
-    <link rel="stylesheet" href="./css/modules/pills.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="menu-trigger">vent</div>
-
-        <div class="menu-drawer">
-            <div class="menu-section">
-                <h3>preferences</h3>
-                <ul class="menu-links">
-                    <li><a href="#" id="theme-toggle">Toggle Theme</a></li>
-                    <li><a href="https://your-about-page.com">About Vent</a></li>
-                </ul>
-            </div>
-        
-            <div class="menu-section">
-                <h3>your diary</h3>
-                <ul id="history-list">
-                    <li class="empty-state">no past vents found.</li>
-                </ul>
-            </div>
-        
-            <div class="identity-settings">
-                <h3>settings</h3>
-                <a href="#" id="export-id" class="settings-link">copy recovery key</a>
-                <a href="#" id="import-id" class="settings-link">import identity</a>
-                <a href="#" id="shred-history" class="settings-link" style="color: #ff4444; margin-top: 10px;">shred history</a>
+    <aside id="history-drawer" class="side-menu left">
+        <div class="menu-section">
+            <h3>your diary</h3>
+            <div id="history-list">
+                <p class="empty-state">no past vents found.</p>
             </div>
         </div>
+    </aside>
+
+    <aside id="settings-drawer" class="side-menu right">
+        <div class="menu-section">
+            <h3>preferences</h3>
+            <ul class="menu-links">
+                <li><a href="#" id="theme-toggle">Toggle Theme</a></li>
+                <li><a href="#">About Vent</a></li>
+            </ul>
+        </div>
+        <div class="identity-settings">
+            <h3>identity</h3>
+            <a href="#" id="export-id" class="settings-link">copy recovery key</a>
+            <a href="#" id="import-id" class="settings-link">import identity</a>
+            <a href="#" id="shred-history" class="settings-link" style="color: #ff4444; margin-top: 20px;">shred history</a>
+        </div>
+    </aside>
+
+    <header class="main-header">
+        <div class="menu-trigger left" id="open-history">history</div>
+        <div class="menu-trigger right" id="open-settings">settings</div>
     </header>
 
     <main class="app-viewport">
@@ -46,12 +43,14 @@
             <div class="hero-logo">vent</div>
             
             <div class="input-wrapper">
-                <textarea id="problemInput" placeholder="What's on your mind?"></textarea>
+                <textarea id="problemInput" placeholder="What's on your mind?" spellcheck="false"></textarea>
+                
                 <button id="submitBtn" class="action-btn">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4.329 20.84C3.809 21.01 3.25 20.6 3.329 20.06L4.35 13.999L13.88 11.999L4.35 10L3.329 3.93901C3.25 3.39901 3.809 2.99001 4.329 3.16001L21.3 8.66001C21.72 8.79001 22 9.17001 22 9.59901V14.4C22 14.83 21.72 15.21 21.3 15.34L4.329 20.84Z" fill="currentColor"/>
                     </svg>
                 </button>
+                
                 <div id="autocomplete-dropdown" class="suggestions-area"></div>
             </div>
         </div>

@@ -1,0 +1,17 @@
+:root {
+    /* Colors */
+    --bg-color: #0a0a0a;
+    --panel-bg: #151515;
+    --text-main: #e0e0e0;
+    --text-dim: #888;
+    --accent: #ffffff;
+    --danger: #ff4444;
+
+    /* Transition Speeds */
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Breakpoint Definitions */
+    --br-lg: 1025px;
+    --br-md: 769px;
+    --br-sm: 481px;
+}

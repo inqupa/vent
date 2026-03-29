@@ -4,7 +4,6 @@
  */
 export const SafetySettings = {
     // Points to the data layer
-    dataPath: './data/safety-manifest.json',
     
     // Logic parameters
     enabled: true,

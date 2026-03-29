@@ -2,7 +2,7 @@
  * DATA-SERVICE.JS
  * Service: Handles all external data fetching.
  */
-import { Registry } from '../../registry/app-registry.js';
+import { PathsConfig } from '../../config/paths-config.js';
 
 export const DataService = {
     /**
@@ -10,7 +10,7 @@ export const DataService = {
      */
     async getSafetyBlocklist() {
         try {
-            const response = await fetch(Registry.PATHS.DATA.SAFETY);
+            const response = await fetch(PathsConfig.DATA.BLOCKED_WORDS);
             const data = await response.json();
             return data.prohibited; // Returns the array of bad words
         } catch (error) {
@@ -24,7 +24,7 @@ export const DataService = {
      */
     async getEmotionVectors() {
         try {
-            const response = await fetch(Registry.PATHS.DATA.EMOTIONS);
+            const response = await fetch(PathsConfig.DATA.EMOTIONS);
             const data = await response.json();
             return data.vectors; // Returns the "i feel" dictionary
         } catch (error) {
