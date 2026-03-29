@@ -1,12 +1,21 @@
-/* Slide them out of view */
-.side-menu.left {
-    transform: translateX(-100%);
-}
+/* Move the @media query INSIDE this file */
+@media (min-width: 1025px) {
+    .side-menu.left {
+        transform: translateX(-320px); /* Use the exact width to be safe */
+    }
 
-.side-menu.right {
-    transform: translateX(100%);
+    .side-menu.right {
+        transform: translateX(320px);
+    }
+    
+    /* Ensure they are truly hidden */
+    .side-menu {
+        visibility: hidden;
+        transition: transform var(--transition), visibility var(--transition);
+    }
+    
+    .side-menu.is-open {
+        visibility: visible;
+        transform: translateX(0);
+    }
 }
-
-/* JS Classes to bring them back */
-.side-menu.left.is-open { transform: translateX(0); }
-.side-menu.right.is-open { transform: translateX(0); }

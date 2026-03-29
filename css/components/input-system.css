@@ -1,0 +1,68 @@
+/* THE LOGO: Minimalist & Bold */
+.hero-logo {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    margin-bottom: 2rem;
+    color: var(--accent, #ffffff);
+    user-select: none;
+}
+
+/* THE WRAPPER: Holds the Textarea + Button */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* THE TEXTAREA: The core interaction */
+#problemInput {
+    width: 100%;
+    min-height: 120px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main, #e0e0e0);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    resize: none;
+    text-align: center;
+    padding: 10px;
+}
+
+#problemInput::placeholder {
+    color: var(--text-dim, #555);
+    opacity: 0.5;
+}
+
+/* THE SEND BUTTON: Floating SVG */
+.action-btn {
+    margin-top: 20px;
+    background: none;
+    border: none;
+    color: var(--text-dim, #888);
+    cursor: pointer;
+    transition: var(--transition, 0.3s);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.action-btn:hover {
+    color: var(--accent, #ffffff);
+    transform: translateY(-2px);
+}
+
+/* Hidden by default until text is typed (handled by JS later) */
+.action-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
