@@ -8,6 +8,7 @@ import { SafetyShield } from '../middlewares/safety-shield.js';
 import { EmotionMatcher } from '../logic/emotion-matcher.js';
 import { PillFactory } from '../factories/pill-factory.js';
 import { SessionManager } from '../state/session-manager.js';
+import { StorageService } from '../services/storage-service.js';
 
 export const VentBridge = {
     blocklist: [],
@@ -68,10 +69,14 @@ export const VentBridge = {
         } 
         else if (e.key === 'Enter') {
             const index = SessionManager.get('activePillIndex');
+
             if (index >= 0) {
-                // Find the text of the currently highlighted pill
+                // If a pill is highlighted, select it
                 const pills = document.querySelectorAll('.emotion-pill');
                 this.selectSuggestion(pills[index].innerText);
+            } else {
+                // NEW: If NO pill is highlighted, the user is "Sending" the vent
+                this.sendVent(e.target.value);
             }
         }
     },
@@ -128,5 +133,20 @@ export const VentBridge = {
         
         // Clear the dropdown after selection
         this.renderSuggestions([]);
+    },
+
+    sendVent(text) {
+        if (!text.trim()) return;
+
+        // 1. Save it via the Service
+        StorageService.saveVent(text);
+
+        // 2. Clear the UI
+        const input = document.querySelector(Registry.DOM.INPUT);
+        input.value = '';
+        this.renderSuggestions([]);
+        
+        console.log("Vent saved to local vault.");
+        // Next: We will build a "History Factory" to show these on screen!
     }
 };
