@@ -4,5 +4,13 @@
     "i am": [" struggling", " tired of trying", " lost", " hurt"],
     "it's just": [" too much", " unfair", " hard to explain", " heavy"],
     "nobody": [" understands", " listens", " cares", " sees me"]
-  }
+  },
+
+  "categories": {
+    "high_energy": ["frustrated", "anxious", "overwhelmed"],
+    "low_energy": ["exhausted", "numb", "lonely"],
+    "reflective": ["confused", "pensive", "nostalgic"]
+  },
+  
+  "all": ["anxious", "overwhelmed", "frustrated", "exhausted", "lonely", "confused"]
 }

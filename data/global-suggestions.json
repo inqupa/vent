@@ -1,1 +1,14 @@
-{"trends": ["asdklfjalkjfdkjasfidjajefsdkjfalksjfklfajkldfjakljdfjsfjsdjfjasjdkfjajfdsjfjasdfjlsajslfdjljs", "Frustration", "frustration", "fadsfaf", "i feel overwhelmed", "I feel overwhelmed", "i feel disgusted", "falling local watertable", "i feel good", "Lack of quality education", "Dhbdhdfb education", "education", "education good", "I feel lonely", "I wish things were different", "It's just unfair", "corruption", "Corruption", "pancakes", "pancakes are good", "pancakes are bad", "pancakes are awesome!", "i feel exhauste\nxhausted lonely", "i feel over\nwhelmed lonely", "fdasfsaf"]}
+{
+    "prompts": [
+        "I feel overwhelmed",
+        "I feel lonely",
+        "I wish things were different",
+        "It's just unfair",
+        "Lack of quality education",
+        "I feel exhausted"
+    ],
+    "metadata": {
+        "last_purged": "2026-03-30",
+        "status": "active"
+    }
+}
