@@ -75,5 +75,3 @@ To maintain the integrity of the **Vent** system, all contributors must follow t
 4. **Data Isolation:** Never hardcode a string that a user sees. Put it in a manifest.
 
 ---
-
-**This wiki is now complete and locked to the "Quadratic" standard.** Whenever you are ready, paste your first **legacy JS file**. We will begin the "Garbage Removal" process by shredding it into these 9 architectural layers. Which file are we deconstructing first?
