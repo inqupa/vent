@@ -1,14 +1,24 @@
 {
     "prompts": [
-        "I feel overwhelmed",
+        "Dhbdhdfb education",
+        "Education",
+        "Education good",
         "I feel lonely",
         "I wish things were different",
         "It's just unfair",
-        "Lack of quality education",
-        "I feel exhausted"
+        "Corruption",
+        "Corruption",
+        "Pancakes",
+        "Pancakes are good",
+        "Pancakes are bad",
+        "Pancakes are awesome!",
+        "I feel exhauste\nxhausted lonely",
+        "I feel over\nwhelmed lonely",
+        "Fdasfsaf"
     ],
     "metadata": {
-        "last_purged": "2026-03-30",
-        "status": "active"
+        "last_updated": "2026-03-30 02:40",
+        "source": "Google Sheets",
+        "count": 15
     }
 }
