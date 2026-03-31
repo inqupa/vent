@@ -21,6 +21,7 @@ async function bootSystem() {
         const Registry = {
             services: {},
             logic: {},
+            middleware: {}, // Security Gatekeepers
             cache: { globalTrends: [] },
             state: { activeIndex: -1 },
             inventory: systemInventory // The full map is stored for reference
