@@ -1,6 +1,3 @@
-/* Tier 4: Compact Phones (< 480px) */
-@media (max-width: 480px) {
-    @import url('./x-small/layout.css');
-    @import url('./x-small/input.css');
-    @import url('./x-small/pills.css');
-}
+@import url('./x-small/layout.css');
+@import url('./x-small/input.css');
+@import url('./x-small/pills.css');
