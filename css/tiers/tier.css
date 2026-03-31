@@ -1,0 +1,14 @@
+/* THE COMPLETE 5-TIER MANIFEST */
+@import url("./x-large/x-large.css"); /* TIER 1: The XL Captain */
+/* TIER 2: LARGE (Desktop) */
+@import url("./large/large.css");
+/* TIER 3: MEDIUM (Tablet) */
+@import url("./medium/medium.css");
+/* TIER 4: SMALL (Phone) */
+@import url("./small/small.css");
+/* TIER 5: X-SMALL (Compact) */
+@import url("./x-small/x-small.css");
+
+/* GLOBAL ORIENTATION */
+/* The Orientation gate is always last to override tier defaults */
+@import url("./orientation.css");

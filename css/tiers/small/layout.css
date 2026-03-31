@@ -1,0 +1,28 @@
+/* MOBILE LOGIC: Small Tier */
+
+.side-menu {
+    /* Set width to 85% only when --is-sm is 1 */
+    width: calc(85% * var(--is-sm));
+    
+    /* HARD HIDE: Prevents the "shadow" or blocking of the screen */
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#history-drawer.left {
+    left: 0;
+    transform: translateX(calc(-101% * var(--is-sm)));
+}
+
+#settings-drawer.right {
+    right: 0;
+    transform: translateX(calc(101% * var(--is-sm)));
+}
+
+/* THE TOGGLE: This is what your JS will trigger */
+.side-menu.is-open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+}

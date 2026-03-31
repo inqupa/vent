@@ -1,0 +1,30 @@
+--- Security: Secrets & Keys ---
+
+.env
+*.pem
+*.key
+*.vault
+*.json
+
+--- Project Specific: Metadata & Paths ---
+
+This prevents your forensic and path data from being pushed
+
+/config/
+/data/
+hanger/
+
+--- Python System Files ---
+
+pycache/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv
+venv/
+env/
+
+--- OS Specific Files ---
+
+.DS_Store
+Thumbs.db

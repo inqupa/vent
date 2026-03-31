@@ -1,0 +1,19 @@
+/* LAPTOP TYPOGRAPHY */
+
+.hero-logo {
+    /* Scale from base 3.5rem to 5rem for Large */
+    font-size: calc(3.5rem + (1.5rem * var(--is-lg)));
+    margin-bottom: calc(30px + (10px * var(--is-lg)));
+    letter-spacing: -4px;
+}
+
+#problemInput {
+    /* Slightly larger text for laptop viewing distance */
+    font-size: calc(1.25rem + (0.25rem * var(--is-lg)));
+    line-height: 1.5;
+}
+
+.input-wrapper {
+    /* Narrower input field to keep text centered and readable */
+    max-width: calc(700px * var(--is-lg));
+}

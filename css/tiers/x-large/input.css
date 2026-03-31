@@ -1,0 +1,11 @@
+.hero-logo {
+    /* Huge 6rem logo for XL screens */
+    font-size: calc(3.5rem + (2.5rem * var(--is-xl)));
+    letter-spacing: -6px;
+}
+
+#problemInput {
+    /* Ultra-readable large text */
+    font-size: calc(1.25rem + (1rem * var(--is-xl)));
+    line-height: 1.2;
+}

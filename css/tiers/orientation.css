@@ -1,0 +1,28 @@
+/* GLOBAL ORIENTATION OVERRIDES 
+   This file acts as the 'Correction Layer' for all screen sizes.
+*/
+
+/* 1. THE LOGO COMPRESSION */
+.hero-logo {
+    /* Hide logo if: (Small OR Medium) AND Landscape */
+    --hide-logo-logic: calc((var(--is-sm) + var(--is-xs) + var(--is-md)) * var(--is-landscape));
+    
+    display: calc(block * (1 - var(--hide-logo-logic)) + none * var(--hide-logo-logic));
+    
+    /* Shrink margin if just landscape in general */
+    margin-bottom: calc(40px - (30px * var(--is-landscape)));
+}
+
+/* 2. VIEWPORT ADAPTATION */
+.app-viewport {
+    /* If landscape on a phone, we might need to allow vertical scrolling 
+       because the keyboard will eat the whole screen. */
+    overflow-y: calc(auto * var(--is-landscape) * var(--is-sm) + hidden * (1 - (var(--is-landscape) * var(--is-sm))));
+}
+
+/* 3. INPUT AREA */
+#problemInput {
+    /* Expand width in landscape to use the horizontal space */
+    max-width: calc(600px + (200px * var(--is-landscape)));
+    min-height: calc(150px - (70px * var(--is-landscape) * var(--is-sm)));
+}

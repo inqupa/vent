@@ -1,0 +1,66 @@
+:root {
+    /* 1. THE CONTROL PANEL (Single-source breakpoints) */
+    --width-xl: 1440px;   /* X-Large (Desktop/TV) */
+    --width-lg: 1025px;   /* Large (Laptop) */
+    --width-md: 769px;    /* Medium (Tablet) */
+    --width-sm: 481px;    /* Small (Phone) */
+    --width-xs: 320px;    /* X-Small (Compact Phone) */
+
+    /* 2. THE TOGGLES (Initialize all to 0) */
+    --is-xl: 0;
+    --is-lg: 0;
+    --is-md: 0;
+    --is-sm: 0;
+    --is-xs: 0;
+
+    /* ORIENTATION GATES */
+    --is-landscape: 0;
+    --is-portrait: 0;
+
+    /* 3. Colors */
+    --bg-color: #0a0a0a;
+    --panel-bg: #151515;
+    --text-main: #e0e0e0;
+    --text-dim: #888;
+    --accent: #ffffff;
+    --danger: #ff4444;
+
+    /* 4. Transition Speeds */
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+/* 5. THE LOGIC GATES (The Switchboard) */
+
+/* X-Large: 1440px and up */
+@media (min-width: 1440px) {
+    :root { --is-xl: 1; }
+}
+
+/* Large: 1025px to 1439px */
+@media (min-width: 1025px) and (max-width: 1439px) {
+    :root { --is-lg: 1; }
+}
+
+/* Medium: 769px to 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    :root { --is-md: 1; }
+}
+
+/* Small: 481px to 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+    :root { --is-sm: 1; }
+}
+
+/* X-Small: 480px and below */
+@media (max-width: 480px) {
+    :root { --is-xs: 1; }
+}
+
+@media (orientation: landscape) {
+    :root { --is-landscape: 1; }
+}
+
+@media (orientation: portrait) {
+    :root { --is-portrait: 1; }
+}

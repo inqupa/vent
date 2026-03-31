@@ -1,0 +1,77 @@
+/* THE LOGO: Massive, minimal, and centered */
+.hero-logo {
+    font-size: clamp(3rem, 10vw, 5rem); /* Scales smoothly between mobile/desktop */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -4px;
+    margin-bottom: 40px;
+    color: var(--accent, #ffffff);
+    opacity: 0.9;
+    user-select: none;
+}
+
+/* THE WRAPPER: Centers the input and stacks the button */
+.input-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* THE TEXTAREA: Clean and "Airy" */
+#problemInput {
+    width: 100%;
+    min-height: 150px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main, #e0e0e0);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    resize: none;
+    text-align: center;
+    padding: 20px;
+    transition: var(--transition);
+}
+
+#problemInput::placeholder {
+    color: var(--text-dim, #444);
+    transition: opacity 0.3s ease;
+}
+
+#problemInput:focus::placeholder {
+    opacity: 0.2;
+}
+
+/* THE ACTION BUTTON: The SVG Send Arrow */
+.action-btn {
+    margin-top: 30px;
+    background: none;
+    border: none;
+    color: var(--text-dim, #666);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.action-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+.action-btn:hover {
+    color: var(--accent, #ffffff);
+    transform: scale(1.2) translateY(-5px);
+}
+
+/* Logic for JS to hide/show the button */
+.action-btn.hidden {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    pointer-events: none;
+}

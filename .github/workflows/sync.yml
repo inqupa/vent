@@ -1,0 +1,21 @@
+name: Sync Trends
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: pip install pandas requests
+      - run: python scripts/update_trends.py
+      - run: |
+          git config --global user.name "Vent-Bot"
+          git config --global user.email "bot@vent.com"
+          git add data/global-suggestions.json
+          git commit -m "Update Trends" || exit 0
+          git push
