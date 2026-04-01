@@ -16,6 +16,7 @@
       "emotion_matcher": "systems/logic/emotion_matcher.js"
     },
     "middlewares": {
+      "security": "systems/middlewares/security.js",
       "safety_shield": "systems/middlewares/safety_shield.js",
       "security_middleware": "systems/middlewares/security_middleware.js",
       "vault": "systems/middlewares/vault.js"
