@@ -4,43 +4,46 @@
  */
 
 const VentSecurity = (() => {
-    // We lock the Registry in a private variable so it can't be tampered with.
     let _certifiedRegistry = null;
 
+    // Helper to find a key anywhere in the locked vault
+    const _deepSearch = (node, target) => {
+        if (node.hasOwnProperty(target) && typeof node[target] === 'string') {
+            return node[target];
+        }
+        for (const key in node) {
+            if (typeof node[key] === 'object' && node[key] !== null) {
+                const found = _deepSearch(node[key], target);
+                if (found) return found;
+            }
+        }
+        return null;
+    };
+
     return {
-        // 1. Initialize with the Registry data from the Bootloader
         initialize: (registry) => {
-            if (_certifiedRegistry) return; // Prevent re-initialization
+            if (_certifiedRegistry) return;
+            // Freeze the entire tree so no nested paths can be changed
             _certifiedRegistry = Object.freeze(registry);
             console.log("Security: Shield Active. Registry Locked.");
         },
 
-        // 2. The "Passport Check"
-        // Only allows access if the requested service name exists in our map.
-        validateAccess: (serviceName) => {
-            if (!_certifiedRegistry) {
-                console.error("Security Alert: System not initialized!");
-                return false;
-            }
-
-            if (serviceName in _certifiedRegistry) {
-                return true;
-            }
-
-            console.warn("Security Alert: Unauthorized access attempt to [" + serviceName + "]");
-            return false;
-        },
-
-        // 3. Secure Path Resolver
-        // Never let other scripts know the REAL path; they must ask Security.
         getServicePath: (serviceName) => {
-            if (VentSecurity.validateAccess(serviceName)) {
-                return _certifiedRegistry[serviceName];
+            if (!_certifiedRegistry) {
+                console.error("Security: Not initialized!");
+                return null;
             }
-            return null;
+
+            const path = _deepSearch(_certifiedRegistry, serviceName);
+            
+            if (path) {
+                return path;
+            } else {
+                console.warn("Security: Access Denied for [" + serviceName + "]");
+                return null;
+            }
         }
     };
 })();
 
-// Attach to global window so Bootloader can find it
 window.VentSecurity = VentSecurity;
