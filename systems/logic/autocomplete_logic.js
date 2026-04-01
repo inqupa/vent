@@ -1,45 +1,44 @@
-/**
- * LOGIC LAYER: Intelligence
- * Pure functions for string matching and data filtering.
- * No DOM references allowed here.
+/*
+ * LOGIC: AUTOCOMPLETE SERVICE
+ * Role: Provides suggestions by fetching certified data through the Shield.
  */
-export const AutocompleteLogic = {
-    /**
-     * Combines multiple data sources and filters by query
-     * @param {string} query - Raw input from user
-     * @param {Object} sources - { staticPhrases, globalTrends, localLexicon }
-     * @param {number} limit - Max results to return
-     */
-    getMatches(query, sources, limit = 5) {
-        const val = query.toLowerCase().trim();
-        if (val.length < 2) return [];
 
-        // 1. Intent Matches (Static phrases that start with the input)
-        const intentMatches = sources.staticPhrases
-            .filter(phrase => phrase.toLowerCase().startsWith(val));
+const AutocompleteService = (() => {
+    
+    // Internal state for the search data
+    let _searchData = [];
 
-        // 2. Trend Matches (Global data containing the input)
-        const globalMatches = sources.globalTrends
-            .filter(t => t.toLowerCase().includes(val))
-            .slice(0, 2);
+    return {
+        // The service now takes the 'key' of the data it needs
+        init: async (dataKey) => {
+            try {
+                // 1. Ask the Shield for the "Certified Path"
+                const securePath = window.VentSecurity.getServicePath(dataKey);
+                
+                if (!securePath) {
+                    throw new Error("Access Denied: No certified path for " + dataKey);
+                }
 
-        // 3. Merge and De-duplicate
-        const combined = [...new Set([...intentMatches, ...globalMatches])];
-        
-        return combined.slice(0, limit);
-    },
+                // 2. Fetch data using the locked path
+                const response = await fetch(securePath);
+                if (!response.ok) throw new Error("Data fetch failed.");
+                
+                _searchData = await response.json();
+                console.log("Autocomplete: Data secured and loaded from [" + securePath + "]");
 
-    /**
-     * Calculates the "Ghost" suggestion string
-     */
-    getGhostMatch(query, staticPhrases) {
-        const val = query.toLowerCase();
-        if (!val) return "";
-        
-        const match = staticPhrases.find(phrase => 
-            phrase.toLowerCase().startsWith(val)
-        );
-        
-        return match ? match.slice(val.length) : "";
-    }
-};
+            } catch (error) {
+                console.error("Autocomplete Error: " + error.message);
+            }
+        },
+
+        getSuggestions: (query) => {
+            if (!query) return [];
+            return _searchData.filter(item => 
+                item.toLowerCase().includes(query.toLowerCase())
+            );
+        }
+    };
+})();
+
+// Register to window for UI access
+window.AutocompleteService = AutocompleteService;
