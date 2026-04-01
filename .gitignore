@@ -4,15 +4,26 @@
 *.pem
 *.key
 *.vault
-*.json
 
 --- Project Specific: Metadata & Paths ---
 
 This prevents your forensic and path data from being pushed
 
-/config/
-/data/
-hanger/
+/hanger/
+data/archive/
+data/server_side_data/
+
+# Ignore all actual data payloads
+data/ingress/*
+data/processed/*
+data/vault/*
+data/logs/*
+
+# Keep the folders by allowing .gitkeep files
+!data/**/.gitkeep
+
+# Ignore actual system secrets
+config/system/system_config/vent_master-map.json
 
 --- Python System Files ---
 

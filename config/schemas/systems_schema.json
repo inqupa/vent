@@ -1,0 +1,35 @@
+{
+  "comment": "The 'Blueprint' or the 'Ideal World'. This is the master map for all 'systems' files. tools will verify these exist.",
+  "map": {
+    "adapters": {},
+    "bootloaders": {},
+    "bridges":{
+      "autocomplete_bridge": "systems/bridges/autocomplete_bridge.js",
+      "vent_bridge": "systems/bridges/vent_bridge.js"
+    },
+    "factories":{
+      "pill_factory": "systems/factories/pill_factory.js"
+    },
+    "handlers": {},
+    "logic": {
+      "autocomplete_logic": "systems/logic/autocomplete_logic.js",
+      "emotion_matcher": "systems/logic/emotion_matcher.js"
+    },
+    "middlewares": {
+      "safety_shield": "systems/middlewares/safety_shield.js",
+      "security_middleware": "systems/middlewares/security_middleware.js",
+      "vault": "systems/middlewares/vault.js"
+    },
+    "services": {
+      "autocomplete_service": "systems/services/autocomplete_service.js",
+      "data_service": "systems/services/data_service.js",
+      "storage_service": "systems/services/storage_service.js"
+    },
+    "state": {
+      "session_manager": "systems/state/session_manager.js"
+    },
+    "strategies": {},
+    "ui": {},  
+    "boot": "main.js"
+  }
+}

@@ -1,0 +1,222 @@
+{
+    "metadata": {
+        "scan_time": "2026-03-31T00:47:45.619829Z",
+        "host": "LP-2-HP",
+        "root": "/home/inqupa/work/build/vent",
+        "item_name": "data",
+        "forensic_integrity": "THREADED_SNAPSHOT",
+        "hw_optimization": {
+            "workers": 8,
+            "block_size": 65536,
+            "entropy_sample": 1048576,
+            "ram_gb": 4.8,
+            "cores": 4
+        }
+    },
+    "summary": {
+        "total_files": 4,
+        "total_size_bytes": 1958,
+        "errors": 0,
+        "extension_stats": {
+            ".json": 4
+        }
+    },
+    "data": {
+        "data": {
+            "_directory_meta": {
+                "type": "directory",
+                "paths": {
+                    "rel": "data",
+                    "abs": "/home/inqupa/work/build/vent/data"
+                },
+                "system": {
+                    "size_bytes": 4096,
+                    "permissions": "drwxr-xr-x",
+                    "uid": 1006,
+                    "gid": 1006,
+                    "is_symlink": false
+                },
+                "timestamps": {
+                    "created": "2026-03-31T05:58:55.541249",
+                    "modified": "2026-03-31T05:58:55.541249",
+                    "accessed": "2026-03-31T05:58:56.649257"
+                }
+            },
+            "global-suggestions.json": {
+                "type": "file",
+                "paths": {
+                    "rel": "data/global-suggestions.json",
+                    "abs": "/home/inqupa/work/build/vent/data/global-suggestions.json"
+                },
+                "system": {
+                    "size_bytes": 576,
+                    "permissions": "-rw-r--r--",
+                    "uid": 1006,
+                    "gid": 1006,
+                    "is_symlink": false
+                },
+                "timestamps": {
+                    "created": "2026-03-30T21:36:37.905361",
+                    "modified": "2026-03-30T21:36:37.905361",
+                    "accessed": "2026-03-30T21:36:37.917361"
+                },
+                "file_details": {
+                    "extension": ".json",
+                    "mime": "application/json",
+                    "magic_hex": "7b 0a 20 20 20 20 22 70 72 6f 6d 70 74 73 22 3a"
+                },
+                "forensics": {
+                    "sha256": "3a15e4a9338ca8714896abda32050a0c6961a020a4ba1b09ade90da2e7a1c73a",
+                    "entropy": 4.1722
+                }
+            },
+            "english": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "data/english",
+                        "abs": "/home/inqupa/work/build/vent/data/english"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T21:33:51.233237",
+                        "modified": "2026-03-30T21:33:51.233237",
+                        "accessed": "2026-03-30T21:33:52.445238"
+                    }
+                },
+                "global-suggestions.json": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "data/english/global-suggestions.json",
+                        "abs": "/home/inqupa/work/build/vent/data/english/global-suggestions.json"
+                    },
+                    "system": {
+                        "size_bytes": 576,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T21:33:31.697222",
+                        "modified": "2026-03-30T17:54:11.194326",
+                        "accessed": "2026-03-30T21:33:31.797222"
+                    },
+                    "file_details": {
+                        "extension": ".json",
+                        "mime": "application/json",
+                        "magic_hex": "7b 0a 20 20 20 20 22 70 72 6f 6d 70 74 73 22 3a"
+                    },
+                    "forensics": {
+                        "sha256": "3cc01ae30b5493fb38c1c2913dcf837dc9cccc6e7a6f55d2e2958243e6d99ca0",
+                        "entropy": 4.1749
+                    }
+                },
+                "blockedWords-manifest.json": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "data/english/blockedWords-manifest.json",
+                        "abs": "/home/inqupa/work/build/vent/data/english/blockedWords-manifest.json"
+                    },
+                    "system": {
+                        "size_bytes": 216,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T21:33:50.833237",
+                        "modified": "2026-03-30T05:58:13.570262",
+                        "accessed": "2026-03-30T21:33:51.493237"
+                    },
+                    "file_details": {
+                        "extension": ".json",
+                        "mime": "application/json",
+                        "magic_hex": "7b 0a 20 20 22 70 72 6f 68 69 62 69 74 65 64 22"
+                    },
+                    "forensics": {
+                        "sha256": "aee881f85a46b98bff67a3e80f6d61834abe5559fb81fb4abec176b3e30f4f06",
+                        "entropy": 4.2902
+                    }
+                },
+                "emotions-manifest.json": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "data/english/emotions-manifest.json",
+                        "abs": "/home/inqupa/work/build/vent/data/english/emotions-manifest.json"
+                    },
+                    "system": {
+                        "size_bytes": 590,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T21:33:51.233237",
+                        "modified": "2026-03-30T05:38:23.948906",
+                        "accessed": "2026-03-30T21:33:51.273237"
+                    },
+                    "file_details": {
+                        "extension": ".json",
+                        "mime": "application/json",
+                        "magic_hex": "7b 0a 20 20 22 76 65 63 74 6f 72 73 22 3a 20 7b"
+                    },
+                    "forensics": {
+                        "sha256": "c7ce650181aa35cfc04d19ce248d7b07cd9966ce6636f55be483305e89d9b311",
+                        "entropy": 4.3555
+                    }
+                }
+            },
+            "hinglish": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "data/hinglish",
+                        "abs": "/home/inqupa/work/build/vent/data/hinglish"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T21:34:13.793256",
+                        "modified": "2026-03-30T21:34:13.793256",
+                        "accessed": "2026-03-30T21:34:13.797256"
+                    }
+                }
+            },
+            "hanger": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "data/hanger",
+                        "abs": "/home/inqupa/work/build/vent/data/hanger"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T05:58:55.541249",
+                        "modified": "2026-03-31T05:58:55.541249",
+                        "accessed": "2026-03-31T05:58:55.545249"
+                    }
+                }
+            }
+        }
+    }
+}

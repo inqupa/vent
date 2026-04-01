@@ -1,0 +1,978 @@
+{
+    "metadata": {
+        "scan_time": "2026-03-31T00:47:45.574105Z",
+        "host": "LP-2-HP",
+        "root": "/home/inqupa/work/build/vent",
+        "item_name": "js",
+        "forensic_integrity": "THREADED_SNAPSHOT",
+        "hw_optimization": {
+            "workers": 8,
+            "block_size": 65536,
+            "entropy_sample": 1048576,
+            "ram_gb": 4.8,
+            "cores": 4
+        }
+    },
+    "summary": {
+        "total_files": 25,
+        "total_size_bytes": 33661,
+        "errors": 0,
+        "extension_stats": {
+            ".js": 25
+        }
+    },
+    "data": {
+        "js": {
+            "_directory_meta": {
+                "type": "directory",
+                "paths": {
+                    "rel": "js",
+                    "abs": "/home/inqupa/work/build/vent/js"
+                },
+                "system": {
+                    "size_bytes": 4096,
+                    "permissions": "drwxr-xr-x",
+                    "uid": 1006,
+                    "gid": 1006,
+                    "is_symlink": false
+                },
+                "timestamps": {
+                    "created": "2026-03-31T02:08:29.135480",
+                    "modified": "2026-03-31T02:08:29.135480",
+                    "accessed": "2026-03-31T02:08:30.303480"
+                }
+            },
+            "handlers": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/handlers",
+                        "abs": "/home/inqupa/work/build/vent/js/handlers"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.197651",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-30T19:35:52.145972"
+                    }
+                },
+                "jf.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/handlers/jf.js",
+                        "abs": "/home/inqupa/work/build/vent/js/handlers/jf.js"
+                    },
+                    "system": {
+                        "size_bytes": 1,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.197651",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:31:55.691477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "0a"
+                    },
+                    "forensics": {
+                        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                        "entropy": 0.0
+                    }
+                }
+            },
+            "strategies": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/strategies",
+                        "abs": "/home/inqupa/work/build/vent/js/strategies"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.201651",
+                        "modified": "2026-03-28T18:44:03.201651",
+                        "accessed": "2026-03-30T19:35:52.145972"
+                    }
+                },
+                "fs.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/strategies/fs.js",
+                        "abs": "/home/inqupa/work/build/vent/js/strategies/fs.js"
+                    },
+                    "system": {
+                        "size_bytes": 1,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.201651",
+                        "modified": "2026-03-28T18:44:03.201651",
+                        "accessed": "2026-03-31T02:31:55.695477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "0a"
+                    },
+                    "forensics": {
+                        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                        "entropy": 0.0
+                    }
+                }
+            },
+            "factories": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/factories",
+                        "abs": "/home/inqupa/work/build/vent/js/factories"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-29T14:48:25.952372",
+                        "modified": "2026-03-29T14:48:25.952372",
+                        "accessed": "2026-03-30T17:53:21.638322"
+                    }
+                },
+                "pill-factory.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/factories/pill-factory.js",
+                        "abs": "/home/inqupa/work/build/vent/js/factories/pill-factory.js"
+                    },
+                    "system": {
+                        "size_bytes": 567,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-29T15:25:30.807591",
+                        "modified": "2026-03-29T15:25:30.807591",
+                        "accessed": "2026-03-31T02:31:55.695477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "69 6d 70 6f 72 74 20 7b 20 52 65 67 69 73 74 72"
+                    },
+                    "forensics": {
+                        "sha256": "a167c1f6c874e85d26cff0ed5e6adec6d46f440660277381a5bf1c1ea0f44ade",
+                        "entropy": 4.3306
+                    }
+                }
+            },
+            "middlewares": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/middlewares",
+                        "abs": "/home/inqupa/work/build/vent/js/middlewares"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T04:07:59.174805",
+                        "modified": "2026-03-31T04:07:59.174805",
+                        "accessed": "2026-03-31T04:08:00.454851"
+                    }
+                },
+                "safety-shield.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/middlewares/safety-shield.js",
+                        "abs": "/home/inqupa/work/build/vent/js/middlewares/safety-shield.js"
+                    },
+                    "system": {
+                        "size_bytes": 605,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.197651",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:31:55.695477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 53 41 46 45 54 59 2d 53 48"
+                    },
+                    "forensics": {
+                        "sha256": "2c668f06877ef9edbb6d9f9936bea893fd5d153acd31e95918fe09db839a056c",
+                        "entropy": 4.6607
+                    }
+                },
+                "vault.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/middlewares/vault.js",
+                        "abs": "/home/inqupa/work/build/vent/js/middlewares/vault.js"
+                    },
+                    "system": {
+                        "size_bytes": 3129,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T04:08:07.619107",
+                        "modified": "2026-03-31T04:08:07.619107",
+                        "accessed": "2026-03-31T04:08:07.639107"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 56 61 75 6c 74 4d 61 6e 61"
+                    },
+                    "forensics": {
+                        "sha256": "e83529b17be5146d7ad7cfd8ba74ce2e191cebf742108ade87634c2a0df8b174",
+                        "entropy": 4.5745
+                    }
+                }
+            },
+            "ui": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/ui",
+                        "abs": "/home/inqupa/work/build/vent/js/ui"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.201651",
+                        "modified": "2026-03-28T18:44:03.201651",
+                        "accessed": "2026-03-30T19:35:52.149972"
+                    }
+                },
+                "adf.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/ui/adf.js",
+                        "abs": "/home/inqupa/work/build/vent/js/ui/adf.js"
+                    },
+                    "system": {
+                        "size_bytes": 1,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.201651",
+                        "modified": "2026-03-28T18:44:03.201651",
+                        "accessed": "2026-03-31T02:31:55.699477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "0a"
+                    },
+                    "forensics": {
+                        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                        "entropy": 0.0
+                    }
+                }
+            },
+            "logic": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/logic",
+                        "abs": "/home/inqupa/work/build/vent/js/logic"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T22:39:54.298815",
+                        "modified": "2026-03-30T22:39:54.298815",
+                        "accessed": "2026-03-30T22:39:55.454815"
+                    }
+                },
+                "autocomplete.logic.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/logic/autocomplete.logic.js",
+                        "abs": "/home/inqupa/work/build/vent/js/logic/autocomplete.logic.js"
+                    },
+                    "system": {
+                        "size_bytes": 1485,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T22:41:01.582828",
+                        "modified": "2026-03-30T22:41:01.582828",
+                        "accessed": "2026-03-30T22:41:01.610828"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 4c 4f 47 49 43 20 4c 41 59"
+                    },
+                    "forensics": {
+                        "sha256": "b407c62827e48c9ec6aba8487748db548aaa2d55b44180c6040b185ed4a77717",
+                        "entropy": 4.5753
+                    }
+                },
+                "emotion-matcher.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/logic/emotion-matcher.js",
+                        "abs": "/home/inqupa/work/build/vent/js/logic/emotion-matcher.js"
+                    },
+                    "system": {
+                        "size_bytes": 484,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.197651",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:31:55.699477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 45 4d 4f 54 49 4f 4e 2d 4d"
+                    },
+                    "forensics": {
+                        "sha256": "0b282a5a3436c0d266bb19317f8f3123ad0db15608f51a0c56a8db1c8d331e72",
+                        "entropy": 4.7119
+                    }
+                }
+            },
+            "state": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/state",
+                        "abs": "/home/inqupa/work/build/vent/js/state"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-29T15:11:55.516030",
+                        "modified": "2026-03-29T15:11:55.516030",
+                        "accessed": "2026-03-30T17:53:21.642322"
+                    }
+                },
+                "session-manager.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/state/session-manager.js",
+                        "abs": "/home/inqupa/work/build/vent/js/state/session-manager.js"
+                    },
+                    "system": {
+                        "size_bytes": 1089,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-29T15:24:49.161571",
+                        "modified": "2026-03-29T15:24:49.161571",
+                        "accessed": "2026-03-31T02:31:55.703477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 53 45 53 53 49 4f 4e 2d 4d"
+                    },
+                    "forensics": {
+                        "sha256": "ebad95bbd1558fd3ce69b74fe402fab207d28fe092e23b7604580ea787b236fd",
+                        "entropy": 4.4891
+                    }
+                }
+            },
+            "services": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/services",
+                        "abs": "/home/inqupa/work/build/vent/js/services"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T22:35:33.582762",
+                        "modified": "2026-03-30T22:35:33.582762",
+                        "accessed": "2026-03-30T22:35:34.706763"
+                    }
+                },
+                "data-service.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/services/data-service.js",
+                        "abs": "/home/inqupa/work/build/vent/js/services/data-service.js"
+                    },
+                    "system": {
+                        "size_bytes": 1056,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-29T19:57:26.652136",
+                        "modified": "2026-03-29T19:57:26.652136",
+                        "accessed": "2026-03-31T02:31:55.703477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 44 41 54 41 2d 53 45 52 56"
+                    },
+                    "forensics": {
+                        "sha256": "e8e6d5f1ae421343b5e2158d416a2965043598ed26b8aeb3a9bb8eecb4df81c8",
+                        "entropy": 4.5147
+                    }
+                },
+                "storage-service.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/services/storage-service.js",
+                        "abs": "/home/inqupa/work/build/vent/js/services/storage-service.js"
+                    },
+                    "system": {
+                        "size_bytes": 1035,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-29T19:57:26.628136",
+                        "modified": "2026-03-29T19:57:26.628136",
+                        "accessed": "2026-03-31T02:31:55.703477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 53 54 4f 52 41 47 45 2d 53"
+                    },
+                    "forensics": {
+                        "sha256": "c9a7da58d6aa083f654aa864ff42dfdde6798ede2665067dbe708f9764138667",
+                        "entropy": 4.61
+                    }
+                },
+                "autocomplete.service.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/services/autocomplete.service.js",
+                        "abs": "/home/inqupa/work/build/vent/js/services/autocomplete.service.js"
+                    },
+                    "system": {
+                        "size_bytes": 588,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T22:35:58.906768",
+                        "modified": "2026-03-30T22:35:58.906768",
+                        "accessed": "2026-03-30T22:35:58.954768"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 53 45 52 56 49 43 45 20 4c"
+                    },
+                    "forensics": {
+                        "sha256": "4e30901ddd7163ccb7b9d84c27d531998aa38a67eb412605c03614c21a586dcf",
+                        "entropy": 4.516
+                    }
+                }
+            },
+            "integration": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/integration",
+                        "abs": "/home/inqupa/work/build/vent/js/integration"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T22:45:31.650883",
+                        "modified": "2026-03-30T22:45:31.650883",
+                        "accessed": "2026-03-30T22:45:32.842884"
+                    }
+                },
+                "vent-bridge.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/integration/vent-bridge.js",
+                        "abs": "/home/inqupa/work/build/vent/js/integration/vent-bridge.js"
+                    },
+                    "system": {
+                        "size_bytes": 5086,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-29T19:57:26.652136",
+                        "modified": "2026-03-29T19:57:26.652136",
+                        "accessed": "2026-03-31T02:31:55.707477"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 56 45 4e 54 2d 42 52 49 44"
+                    },
+                    "forensics": {
+                        "sha256": "2e05789ee81e1eb374f500b70cd2b6856f94ce77498505414dad0626b405b5d6",
+                        "entropy": 4.6359
+                    }
+                },
+                "autocomplete.bridge.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/integration/autocomplete.bridge.js",
+                        "abs": "/home/inqupa/work/build/vent/js/integration/autocomplete.bridge.js"
+                    },
+                    "system": {
+                        "size_bytes": 866,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-30T22:46:12.794891",
+                        "modified": "2026-03-30T22:46:12.794891",
+                        "accessed": "2026-03-30T22:46:12.814891"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "69 6d 70 6f 72 74 20 7b 20 41 75 74 6f 63 6f 6d"
+                    },
+                    "forensics": {
+                        "sha256": "22ac856bec27176ed689d696dd9baa43401ecfdde2ebb446ef777d8f22bfe9c9",
+                        "entropy": 4.5792
+                    }
+                }
+            },
+            "adapters": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/adapters",
+                        "abs": "/home/inqupa/work/build/vent/js/adapters"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.193651",
+                        "modified": "2026-03-28T18:44:03.193651",
+                        "accessed": "2026-03-30T19:35:52.149972"
+                    }
+                },
+                "dsd.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/adapters/dsd.js",
+                        "abs": "/home/inqupa/work/build/vent/js/adapters/dsd.js"
+                    },
+                    "system": {
+                        "size_bytes": 1,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-28T18:44:03.193651",
+                        "modified": "2026-03-28T18:44:03.193651",
+                        "accessed": "2026-03-30T18:35:03.463986"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "0a"
+                    },
+                    "forensics": {
+                        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                        "entropy": 0.0
+                    }
+                }
+            },
+            "hanger": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "js/hanger",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:29.135480",
+                        "modified": "2026-03-31T02:08:29.135480",
+                        "accessed": "2026-03-31T02:08:30.303480"
+                    }
+                },
+                "registry.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/registry.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/registry.js"
+                    },
+                    "system": {
+                        "size_bytes": 2166,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:28.587480",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:08:29.615480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 52 45 47 49 53 54 52 59 2e"
+                    },
+                    "forensics": {
+                        "sha256": "fc794f807655cf455057eaf377464a1a7926a9763badb923c3664d7336f23892",
+                        "entropy": 4.8807
+                    }
+                },
+                "identity-tools.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/identity-tools.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/identity-tools.js"
+                    },
+                    "system": {
+                        "size_bytes": 1816,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:29.027480",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:08:29.727480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 49 44 45 4e 54 49 54 59 2d"
+                    },
+                    "forensics": {
+                        "sha256": "2b43f6b7d583fdb38a629d95b4e1c13b4516a3829d6e84b32e17a5649670c9a9",
+                        "entropy": 4.531
+                    }
+                },
+                "autocomplete-engine.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/autocomplete-engine.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/autocomplete-engine.js"
+                    },
+                    "system": {
+                        "size_bytes": 4504,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:29.135480",
+                        "modified": "2026-03-30T22:44:29.986871",
+                        "accessed": "2026-03-31T02:08:29.323480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 41 55 54 4f 43 4f 4d 50 4c"
+                    },
+                    "forensics": {
+                        "sha256": "8541c2caa88ebb0fd8c9fef60925b8f596930cf16a784f84638e2df62a493c80",
+                        "entropy": 4.6745
+                    }
+                },
+                "lexicon.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/lexicon.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/lexicon.js"
+                    },
+                    "system": {
+                        "size_bytes": 949,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:28.855480",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:08:29.627480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 4c 45 58 49 43 4f 4e 2e 4a"
+                    },
+                    "forensics": {
+                        "sha256": "9cb838b1a2ee5df4292032cb41495cb5de5689cb2227fe0d9b7729a5dccd411d",
+                        "entropy": 4.9024
+                    }
+                },
+                "ui-effects.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/ui-effects.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/ui-effects.js"
+                    },
+                    "system": {
+                        "size_bytes": 2532,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:27.735479",
+                        "modified": "2026-03-28T18:44:03.201651",
+                        "accessed": "2026-03-31T02:08:27.791480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 55 49 2d 45 46 46 45 43 54"
+                    },
+                    "forensics": {
+                        "sha256": "7378b96c2e59536ef0cfa65d3faef75540bad7a8301fb71e3cc799234b304762",
+                        "entropy": 4.6286
+                    }
+                },
+                "menu.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/menu.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/menu.js"
+                    },
+                    "system": {
+                        "size_bytes": 1349,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:28.679480",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:08:29.651480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 4d 45 4e 55 2e 4a 53 20 2d"
+                    },
+                    "forensics": {
+                        "sha256": "46e938ce9654a6accd11cc5800fb11c81aaaa6a9714e3a6e694c5154bb63a99a",
+                        "entropy": 4.6482
+                    }
+                },
+                "suggestions-db.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/suggestions-db.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/suggestions-db.js"
+                    },
+                    "system": {
+                        "size_bytes": 633,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:28.419480",
+                        "modified": "2026-03-28T18:44:03.201651",
+                        "accessed": "2026-03-31T02:08:29.479480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 53 55 47 47 45 53 54 49 4f"
+                    },
+                    "forensics": {
+                        "sha256": "9245c2d6841b7c0ad02f1ba6570146d5cff29c01b7d8e28ee5767f1df0b7cc1b",
+                        "entropy": 4.6194
+                    }
+                },
+                "safety-filter.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/safety-filter.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/safety-filter.js"
+                    },
+                    "system": {
+                        "size_bytes": 484,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:28.531480",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:08:29.591480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 53 41 46 45 54 59 2d 46 49"
+                    },
+                    "forensics": {
+                        "sha256": "500e856b4b754225b4fb0f9976e56d2e1d5d3da12db70e8c3d7918f88908f5e7",
+                        "entropy": 4.7008
+                    }
+                },
+                "theme.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/theme.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/theme.js"
+                    },
+                    "system": {
+                        "size_bytes": 1401,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:27.875479",
+                        "modified": "2026-03-28T18:44:03.201651",
+                        "accessed": "2026-03-31T02:08:29.383480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 54 48 45 4d 45 2e 4a 53 20"
+                    },
+                    "forensics": {
+                        "sha256": "5f14857e6bf87399662a6775008fc94c01d026248a9fb81efc7f6d5faa24f188",
+                        "entropy": 4.5969
+                    }
+                },
+                "identity.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "js/hanger/identity.js",
+                        "abs": "/home/inqupa/work/build/vent/js/hanger/identity.js"
+                    },
+                    "system": {
+                        "size_bytes": 1833,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:08:28.947480",
+                        "modified": "2026-03-28T18:44:03.197651",
+                        "accessed": "2026-03-31T02:08:29.699480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 49 44 45 4e 54 49 54 59 2e"
+                    },
+                    "forensics": {
+                        "sha256": "551c99c294bba779e11e9da46f2edd69f74413e77f6c6af5befc9059f358f8df",
+                        "entropy": 4.7845
+                    }
+                }
+            }
+        }
+    }
+}

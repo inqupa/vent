@@ -1,0 +1,52 @@
+{
+    "metadata": {
+        "scan_time": "2026-03-31T00:47:45.608494Z",
+        "host": "LP-2-HP",
+        "root": "/home/inqupa/work/build/vent",
+        "item_name": "LICENSE",
+        "forensic_integrity": "THREADED_SNAPSHOT",
+        "hw_optimization": {
+            "workers": 8,
+            "block_size": 65536,
+            "entropy_sample": 1048576,
+            "ram_gb": 4.8,
+            "cores": 4
+        }
+    },
+    "summary": {
+        "total_files": 1,
+        "total_size_bytes": 11357,
+        "errors": 0,
+        "extension_stats": {}
+    },
+    "data": {
+        "LICENSE": {
+            "type": "file",
+            "paths": {
+                "rel": "LICENSE",
+                "abs": "/home/inqupa/work/build/vent/LICENSE"
+            },
+            "system": {
+                "size_bytes": 11357,
+                "permissions": "-rw-r--r--",
+                "uid": 1006,
+                "gid": 1006,
+                "is_symlink": false
+            },
+            "timestamps": {
+                "created": "2026-03-28T18:44:03.189651",
+                "modified": "2026-03-28T18:44:03.189651",
+                "accessed": "2026-03-31T05:43:07.137476"
+            },
+            "file_details": {
+                "extension": "no_ext",
+                "mime": "application/octet-stream",
+                "magic_hex": "20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20"
+            },
+            "forensics": {
+                "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+                "entropy": 4.4266
+            }
+        }
+    }
+}

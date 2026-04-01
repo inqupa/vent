@@ -1,0 +1,14 @@
+{
+  "settings": {
+    "minChars": 1,
+    "maxSuggestions": 5,
+    "debounceMs": 150
+  },
+  "staticPhrases": [
+    "today was hard",
+    "feeling much better",
+    "just need to vent",
+    "i am overwhelmed by",
+    "why does it feel like"
+  ]
+}

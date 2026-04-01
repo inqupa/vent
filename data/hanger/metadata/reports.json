@@ -1,0 +1,75 @@
+{
+    "metadata": {
+        "scan_time": "2026-03-31T00:13:07.110251Z",
+        "host": "LP-2-HP",
+        "root": "/home/inqupa/work/build/vent",
+        "item_name": "reports",
+        "forensic_integrity": "THREADED_SNAPSHOT",
+        "hw_optimization": {
+            "workers": 8,
+            "block_size": 65536,
+            "entropy_sample": 1048576,
+            "ram_gb": 4.8,
+            "cores": 4
+        }
+    },
+    "summary": {
+        "total_files": 1,
+        "total_size_bytes": 3506,
+        "errors": 0,
+        "extension_stats": {
+            ".json": 1
+        }
+    },
+    "data": {
+        "reports": {
+            "_directory_meta": {
+                "type": "directory",
+                "paths": {
+                    "rel": "reports",
+                    "abs": "/home/inqupa/work/build/vent/reports"
+                },
+                "system": {
+                    "size_bytes": 4096,
+                    "permissions": "drwxr-xr-x",
+                    "uid": 1006,
+                    "gid": 1006,
+                    "is_symlink": false
+                },
+                "timestamps": {
+                    "created": "2026-03-31T04:35:13.735389",
+                    "modified": "2026-03-31T04:35:13.735389",
+                    "accessed": "2026-03-31T04:35:13.743389"
+                }
+            },
+            "file_index.json": {
+                "type": "file",
+                "paths": {
+                    "rel": "reports/file_index.json",
+                    "abs": "/home/inqupa/work/build/vent/reports/file_index.json"
+                },
+                "system": {
+                    "size_bytes": 3506,
+                    "permissions": "-rw-r--r--",
+                    "uid": 1006,
+                    "gid": 1006,
+                    "is_symlink": false
+                },
+                "timestamps": {
+                    "created": "2026-03-31T04:35:13.735389",
+                    "modified": "2026-03-31T04:35:13.735389",
+                    "accessed": "2026-03-31T04:35:56.688268"
+                },
+                "file_details": {
+                    "extension": ".json",
+                    "mime": "application/json",
+                    "magic_hex": "7b 0a 20 20 20 20 22 6d 65 74 61 64 61 74 61 22"
+                },
+                "forensics": {
+                    "sha256": "1fc06e89a363fb316b0bc110878753beef1937a7af2198778682d929a29e38d0",
+                    "entropy": 4.0805
+                }
+            }
+        }
+    }
+}

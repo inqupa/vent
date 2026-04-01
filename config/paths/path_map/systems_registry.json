@@ -1,0 +1,35 @@
+{
+  "comment": "AUTO-GENERATED REGISTRY: DO NOT EDIT MANUALLY. USE THE PYTHON REFINERY. The 'Active Roster' or the 'Certified List'. This is the Final Authority. The Bootloader only trusts the Registry. If a file is on the 'Path' but hasn't been 'Registered' by the PYTHON REFINERY, the Bootloader will ignore it.",
+  "metadata": {
+    "source_schema": "SYSTEMS_SCHEMA",
+    "generated_at": "2026-04-02 01:31:47",
+    "integrity": "verified"
+  },
+  "registry": {
+    "bridges": {
+      "autocomplete_bridge": "systems/bridges/autocomplete_bridge.js",
+      "vent_bridge": "systems/bridges/vent_bridge.js"
+    },
+    "factories": {
+      "pill_factory": "systems/factories/pill_factory.js"
+    },
+    "logic": {
+      "autocomplete_logic": "systems/logic/autocomplete_logic.js",
+      "emotion_matcher": "systems/logic/emotion_matcher.js"
+    },
+    "middlewares": {
+      "safety_shield": "systems/middlewares/safety_shield.js",
+      "security_middleware": "systems/middlewares/security_middleware.js",
+      "vault": "systems/middlewares/vault.js"
+    },
+    "services": {
+      "autocomplete_service": "systems/services/autocomplete_service.js",
+      "data_service": "systems/services/data_service.js",
+      "storage_service": "systems/services/storage_service.js"
+    },
+    "state": {
+      "session_manager": "systems/state/session_manager.js"
+    },
+    "boot": "main.js"
+  }
+}

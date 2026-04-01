@@ -1,57 +1,78 @@
-/**
- * MAIN: The Distributed Bootloader (Refined)
- * This version specifically targets /config/paths/ for the system maps.
+/*
+ * VENT BOOTLOADER: SYSTEM ENTRY POINT
+ * Role: Fetches the Service Registry and injects certified scripts.
  */
 
+const SYSTEM_BOOT_CONFIG = {
+    // The only static path in the entire system.
+    // Ensure this matches the output location from your Python script.
+    REGISTRY_PATH: 'config/paths/path_map/systems_registry.json'
+};
+
 async function bootSystem() {
-    // 1. Define the domains located in /config/paths/
-    const domains = ['registry', 'config', 'js', 'data'];
-    const systemInventory = {};
-
     try {
-        // 2. Fetch all maps from the /config/paths/ subdirectory
-        await Promise.all(domains.map(async (domain) => {
-            const response = await fetch(`/config/paths/${domain}.json`);
-            if (!response.ok) throw new Error(`Map for ${domain} not found.`);
-            const mapData = await response.json();
-            systemInventory[domain] = mapData.data;
-        }));
+        console.log("Status: Bootloader active...");
 
-        // 3. Initialize the Registry (The Robot's Hand)
-        const Registry = {
-            services: {},
-            logic: {},
-            middleware: {}, // Security Gatekeepers
-            cache: { globalTrends: [] },
-            state: { activeIndex: -1 },
-            inventory: systemInventory // The full map is stored for reference
-        };
-
-        // 4. THE NESTED INSTANTIATION
-        // We use the 'rel' (relative) path from your JSON structure to import modules
+        // 1. Fetch the Certified Registry
+        const response = await fetch(SYSTEM_BOOT_CONFIG.REGISTRY_PATH);
         
-        // Pick up Autocomplete Service
-        const serviceRelPath = systemInventory.js.js.services['autocomplete.service.js'].rel;
-        const serviceModule = await import(`/${serviceRelPath}`);
-        Registry.services.autocomplete = serviceModule.AutocompleteService;
-
-        // Pick up Autocomplete Logic
-        const logicRelPath = systemInventory.js.js.logic['autocomplete.logic.js'].rel;
-        const logicModule = await import(`/${logicRelPath}`);
-        Registry.logic.autocomplete = logicModule.AutocompleteLogic;
-
-        console.log("System Booted: Maps fetched from /config/paths/ and tools instantiated.");
+        if (!response.ok) {
+            throw new Error("Could not find Service Registry at: " + SYSTEM_BOOT_CONFIG.REGISTRY_PATH);
+        }
         
-        // Start the Application
-        startApp(Registry);
+        const data = await response.json();
+        
+        // Match the 'registry' key from your Python script output
+        const services = data.registry; 
+
+        console.log("Status: Registry loaded. Integrity: " + data.metadata.integrity);
+        console.log("Timestamp: " + data.metadata.generated_at);
+
+        // 2. Recursive Injection Logic
+        // This handles both flat and nested dictionaries from your Universal Factory.
+        injectServices(services);
 
     } catch (error) {
-        console.error("Boot Failure: Check the files in /config/paths/.", error);
+        console.error("CRITICAL BOOT ERROR: " + error.message);
     }
 }
 
-function startApp(registry) {
-    console.log("Vent Engine Active. Handing control to handlers.");
+/**
+ * Recursively moves through the registry object to find and load paths.
+ */
+function injectServices(node) {
+    for (const key in node) {
+        const value = node[key];
+
+        if (typeof value === 'string') {
+            // Base case: It is a path string, load it.
+            loadScript(key, value);
+        } else if (typeof value === 'object' && value !== null) {
+            // Recursive case: It is a nested folder/category.
+            console.log("Entering Category: " + key);
+            injectServices(value);
+        }
+    }
 }
 
+function loadScript(name, path) {
+    const script = document.createElement('script');
+    script.src = path;
+    script.type = 'text/javascript';
+    
+    // async = false ensures scripts execute in the order they are injected.
+    script.async = false; 
+
+    script.onload = () => {
+        console.log("Service Registered: [" + name + "]");
+    };
+
+    script.onerror = () => {
+        console.error("Service Failed: [" + name + "] at " + path);
+    };
+
+    document.head.appendChild(script);
+}
+
+// Ignition
 bootSystem();

@@ -1,0 +1,153 @@
+{
+    "metadata": {
+        "scan_time": "2026-03-31T00:47:45.603337Z",
+        "host": "LP-2-HP",
+        "root": "/home/inqupa/work/build/vent",
+        "item_name": "registry",
+        "forensic_integrity": "THREADED_SNAPSHOT",
+        "hw_optimization": {
+            "workers": 8,
+            "block_size": 65536,
+            "entropy_sample": 1048576,
+            "ram_gb": 4.8,
+            "cores": 4
+        }
+    },
+    "summary": {
+        "total_files": 3,
+        "total_size_bytes": 835,
+        "errors": 0,
+        "extension_stats": {
+            ".js": 1,
+            ".json": 2
+        }
+    },
+    "data": {
+        "registry": {
+            "_directory_meta": {
+                "type": "directory",
+                "paths": {
+                    "rel": "registry",
+                    "abs": "/home/inqupa/work/build/vent/registry"
+                },
+                "system": {
+                    "size_bytes": 4096,
+                    "permissions": "drwxr-xr-x",
+                    "uid": 1006,
+                    "gid": 1006,
+                    "is_symlink": false
+                },
+                "timestamps": {
+                    "created": "2026-03-31T02:02:37.471480",
+                    "modified": "2026-03-31T02:02:37.471480",
+                    "accessed": "2026-03-31T02:02:39.087480"
+                }
+            },
+            "hanger": {
+                "_directory_meta": {
+                    "type": "directory",
+                    "paths": {
+                        "rel": "registry/hanger",
+                        "abs": "/home/inqupa/work/build/vent/registry/hanger"
+                    },
+                    "system": {
+                        "size_bytes": 4096,
+                        "permissions": "drwxr-xr-x",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:02:37.471480",
+                        "modified": "2026-03-31T02:02:37.471480",
+                        "accessed": "2026-03-31T02:02:39.087480"
+                    }
+                },
+                "app-registry.js": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "registry/hanger/app-registry.js",
+                        "abs": "/home/inqupa/work/build/vent/registry/hanger/app-registry.js"
+                    },
+                    "system": {
+                        "size_bytes": 640,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:02:31.995480",
+                        "modified": "2026-03-29T19:57:26.636136",
+                        "accessed": "2026-03-31T02:02:32.107480"
+                    },
+                    "file_details": {
+                        "extension": ".js",
+                        "mime": "text/javascript",
+                        "magic_hex": "2f 2a 2a 0a 20 2a 20 41 50 50 2d 52 45 47 49 53"
+                    },
+                    "forensics": {
+                        "sha256": "0ac1bf49e8243ab3835f6fa6bb40fb0431131e1f8eeb8d45f6886ae72386fd6c",
+                        "entropy": 4.8843
+                    }
+                },
+                "system.state.json": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "registry/hanger/system.state.json",
+                        "abs": "/home/inqupa/work/build/vent/registry/hanger/system.state.json"
+                    },
+                    "system": {
+                        "size_bytes": 56,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:02:27.843480",
+                        "modified": "2026-03-30T23:00:47.987065",
+                        "accessed": "2026-03-31T02:02:28.047480"
+                    },
+                    "file_details": {
+                        "extension": ".json",
+                        "mime": "application/json",
+                        "magic_hex": "7b 0a 20 20 22 73 65 72 76 69 63 65 73 22 3a 20"
+                    },
+                    "forensics": {
+                        "sha256": "bdff6255250976b8596d185d7f6ce6f5abd1f36cb0b6b350c0155497db361b42",
+                        "entropy": 4.0607
+                    }
+                },
+                "autocomplete.state.json": {
+                    "type": "file",
+                    "paths": {
+                        "rel": "registry/hanger/autocomplete.state.json",
+                        "abs": "/home/inqupa/work/build/vent/registry/hanger/autocomplete.state.json"
+                    },
+                    "system": {
+                        "size_bytes": 139,
+                        "permissions": "-rw-r--r--",
+                        "uid": 1006,
+                        "gid": 1006,
+                        "is_symlink": false
+                    },
+                    "timestamps": {
+                        "created": "2026-03-31T02:02:37.471480",
+                        "modified": "2026-03-30T22:33:37.306742",
+                        "accessed": "2026-03-31T02:02:37.651480"
+                    },
+                    "file_details": {
+                        "extension": ".json",
+                        "mime": "application/json",
+                        "magic_hex": "7b 0a 20 20 22 61 63 74 69 76 65 49 6e 64 65 78"
+                    },
+                    "forensics": {
+                        "sha256": "51d8687beb8c7d80301ca07adca9ea214d9fc104505df2c7684dbc27e9283202",
+                        "entropy": 4.5811
+                    }
+                }
+            }
+        }
+    }
+}

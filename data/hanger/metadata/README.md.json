@@ -1,0 +1,52 @@
+{
+    "metadata": {
+        "scan_time": "2026-03-31T00:47:45.568877Z",
+        "host": "LP-2-HP",
+        "root": "/home/inqupa/work/build/vent",
+        "item_name": "README.md",
+        "forensic_integrity": "THREADED_SNAPSHOT",
+        "hw_optimization": {
+            "workers": 8,
+            "block_size": 65536,
+            "entropy_sample": 1048576,
+            "ram_gb": 4.8,
+            "cores": 4
+        }
+    },
+    "summary": {
+        "total_files": 1,
+        "total_size_bytes": 4127,
+        "errors": 0,
+        "extension_stats": {}
+    },
+    "data": {
+        "README.md": {
+            "type": "file",
+            "paths": {
+                "rel": "README.md",
+                "abs": "/home/inqupa/work/build/vent/README.md"
+            },
+            "system": {
+                "size_bytes": 4127,
+                "permissions": "-rw-r--r--",
+                "uid": 1006,
+                "gid": 1006,
+                "is_symlink": false
+            },
+            "timestamps": {
+                "created": "2026-03-30T21:17:54.264460",
+                "modified": "2026-03-30T21:17:54.264460",
+                "accessed": "2026-03-30T21:17:54.268460"
+            },
+            "file_details": {
+                "extension": ".md",
+                "mime": "text/markdown",
+                "magic_hex": "23 20 2d 2d 2d 0a 0a 2a 2a f0 9f 9b b8 20 54 68"
+            },
+            "forensics": {
+                "sha256": "dc33e829c79a782acb33452567edadc7c9906bd20c91f119a1da493cab3517e1",
+                "entropy": 4.7296
+            }
+        }
+    }
+}
