@@ -1,5 +1,5 @@
 {
-  "comment": "The 'Blueprint' or the 'Ideal World'. This is the master map for all 'systems' files. tools will verify these exist.",
+  "comment": "The 'Blueprint' or the 'Ideal World'. This is the master map for all 'systems' files. refinery tools will verify these exist.",
   "map": {
     "adapters": {},
     "bootloaders": {},

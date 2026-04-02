@@ -2,8 +2,10 @@
  * VENT BOOTLOADER: MASTER ORCHESTRATOR
  */
 
+// --- CONFIGURATION LAYER (THE ONLY PLACE TO CHANGE PATHS) ---
 const SYSTEM_BOOT_CONFIG = {
-    REGISTRY_PATH: 'config/paths/path_map/systems_registry.json'
+    REGISTRY_SYSTEMS: 'config/paths/path_map/systems_registry.json',
+    REGISTRY_DATA: 'config/paths/path_map/data_registry.json'
 };
 
 // --- HELPER FUNCTIONS ---
@@ -60,35 +62,45 @@ function injectServices(node) {
 
 async function bootSystem() {
     try {
-        console.log("Status: Bootloader active...");
+        console.log("Status: Multi-Domain Boot initiated...");
 
-        // A. Get the Map
-        const response = await fetch(SYSTEM_BOOT_CONFIG.REGISTRY_PATH);
-        if (!response.ok) throw new Error("Registry file not found.");
-        
-        const data = await response.json();
-        const registry = data.registry; // This is your 'map' from Python
+        // 1. Parallel Fetch: Get both maps simultaneously
+        const [serviceRes, dataRes] = await Promise.all([
+            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_SYSTEMS),
+            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_DATA)
+        ]);
 
-        // B. Find and Load the Security Shield FIRST
-        const securityPath = findServicePath(registry, "security");
-        
-        if (!securityPath) {
-            console.error("Available Registry Keys:", Object.keys(registry));
-            throw new Error("Security key not found in Registry JSON!");
+        if (!serviceRes.ok || !dataRes.ok) {
+            throw new Error("One or more Registry files are missing.");
         }
 
-        // Wait for the security script to physically arrive
+        const serviceData = await serviceRes.json();
+        const dataMap = await dataRes.json();
+
+        // 2. Merge into a Master Map for the Shield
+        // This combines JS paths and JSON data paths into one searchable vault.
+        const masterRegistry = {
+            ...serviceData.registry,
+            ...dataMap.registry
+        };
+
+        // 3. Phase One: Load and Initialize the Shield
+        const securityPath = findServicePath(serviceData.registry, "security");
+        if (!securityPath) throw new Error("Security key missing from Service Registry.");
+
         await loadScriptAsync("security", securityPath);
 
-        // C. Initialize the Shield
         if (window.VentSecurity) {
-            window.VentSecurity.initialize(registry);
+            window.VentSecurity.initialize(masterRegistry);
         } else {
-            throw new Error("Security Script loaded, but 'VentSecurity' object is missing!");
+            throw new Error("Security Script failed to mount to window.");
         }
 
-        // D. Load the rest of the system
-        injectServices(registry);
+        // 4. Phase Two: Inject all other Services
+        // We only inject the 'serviceData' because we don't "run" data files as scripts.
+        injectServices(serviceData.registry);
+
+        console.log("Status: System fully assembled with Dual-Domain Registry.");
 
     } catch (error) {
         console.error("CRITICAL BOOT ERROR: " + error.message);
