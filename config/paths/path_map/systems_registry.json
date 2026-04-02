@@ -2,7 +2,7 @@
   "comment": "AUTO-GENERATED REGISTRY: DO NOT EDIT MANUALLY. USE THE PYTHON REFINERY.  The 'Active Roster' or the 'Certified List'. This is the Final Authority. The Bootloader only trusts the Registry. If a file is on the 'Path' but hasn't been 'Registered' by the PYTHON REFINERY, the Bootloader will ignore it.",
   "metadata": {
     "source_schema": "SYSTEMS_SCHEMA",
-    "generated_at": "2026-04-02 02:53:10",
+    "generated_at": "2026-04-02 23:30:29",
     "integrity": "verified"
   },
   "registry": {
@@ -11,6 +11,7 @@
       "vent_bridge": "systems/bridges/vent_bridge.js"
     },
     "factories": {
+      "factory": "systems/factories/factory.js",
       "pill_factory": "systems/factories/pill_factory.js"
     },
     "logic": {

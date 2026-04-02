@@ -8,6 +8,7 @@
       "vent_bridge": "systems/bridges/vent_bridge.js"
     },
     "factories":{
+      "factory": "systems/factories/factory.js",
       "pill_factory": "systems/factories/pill_factory.js"
     },
     "handlers": {},

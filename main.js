@@ -17,7 +17,7 @@ function loadScriptAsync(name, path) {
         script.src = path;
         script.async = false;
         script.onload = () => {
-            console.log("Core Service Loaded: [" + name + "]");
+            console.log("Core Subsystem Loaded: [" + name + "]");
             resolve();
         };
         script.onerror = () => reject(new Error("Failed to load " + name + " at " + path));
@@ -26,13 +26,13 @@ function loadScriptAsync(name, path) {
 }
 
 // 2. A recursive search to find a key (like 'security') in a nested dictionary
-function findServicePath(obj, targetKey) {
+function findSubsystemPath(obj, targetKey) {
     if (obj.hasOwnProperty(targetKey) && typeof obj[targetKey] === 'string') {
         return obj[targetKey];
     }
     for (const key in obj) {
         if (typeof obj[key] === 'object' && obj[key] !== null) {
-            const found = findServicePath(obj[key], targetKey);
+            const found = findSubsystemPath(obj[key], targetKey);
             if (found) return found;
         }
     }
@@ -40,7 +40,7 @@ function findServicePath(obj, targetKey) {
 }
 
 // 3. The loop that injects everything else
-function injectServices(node) {
+function injectSubsystem(node) {
     for (const key in node) {
         const value = node[key];
         if (typeof value === 'string') {
@@ -49,11 +49,11 @@ function injectServices(node) {
                 const script = document.createElement('script');
                 script.src = value;
                 script.async = false;
-                script.onload = () => console.log("Service Registered: [" + key + "]");
+                script.onload = () => console.log("Susbystem Registered: [" + key + "]");
                 document.head.appendChild(script);
             }
         } else if (typeof value === 'object' && value !== null) {
-            injectServices(value);
+            injectSubsystem(value);
         }
     }
 }
@@ -65,28 +65,28 @@ async function bootSystem() {
         console.log("Status: Multi-Domain Boot initiated...");
 
         // 1. Parallel Fetch: Get both maps simultaneously
-        const [serviceRes, dataRes] = await Promise.all([
+        const [subsystemRes, dataRes] = await Promise.all([
             fetch(SYSTEM_BOOT_CONFIG.REGISTRY_SYSTEMS),
             fetch(SYSTEM_BOOT_CONFIG.REGISTRY_DATA)
         ]);
 
-        if (!serviceRes.ok || !dataRes.ok) {
+        if (!subsystemRes.ok || !dataRes.ok) {
             throw new Error("One or more Registry files are missing.");
         }
 
-        const serviceData = await serviceRes.json();
+        const subsystemData = await subsystemRes.json();
         const dataMap = await dataRes.json();
 
         // 2. Merge into a Master Map for the Shield
         // This combines JS paths and JSON data paths into one searchable vault.
         const masterRegistry = {
-            ...serviceData.registry,
+            ...subsystemData.registry,
             ...dataMap.registry
         };
 
         // 3. Phase One: Load and Initialize the Shield
-        const securityPath = findServicePath(serviceData.registry, "security");
-        if (!securityPath) throw new Error("Security key missing from Service Registry.");
+        const securityPath = findSubsystemPath(subsystemData.registry, "security");
+        if (!securityPath) throw new Error("Security key missing from Systems Registry.");
 
         await loadScriptAsync("security", securityPath);
 
@@ -96,11 +96,36 @@ async function bootSystem() {
             throw new Error("Security Script failed to mount to window.");
         }
 
-        // 4. Phase Two: Inject all other Services
-        // We only inject the 'serviceData' because we don't "run" data files as scripts.
-        injectServices(serviceData.registry);
+        // 4. Phase Two: Inject all other Subsystems
+        // We only inject the 'subsystemData' because we don't "run" data files as scripts.
+        injectSubsystem(subsystemData.registry);
 
-        console.log("Status: System fully assembled with Dual-Domain Registry.");
+        console.log("Status: Finalizing Ignition...");
+
+        // Use a small delay to ensure scripts are mounted to 'window'
+        setTimeout(() => {
+            const root = document.getElementById('app-root');
+            
+            if (!root) {
+                console.error("BOOT ERROR: Could not find <div id='app-root'> in index.html");
+                return;
+            }
+
+            if (window.UIFactory) {
+                window.UIFactory.buildSearchUI('app-root');
+                console.log("SUCCESS: UI Factory injected the search bar.");
+            } else {
+                console.error("BOOT ERROR: window.UIFactory is undefined. Is factory.js in your Registry?");
+            }
+            
+            if (window.AutocompleteSubsystem) {
+                // 'prompts' must match the key in your DATA Registry
+                window.AutocompleteSubsystem.init('prompts'); 
+            } else {
+                console.error("BOOT ERROR: window.AutocompleteSubsystem is undefined.");
+            }
+        }, 200);
+        console.log("Status: System fully assembled.");
 
     } catch (error) {
         console.error("CRITICAL BOOT ERROR: " + error.message);

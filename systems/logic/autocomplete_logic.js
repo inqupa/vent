@@ -1,19 +1,19 @@
 /*
- * LOGIC: AUTOCOMPLETE SERVICE
+ * LOGIC: AUTOCOMPLETE SUBSYSTEM
  * Role: Provides suggestions by fetching certified data through the Shield.
  */
 
-const AutocompleteService = (() => {
+const AutocompleteSubsystem = (() => {
     
     // Internal state for the search data
     let _searchData = [];
 
     return {
-        // The service now takes the 'key' of the data it needs
+        // The subsystem now takes the 'key' of the data it needs
         init: async (dataKey) => {
             try {
                 // 1. Ask the Shield for the "Certified Path"
-                const securePath = window.VentSecurity.getServicePath(dataKey);
+                const securePath = window.VentSecurity.getSubystemPath(dataKey);
                 
                 if (!securePath) {
                     throw new Error("Access Denied: No certified path for " + dataKey);
@@ -41,4 +41,4 @@ const AutocompleteService = (() => {
 })();
 
 // Register to window for UI access
-window.AutocompleteService = AutocompleteService;
+window.AutocompleteSubsystem = AutocompleteSubsystem;

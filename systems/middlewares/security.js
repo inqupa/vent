@@ -1,6 +1,6 @@
 /*
  * VENT SECURITY MIDDLEWARE
- * Role: The Gatekeeper. Validates all service-to-service communication.
+ * Role: The Gatekeeper. Validates all subsystem-to-subsystem communication.
  */
 
 const VentSecurity = (() => {
@@ -28,18 +28,18 @@ const VentSecurity = (() => {
             console.log("Security: Shield Active. Registry Locked.");
         },
 
-        getServicePath: (serviceName) => {
+        getSubsystemPath: (subsystemName) => {
             if (!_certifiedRegistry) {
                 console.error("Security: Not initialized!");
                 return null;
             }
 
-            const path = _deepSearch(_certifiedRegistry, serviceName);
+            const path = _deepSearch(_certifiedRegistry, subsystemName);
             
             if (path) {
                 return path;
             } else {
-                console.warn("Security: Access Denied for [" + serviceName + "]");
+                console.warn("Security: Access Denied for [" + subsystemName + "]");
                 return null;
             }
         }
