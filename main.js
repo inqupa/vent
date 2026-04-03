@@ -102,30 +102,36 @@ async function bootSystem() {
         // We only inject the 'subsystemData' because we don't "run" data files as scripts.
         injectSubsystem(subsystemData.registry);
 
-        console.log("Status: Finalizing Ignition...");
-
         // Forced Ignition
         setTimeout(async () => {
-            console.log("Ignition: Checking Subsystems...");
+            let success = false; // Tracking variable
+            
+            try {
+                // 1. Initialize Data
+                if (window.AutocompleteSubsystem) {
+                    await window.AutocompleteSubsystem.init('global_suggestions');
+                }
 
-            if (window.AutocompleteSubsystem) {
-                console.log("Ignition: Loading Data...");
-                await window.AutocompleteSubsystem.init('global_suggestions');
+                // 2. Build UI
+                if (window.UIFactory) {
+                    window.UIFactory.buildSearchUI('app-root');
+                    
+                    // If we reached this point, everything is in place
+                    success = true; 
+                }
+            } catch (e) {
+                console.error("Ignition Error: " + e.message);
             }
 
-            if (window.UIFactory) {
-                console.log("Ignition: Building UI...");
-                window.UIFactory.buildSearchUI('app-root');
-            } else {
-                console.error("Ignition Error: UIFactory Subsystem not found in window.");
+            // 3. Final Reveal: Only shows if success is true
+            if (success) {
+                console.log("Status: System fully assembled.");
             }
         }, 500); // 500ms gives the browser plenty of time to process the JS files
         
     } catch (error) {
         console.error("CRITICAL BOOT ERROR: " + error.message);
     }
-    console.log("Status: System fully assembled.");
-
 }
 
 // Ignition

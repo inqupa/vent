@@ -16,9 +16,9 @@ const AutocompleteSubsystem = (() => {
                 const response = await fetch(path);
                 _searchData = await response.json();
                 
-                console.log("Subsystem: Data Loaded Successfully.");
+                console.log("Autocomplete subsystem: Data Loaded Successfully.");
             } catch (e) {
-                console.error("Subsystem: Failed to fetch data.");
+                console.error("Autocomplete subsystem: Failed to fetch data.");
             }
         },
 
