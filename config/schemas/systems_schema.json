@@ -3,33 +3,19 @@
   "map": {
     "adapters": {},
     "bootloaders": {},
-    "bridges":{
-      "autocomplete_bridge": "systems/bridges/autocomplete_bridge.js",
-      "vent_bridge": "systems/bridges/vent_bridge.js"
-    },
+    "bridges":{},
     "factories":{
-      "factory": "systems/factories/factory.js",
-      "pill_factory": "systems/factories/pill_factory.js"
+      "factory": "systems/factories/factory.js"
     },
     "handlers": {},
     "logic": {
-      "autocomplete_logic": "systems/logic/autocomplete_logic.js",
-      "emotion_matcher": "systems/logic/emotion_matcher.js"
+      "autocomplete_logic": "systems/logic/autocomplete_logic.js"
     },
     "middlewares": {
-      "security": "systems/middlewares/security.js",
-      "safety_shield": "systems/middlewares/safety_shield.js",
-      "security_middleware": "systems/middlewares/security_middleware.js",
-      "vault": "systems/middlewares/vault.js"
+      "security": "systems/middlewares/security.js"
     },
-    "services": {
-      "autocomplete_service": "systems/services/autocomplete_service.js",
-      "data_service": "systems/services/data_service.js",
-      "storage_service": "systems/services/storage_service.js"
-    },
-    "state": {
-      "session_manager": "systems/state/session_manager.js"
-    },
+    "services": {},
+    "state": {},
     "strategies": {},
     "ui": {},  
     "boot": "main.js"

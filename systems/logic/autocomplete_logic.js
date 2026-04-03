@@ -4,41 +4,34 @@
  */
 
 const AutocompleteSubsystem = (() => {
-    
-    // Internal state for the search data
-    let _searchData = [];
+    let _searchData = {}; // Stores your Object
 
     return {
-        // The subsystem now takes the 'key' of the data it needs
         init: async (dataKey) => {
             try {
-                // 1. Ask the Shield for the "Certified Path"
-                const securePath = window.VentSecurity.getSubystemPath(dataKey);
+                // Get path from Shield
+                const path = window.VentSecurity.getSubsystemPath(dataKey);
                 
-                if (!securePath) {
-                    throw new Error("Access Denied: No certified path for " + dataKey);
-                }
-
-                // 2. Fetch data using the locked path
-                const response = await fetch(securePath);
-                if (!response.ok) throw new Error("Data fetch failed.");
-                
+                // Fetch the actual file
+                const response = await fetch(path);
                 _searchData = await response.json();
-                console.log("Autocomplete: Data secured and loaded from [" + securePath + "]");
-
-            } catch (error) {
-                console.error("Autocomplete Error: " + error.message);
+                
+                console.log("Subsystem: Data Loaded Successfully.");
+            } catch (e) {
+                console.error("Subsystem: Failed to fetch data.");
             }
         },
 
         getSuggestions: (query) => {
             if (!query) return [];
-            return _searchData.filter(item => 
+            
+            // Convert Object values to an Array so we can search them
+            const items = Object.values(_searchData);
+            
+            return items.filter(item => 
                 item.toLowerCase().includes(query.toLowerCase())
             );
         }
     };
 })();
-
-// Register to window for UI access
 window.AutocompleteSubsystem = AutocompleteSubsystem;

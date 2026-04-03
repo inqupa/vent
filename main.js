@@ -102,29 +102,23 @@ async function bootSystem() {
 
         console.log("Status: Finalizing Ignition...");
 
-        // Use a small delay to ensure scripts are mounted to 'window'
-        setTimeout(() => {
-            const root = document.getElementById('app-root');
-            
-            if (!root) {
-                console.error("BOOT ERROR: Could not find <div id='app-root'> in index.html");
-                return;
+        // Forced Ignition
+        setTimeout(async () => {
+            console.log("Ignition: Checking Subsystems...");
+
+            if (window.AutocompleteSubsystem) {
+                console.log("Ignition: Loading Data...");
+                await window.AutocompleteSubsystem.init('global_suggestions');
             }
 
             if (window.UIFactory) {
+                console.log("Ignition: Building UI...");
                 window.UIFactory.buildSearchUI('app-root');
-                console.log("SUCCESS: UI Factory injected the search bar.");
             } else {
-                console.error("BOOT ERROR: window.UIFactory is undefined. Is factory.js in your Registry?");
+                console.error("Ignition Error: UIFactory Subsystem not found in window.");
             }
-            
-            if (window.AutocompleteSubsystem) {
-                // 'prompts' must match the key in your DATA Registry
-                window.AutocompleteSubsystem.init('prompts'); 
-            } else {
-                console.error("BOOT ERROR: window.AutocompleteSubsystem is undefined.");
-            }
-        }, 200);
+        }, 500); // 500ms gives the browser plenty of time to process the JS files
+        
         console.log("Status: System fully assembled.");
 
     } catch (error) {
