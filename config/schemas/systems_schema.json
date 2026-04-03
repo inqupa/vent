@@ -23,7 +23,9 @@
     },
     "services": {},
     "state": {},
-    "strategies": {},
+    "strategies": {
+      "selection_strategy": "systems/strategies/selection_strategy.js"
+    },
     "ux": {}
   }
 }

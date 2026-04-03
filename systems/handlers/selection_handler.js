@@ -1,23 +1,26 @@
 /**
  * VENT HANDLER: SELECTION
- * Purview: Managing user interaction events.
+ * Purview: Coordinating the hand-off from validation to execution.
  */
 const SelectionHandler = (() => {
     return {
         /**
-         * Executed when a prompt is selected from the list.
-         * @param {string} value - The selected data.
+         * Receives the 'Safe' signal and triggers the Strategy.
+         * @param {string} value - The validated data.
          */
         handle: (value) => {
-            // Zero-Trust Check: We could verify the value here via a Middleware
-            console.log("Handler: Processing selection -> " + value);
-            
-            // Interaction logic only
+            console.log("Handler: Selection cleared for execution.");
+
+            // 1. Update the UI State (Visual only)
             const input = document.getElementById('vent-search-input');
             const list = document.getElementById('vent-results-list');
-            
             if (input) input.value = value;
             if (list) list.innerHTML = '';
+
+            // 2. Delegate the 'Action' to the Strategy Subsystem
+            if (window.SelectionStrategy) {
+                window.SelectionStrategy.execute(value);
+            }
         }
     };
 })();
