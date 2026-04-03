@@ -3,10 +3,12 @@
  */
 
 // --- CONFIGURATION LAYER (THE ONLY PLACE TO CHANGE PATHS) ---
-const SYSTEM_BOOT_CONFIG = {
-    REGISTRY_SYSTEMS: 'config/paths/path_map/systems_registry.json',
-    REGISTRY_DATA: 'config/paths/path_map/data_registry.json'
-};
+if (typeof SYSTEM_BOOT_CONFIG === 'undefined') {
+    var SYSTEM_BOOT_CONFIG = {
+        REGISTRY_SYSTEMS: 'config/paths/path_map/systems_registry.json',
+        REGISTRY_DATA: 'config/paths/path_map/data_registry.json'
+    };
+}
 
 // --- HELPER FUNCTIONS ---
 
@@ -119,11 +121,11 @@ async function bootSystem() {
             }
         }, 500); // 500ms gives the browser plenty of time to process the JS files
         
-        console.log("Status: System fully assembled.");
-
     } catch (error) {
         console.error("CRITICAL BOOT ERROR: " + error.message);
     }
+    console.log("Status: System fully assembled.");
+
 }
 
 // Ignition

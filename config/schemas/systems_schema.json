@@ -17,7 +17,6 @@
     "services": {},
     "state": {},
     "strategies": {},
-    "ui": {},  
-    "boot": "main.js"
+    "ui": {}
   }
 }
