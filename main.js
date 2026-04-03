@@ -112,11 +112,11 @@ async function bootSystem() {
                     await window.AutocompleteSubsystem.init('global_suggestions');
                 }
 
-                // 2. Build UI
-                if (window.UIFactory) {
-                    window.UIFactory.buildSearchUI('app-root');
-                    
+                // 2. Build search UI
+                if (typeof initializeSearchSystem === 'function') {
+                    await initializeSearchSystem();
                     // If we reached this point, everything is in place
+
                     success = true; 
                 }
             } catch (e) {

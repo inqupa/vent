@@ -2,21 +2,28 @@
   "comment": "The 'Blueprint' or the 'Ideal World'. This is the master map for all 'systems' files. refinery tools will verify these exist.",
   "map": {
     "adapters": {},
-    "bootloaders": {},
-    "bridges":{},
+    "bootloaders": {
+      "search_init": "systems/bootloaders/search_init.js"
+    },
+    "bridges":{
+      "venting_security_bridge": "systems/bridges/venting_security_bridge.js"
+    },
     "factories":{
       "factory": "systems/factories/factory.js"
     },
-    "handlers": {},
+    "handlers": {
+      "selection_handler": "systems/handlers/selection_handler.js"
+    },
     "logic": {
       "autocomplete_logic": "systems/logic/autocomplete_logic.js"
     },
     "middlewares": {
-      "security": "systems/middlewares/security.js"
+      "security": "systems/middlewares/security.js",
+      "input_validator": "systems/middlewares/input_validator.js"
     },
     "services": {},
     "state": {},
     "strategies": {},
-    "ui": {}
+    "ux": {}
   }
 }
