@@ -5,5 +5,5 @@
     "blocked_words": "data/processed/blocked_words.json",
     "emotions": "data/processed/emotions.json",
     "malicious_inputs": "data/processed/malicious_inputs.json"
-}
+  }
 }

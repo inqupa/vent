@@ -1,0 +1,6 @@
+{
+  "comment": "Blueprint for all state schema JSON.  This is the master map for all 'state schema' files. refinery tools will verify these exist.",
+  "map": {
+    "initial_state": "config/state/state_schema.json"
+  }
+}

@@ -22,7 +22,9 @@
       "input_validator": "systems/middlewares/input_validator.js"
     },
     "services": {},
-    "state": {},
+    "state": {
+      "session_state": "systems/state/session_state.js"
+    },
     "strategies": {
       "selection_strategy": "systems/strategies/selection_strategy.js"
     },
