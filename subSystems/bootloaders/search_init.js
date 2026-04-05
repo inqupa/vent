@@ -40,11 +40,11 @@ async function initializeSearchSubsystem() {
         if (!elements) throw new Error("UI Construction failed.");
         console.log("Search Bootloader: UI Factory Built.");
 
-        // Bind via Bridge (The "Interaction Binding" fix)
-        elements.input.addEventListener('input', (e) => {
-            const matches = window.AutocompleteLogic.getSuggestions(e.target.value);
-            window.AutocompleteInteractionBridge.renderMatches(matches, elements.results);
-        });
+        // Delegate Interaction (The Refactor)
+        // We pass the elements to the Bridge to handle the "Wiring."
+        if (window.AutocompleteInteractionBridge) {
+            window.AutocompleteInteractionBridge.bindSearch(elements);
+        }
 
         console.log("Search Bootloader: Handshake complete.");
     } catch (e) {
