@@ -28,3 +28,4 @@ const ThemeBridge = (() => {
     };
 })();
 window.ThemeBridge = ThemeBridge;
+console.log("Theme Bridge: Layout Bridge mounted to window.");

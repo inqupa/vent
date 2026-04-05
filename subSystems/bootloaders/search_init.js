@@ -4,14 +4,14 @@
  * Role: The "Ignition Key" for the Search Feature domain.
  */
 async function initializeSearchSubsystem() {
-    try {
-        console.log("Search Bootloader: Initiating domain handshake...");
+    console.log("Search Bootloader: Initiating domain handshake...");
 
+    try {
         // RE-SYNC LAYOUT (The Fix)
         // This ensures the Search Theme is reapplied after the Detail View clears it.
-        if (window.LayoutBridge) {
+        if (window.ThemeBridge) {
             console.log("Search Bootloader: Requesting Style Sync...");
-            await window.LayoutBridge.syncStyles('search_theme');
+            await window.ThemeBridge.syncStyles('search_theme');
         }
 
         // DATA PURVIEW (Re-homed from main.js)
