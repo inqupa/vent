@@ -49,7 +49,7 @@ function injectSubsystem(node) {
         const value = node[key];
         if (typeof value === 'string') {
             // Don't reload security if we already did it manually
-            if (key !== 'security') {
+            if (key !== 'vent_security') {
                 const script = document.createElement('script');
                 script.src = value;
                 script.async = false;

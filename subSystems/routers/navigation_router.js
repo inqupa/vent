@@ -10,7 +10,7 @@ const NavigationRouter = (() => {
          * @param {any} data - Context data for the new view.
          */
         transition: async (domain, data) => {
-            console.log(`Router: Transitioning to [${domain}]...`);
+            console.log(`Navigation Router: Transitioning to [${domain}]...`);
             
             // 1. Clear the Stage (The Quadratic Clean)
             const root = document.getElementById('app-root');
@@ -23,9 +23,12 @@ const NavigationRouter = (() => {
                     await window.initializeDetailSubsystem(data);
                 }
             } else if (domain === 'SEARCH') {
+                console.log("Navigation Router: Re-igniting Search Domain...");
                 // Return to the initial state
                 if (typeof initializeSearchSubsystem === 'function') {
                     await initializeSearchSubsystem();
+                } else {
+                    console.error("Navigation Router Error: initializeSearchSystem is not a function!");
                 }
             }
         }

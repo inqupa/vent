@@ -10,6 +10,7 @@ async function initializeSearchSubsystem() {
         // RE-SYNC LAYOUT (The Fix)
         // This ensures the Search Theme is reapplied after the Detail View clears it.
         if (window.LayoutBridge) {
+            console.log("Search Bootloader: Requesting Style Sync...");
             await window.LayoutBridge.syncStyles('search_theme');
         }
 
@@ -37,6 +38,7 @@ async function initializeSearchSubsystem() {
         // Building the skeleton via the cleansed Factory.
         const elements = window.UIFactory.createSearchInterface('app-root');
         if (!elements) throw new Error("UI Construction failed.");
+        console.log("Search Bootloader: UI Factory Built.");
 
         // Bind via Bridge (The "Interaction Binding" fix)
         elements.input.addEventListener('input', (e) => {
