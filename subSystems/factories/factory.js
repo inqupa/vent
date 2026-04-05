@@ -43,6 +43,34 @@ const UIFactory = (() => {
             li.textContent = text;
             // No styles, no logic. Just the node.
             return li;
+        },
+
+        /**
+         * Creates a Detail View structure.
+         * @param {string} containerId 
+         * @param {string} titleText 
+         * @returns {Object} Hooks to the detail elements.
+         */
+        createDetailInterface: (containerId, titleText) => {
+            const container = document.getElementById(containerId);
+            if (!container) return null;
+
+            const wrapper = document.createElement('div');
+            wrapper.id = 'vent-detail-container';
+
+            const title = document.createElement('h1');
+            title.id = 'vent-detail-title';
+            title.textContent = titleText;
+
+            const backBtn = document.createElement('button');
+            backBtn.id = 'vent-back-button';
+            backBtn.textContent = '← Return to Search';
+
+            wrapper.appendChild(title);
+            wrapper.appendChild(backBtn);
+            container.appendChild(wrapper);
+
+            return { backBtn };
         }
     };
 })();

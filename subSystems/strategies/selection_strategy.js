@@ -3,29 +3,24 @@
  * Purview: Defining the "What" happens after the "How" is validated.
  */
 const SelectionStrategy = (() => {
-    // Private mapping of types to functions
-    const _actions = {
-        DEFAULT: (data) => {
-            console.log("Strategy: Executing default data display for -> " + data);
-            // Example: Update a 'Status' area in the UI
-        },
-        SYSTEM_COMMAND: (data) => {
-            console.log("Strategy: Executing high-level system command -> " + data);
-            // Example: Trigger a system reboot or config change
-        }
-    };
-
     return {
         /**
-         * Determines and executes the correct action for the selected prompt.
+         * Orchestrates the transition from Search to the next Domain.
          * @param {string} selection - The validated user choice.
          */
         execute: (selection) => {
-            // Quadratic Logic: Check if it's a command or just data
-            const actionType = selection.startsWith('/') ? 'SYSTEM_COMMAND' : 'DEFAULT';
-            
-            if (_actions[actionType]) {
-                _actions[actionType](selection);
+            console.log("Selection Strategy: Selection received -> " + selection);
+
+            // 1. Determine the Target Domain
+            // Commands (starting with /) stay in SYSTEM; everything else goes to DETAIL.
+            const targetDomain = selection.startsWith('/') ? 'SYSTEM' : 'DETAIL';
+
+            // 2. Hand off to the Router
+            // The Strategy stops here; the Router takes over the "Stage."
+            if (window.NavigationRouter) {
+                window.NavigationRouter.transition(targetDomain, selection);
+            } else {
+                console.error("Selection Strategy Failure: NavigationRouter not found.");
             }
         }
     };

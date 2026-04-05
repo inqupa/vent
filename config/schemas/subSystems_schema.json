@@ -25,6 +25,9 @@
       "security": "subSystems/middlewares/security.js",
       "input_validator": "subSystems/middlewares/input_validator.js"
     },
+    "routers":{
+      "navigation_router": "subSystems/routers/navigation_router.js"
+    },
     "services": {},
     "state": {
       "session_state": "subSystems/state/session_state.js"
