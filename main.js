@@ -66,8 +66,6 @@ function injectSubsystem(node) {
 
 async function bootSystem() {
     try {
-        console.log("Status: Multi-Domain Boot initiated...");
-
         // 1. Parallel Fetch: Get both maps simultaneously
         const [subsystemRes, dataRes, stateRes, layoutRes] = await Promise.all([
             fetch(SYSTEM_BOOT_CONFIG.REGISTRY_SUBSYSTEMS),
@@ -113,18 +111,19 @@ async function bootSystem() {
         // Forced Ignition
         setTimeout(async () => {
             let success = false; // Tracking variable
+            console.log("Ignition: Starting Bootloader Suite...")
             
             try {
-                // 1. Initialize Data
-                if (window.AutocompleteSubsystem) {
-                    await window.AutocompleteSubsystem.init('global_suggestions');
+                // 1. Ignite Layout, must always be the first to load(The Environment)
+                if (typeof initializeLayoutSystem === 'function') {
+                    await initializeLayoutSystem();
                 }
 
-                // 2. Build search UI
+                // 2. Ignite Search (The Feature)
                 if (typeof initializeSearchSystem === 'function') {
                     await initializeSearchSystem();
+                    
                     // If we reached this point, everything is in place
-
                     success = true; 
                 }
             } catch (e) {

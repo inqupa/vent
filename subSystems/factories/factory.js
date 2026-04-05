@@ -6,14 +6,15 @@ const UIFactory = (() => {
     return {
         /**
          * Creates the search structure and returns references to the elements.
-         * @param {string} containerId - The ID of the root element.
-         * @returns {Object} References to the created input and list elements.
+         * @param {string} containerId - The ID of the root element (e.g., 'app-root').
+         * @returns {Object|null} { input, results } or null if container missing.
          */
         createSearchInterface: (containerId) => {
             const container = document.getElementById(containerId);
             if (!container) return null;
 
             const wrapper = document.createElement('div');
+            wrapper.id = 'vent-ui-container';
             wrapper.className = 'vent-ui-wrapper';
 
             const input = document.createElement('input');
@@ -30,6 +31,18 @@ const UIFactory = (() => {
 
             // Return the "Hooks" for other subsystems to use
             return { input, results };
+        },
+
+        /**
+         * Creates a single result item.
+         * @param {string} text - The prompt text.
+         * @returns {HTMLLIElement}
+         */
+        createResultItem: (text) => {
+            const li = document.createElement('li');
+            li.textContent = text;
+            // No styles, no logic. Just the node.
+            return li;
         }
     };
 })();

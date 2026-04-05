@@ -3,9 +3,11 @@
   "map": {
     "adapters": {},
     "bootloaders": {
+      "layout_init": "subSystems/bootloaders/layout_init.js",
       "search_init": "subSystems/bootloaders/search_init.js"
     },
     "bridges":{
+      "autocomplete_interaction_bridge": "subSystems/bridges/autocomplete_interaction_bridge.js",
       "layout_bridge": "subSystems/bridges/layout_bridge.js",
       "state_bridge": "subSystems/bridges/state_bridge.js",
       "venting_security_bridge": "subSystems/bridges/venting_security_bridge.js"

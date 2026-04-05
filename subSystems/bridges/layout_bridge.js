@@ -10,14 +10,16 @@ const LayoutBridge = (() => {
          */
         syncStyles: async (dataKey) => {
             try {
-                const path = window.VentSecurity.getServicePath(dataKey);
+                const path = window.VentSecurity.getSubsystemPath(dataKey);
+                console.log("LayoutBridge: Fetching from ->", path); // DEBUG
                 if (!path) throw new Error("LayoutBridge: Shield denied access.");
 
                 const response = await fetch(path);
                 const themeData = await response.json();
+                console.log("LayoutBridge: Data Received ->", themeData); // DEBUG
 
-                if (window.LayoutSubsystem) {
-                    window.LayoutSubsystem.applyTheme(themeData);
+                if (window.SearchLayout) {
+                    window.SearchLayout.applyTheme(themeData);
                 }
             } catch (e) {
                 console.error("Layout Bridge Failure: " + e.message);
