@@ -36,7 +36,12 @@ async function initializeSearchSystem() {
                 li.addEventListener('click', () => {
                     // Logic -> Middleware -> Handler
                     if (window.InputValidator && window.InputValidator.isSafe(match)) {
-                        window.SelectionHandler.handle(match);
+                    // ADDED: Safety Check for the Handler
+                        if (window.SelectionHandler) {
+                            window.SelectionHandler.handle(match);
+                        } else {
+                            console.error("Critical: SelectionHandler subsystem not found on window.");
+                        }
                     } else {
                         console.error("Security Block: Handler execution denied.");
                     }

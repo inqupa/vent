@@ -12,7 +12,7 @@ const VentingSecurityBridge = (() => {
             try {
                 // 1. Request the path from the Shield (Zero-Trust)
                 const path = window.VentSecurity.getSubsystemPath(dataKey);
-                if (!path) throw new Error("Bridge: Shield denied access to " + dataKey);
+                if (!path) throw new Error("Venting Security Bridge: Shield denied access to " + dataKey);
 
                 // 2. Fetch the raw policy data
                 const response = await fetch(path);

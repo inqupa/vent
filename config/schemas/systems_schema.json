@@ -6,6 +6,7 @@
       "search_init": "systems/bootloaders/search_init.js"
     },
     "bridges":{
+      "state_bridge": "systems/bridges/state_bridge.js",
       "venting_security_bridge": "systems/bridges/venting_security_bridge.js"
     },
     "factories":{

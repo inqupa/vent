@@ -25,3 +25,5 @@ const SelectionHandler = (() => {
         }
     };
 })();
+
+window.SelectionHandler = SelectionHandler;
