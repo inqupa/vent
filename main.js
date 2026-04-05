@@ -5,9 +5,10 @@
 // --- CONFIGURATION LAYER (THE ONLY PLACE TO CHANGE PATHS) ---
 if (typeof SYSTEM_BOOT_CONFIG === 'undefined') {
     var SYSTEM_BOOT_CONFIG = {
-        REGISTRY_SYSTEMS: 'config/paths/path_map/systems_registry.json',
+        REGISTRY_SUBSYSTEMS: 'config/paths/path_map/subSystems_registry.json',
         REGISTRY_DATA: 'config/paths/path_map/data_registry.json',
-        REGISTRY_STATE: 'config/paths/path_map/state_registry.json'
+        REGISTRY_STATES: 'config/paths/path_map/state_registry.json',
+        REGISTRY_LAYOUTS: 'config/paths/path_map/layout_registry.json'
     };
 }
 
@@ -68,26 +69,29 @@ async function bootSystem() {
         console.log("Status: Multi-Domain Boot initiated...");
 
         // 1. Parallel Fetch: Get both maps simultaneously
-        const [subsystemRes, dataRes, stateRes] = await Promise.all([
-            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_SYSTEMS),
+        const [subsystemRes, dataRes, stateRes, layoutRes] = await Promise.all([
+            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_SUBSYSTEMS),
             fetch(SYSTEM_BOOT_CONFIG.REGISTRY_DATA),
-            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_STATE)
+            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_STATES),
+            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_LAYOUTS)
         ]);
 
-        if (!subsystemRes.ok || !dataRes.ok || !stateRes.ok) {
+        if (!subsystemRes.ok || !dataRes.ok || !stateRes.ok || !layoutRes.ok) {
             throw new Error("One or more Registry files are missing.");
         }
 
         const subsystemData = await subsystemRes.json();
         const dataMap = await dataRes.json();
         const stateMap = await stateRes.json();
+        const layoutMap = await layoutRes.json();
 
         // 2. Merge into a Master Map for the Shield
         // This combines JS paths and JSON data paths into one searchable vault.
         const masterRegistry = {
             ...subsystemData.registry,
             ...dataMap.registry,
-            ...stateMap.registry
+            ...stateMap.registry,
+            ...layoutMap.registry
         };
 
         // 3. Phase One: Load and Initialize the Shield
