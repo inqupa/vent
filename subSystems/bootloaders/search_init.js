@@ -7,7 +7,13 @@ async function initializeSearchSubsystem() {
     try {
         console.log("Search Bootloader: Initiating domain handshake...");
 
-        // 1. DATA PURVIEW (Re-homed from main.js)
+        // RE-SYNC LAYOUT (The Fix)
+        // This ensures the Search Theme is reapplied after the Detail View clears it.
+        if (window.LayoutBridge) {
+            await window.LayoutBridge.syncStyles('search_theme');
+        }
+
+        // DATA PURVIEW (Re-homed from main.js)
         // We ensure the internal search dictionary is loaded before the UI exists.
         if (window.AutocompleteLogic) {
             await window.AutocompleteLogic.init('global_suggestions');
@@ -15,19 +21,19 @@ async function initializeSearchSubsystem() {
             throw new Error("Data Subsystem (Autocomplete) missing.");
         }
 
-        // 2. SECURITY PURVIEW (The Bridge)
+        // SECURITY PURVIEW (The Bridge)
         // Sync the Middleware with the Data Registry policy.
         if (window.VentingSecurityBridge) {
             await window.VentingSecurityBridge.synchronizeValidator('malicious_inputs');
         }
 
-        // 3. STATE PURVIEW (The Bridge)
+        // STATE PURVIEW (The Bridge)
         // Prime the SessionState with the external schema.
         if (window.StateBridge) {
             await window.StateBridge.synchronizeState('initial_state');
         }
 
-        // 4. CONSTRUCTION (The Factory)
+        // CONSTRUCTION (The Factory)
         // Building the skeleton via the cleansed Factory.
         const elements = window.UIFactory.createSearchInterface('app-root');
         if (!elements) throw new Error("UI Construction failed.");
