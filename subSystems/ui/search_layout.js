@@ -1,6 +1,6 @@
 /**
  * VENT UI: SEARCH LAYOUT
- * Purview: Dynamic CSS injection and theme management.
+ * Purview: Dynamic CSS injection and theme management with hard-reset capabilities
  */
 const SearchLayout = (() => {
     let _styleElement = null;
@@ -20,6 +20,9 @@ const SearchLayout = (() => {
                 document.head.appendChild(_styleElement);
                 console.log("Search Layout: created <style id='vent-core-layout'> in head.");
             }
+
+            // 2. HARD RESET: Clear previous domain styles
+            _styleElement.textContent = '';
 
             // Convert JSON object to CSS string
             let cssString = "";
