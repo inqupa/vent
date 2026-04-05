@@ -19,9 +19,9 @@ const VentingSecurityBridge = (() => {
                 const policy = await response.json();
 
                 // 3. Inject the data into the Middleware
-                if (window.InputValidator && policy.blacklist) {
-                    window.InputValidator.syncPolicy(policy.blacklist);
-                    console.log("Bridge: Validator synchronized with external policy.");
+                if (window.InputValidator) {
+                    // We pass the whole object to the 'prime' method
+                    window.InputValidator.prime(policy);
                 }
             } catch (e) {
                 console.error("Bridge Failure: " + e.message);

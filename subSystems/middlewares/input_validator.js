@@ -1,31 +1,45 @@
 /**
  * VENT MIDDLEWARE: INPUT VALIDATOR
- * Purview: Execution of security scrubs based on external policy.
+ * Purview: Execution of Zero-Trust rules. No hardcoded policies.
  */
 const InputValidator = (() => {
-    let _activePolicy = [];
+    let _blacklist = [];
+    let _constraints = {
+        max_length: 0,
+        pattern: null
+    };
 
     return {
         /**
-         * Loads the rules from the Data Registry via the Security Shield.
-         * @param {Array} rules - The list of forbidden strings/regex.
+         * Injects rules from the Security Bridge.
          */
-        syncPolicy: (rules) => {
-            _activePolicy = rules || [];
-            console.log("Middleware: Security Policy Synced (" + _activePolicy.length + " rules).");
+        prime: (policy) => {
+            _blacklist = policy.blacklist || [];
+            if (policy.constraints) {
+                _constraints.max_length = policy.constraints.max_length;
+                _constraints.pattern = new RegExp(policy.constraints.pattern);
+            }
+            console.log("Input Validator Middleware: Validator armed with Registry rules.");
         },
 
         /**
-         * Validates a string against the synced policy.
-         * @param {string} input 
+         * The Execution Gate.
          */
         isSafe: (input) => {
             if (typeof input !== 'string') return false;
 
-            return !_activePolicy.some(pattern => {
-                const regex = new RegExp(pattern, 'i');
-                return regex.test(input);
-            });
+            // 1. Length Check
+            if (input.length > _constraints.max_length) return false;
+
+            // 2. Pattern Check
+            if (_constraints.pattern && !_constraints.pattern.test(input)) return false;
+
+            // 3. Blacklist Check
+            const isBlocked = _blacklist.some(term => 
+                input.toLowerCase().includes(term.toLowerCase())
+            );
+            
+            return !isBlocked;
         }
     };
 })();
