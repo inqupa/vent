@@ -3,17 +3,18 @@
   "map": {
     "adapters": {},
     "bootloaders": {
-      "layout_init": "subSystems/bootloaders/layout_init.js",
-      "search_init": "subSystems/bootloaders/search_init.js"
+      "detail_init": "subSystems/bootloaders/detail_init.js",
+      "search_init": "subSystems/bootloaders/search_init.js",
+      "theme_init": "subSystems/bootloaders/theme_init.js"
     },
     "bridges":{
       "autocomplete_interaction_bridge": "subSystems/bridges/autocomplete_interaction_bridge.js",
-      "layout_bridge": "subSystems/bridges/layout_bridge.js",
+      "theme_bridge": "subSystems/bridges/theme_bridge.js",
       "state_bridge": "subSystems/bridges/state_bridge.js",
       "venting_security_bridge": "subSystems/bridges/venting_security_bridge.js"
     },
     "factories":{
-      "factory": "subSystems/factories/factory.js"
+      "UIFactory": "subSystems/factories/UIFactory.js"
     },
     "handlers": {
       "selection_handler": "subSystems/handlers/selection_handler.js"
@@ -22,7 +23,7 @@
       "autocomplete_logic": "subSystems/logic/autocomplete_logic.js"
     },
     "middlewares": {
-      "security": "subSystems/middlewares/security.js",
+      "vent_security": "subSystems/middlewares/vent_security.js",
       "input_validator": "subSystems/middlewares/input_validator.js"
     },
     "routers":{

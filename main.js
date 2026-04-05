@@ -8,7 +8,7 @@ if (typeof SYSTEM_BOOT_CONFIG === 'undefined') {
         REGISTRY_SUBSYSTEMS: 'config/paths/path_map/subSystems_registry.json',
         REGISTRY_DATA: 'config/paths/path_map/data_registry.json',
         REGISTRY_STATES: 'config/paths/path_map/state_registry.json',
-        REGISTRY_LAYOUTS: 'config/paths/path_map/layout_registry.json'
+        REGISTRY_THEMES: 'config/paths/path_map/theme_registry.json'
     };
 }
 
@@ -67,21 +67,21 @@ function injectSubsystem(node) {
 async function bootSystem() {
     try {
         // 1. Parallel Fetch: Get both maps simultaneously
-        const [subsystemRes, dataRes, stateRes, layoutRes] = await Promise.all([
+        const [subsystemRes, dataRes, stateRes, themeRes] = await Promise.all([
             fetch(SYSTEM_BOOT_CONFIG.REGISTRY_SUBSYSTEMS),
             fetch(SYSTEM_BOOT_CONFIG.REGISTRY_DATA),
             fetch(SYSTEM_BOOT_CONFIG.REGISTRY_STATES),
-            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_LAYOUTS)
+            fetch(SYSTEM_BOOT_CONFIG.REGISTRY_THEMES)
         ]);
 
-        if (!subsystemRes.ok || !dataRes.ok || !stateRes.ok || !layoutRes.ok) {
+        if (!subsystemRes.ok || !dataRes.ok || !stateRes.ok || !themeRes.ok) {
             throw new Error("One or more Registry files are missing.");
         }
 
         const subsystemData = await subsystemRes.json();
         const dataMap = await dataRes.json();
         const stateMap = await stateRes.json();
-        const layoutMap = await layoutRes.json();
+        const themeMap = await themeRes.json();
 
         // 2. Merge into a Master Map for the Shield
         // This combines JS paths and JSON data paths into one searchable vault.
@@ -89,14 +89,14 @@ async function bootSystem() {
             ...subsystemData.registry,
             ...dataMap.registry,
             ...stateMap.registry,
-            ...layoutMap.registry
+            ...themeMap.registry
         };
 
         // 3. Phase One: Load and Initialize the Shield
-        const securityPath = findSubsystemPath(subsystemData.registry, "security");
+        const securityPath = findSubsystemPath(subsystemData.registry, "vent_security");
         if (!securityPath) throw new Error("Security key missing from Systems Registry.");
 
-        await loadScriptAsync("security", securityPath);
+        await loadScriptAsync("vent_security", securityPath);
 
         if (window.VentSecurity) {
             window.VentSecurity.initialize(masterRegistry);
@@ -114,14 +114,14 @@ async function bootSystem() {
             console.log("Ignition: Starting Bootloader Suite...")
             
             try {
-                // 1. Ignite Layout, must always be the first to load(The Environment)
-                if (typeof initializeLayoutSystem === 'function') {
-                    await initializeLayoutSystem();
+                // 1. Ignite Theme, must always be the first to load(The Environment)
+                if (typeof initializeThemeSubsystem === 'function') {
+                    await initializeThemeSubsystem();
                 }
 
                 // 2. Ignite Search (The Feature)
-                if (typeof initializeSearchSystem === 'function') {
-                    await initializeSearchSystem();
+                if (typeof initializeSearchSubsystem === 'function') {
+                    await initializeSearchSubsystem();
                     
                     // If we reached this point, everything is in place
                     success = true; 

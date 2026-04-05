@@ -1,16 +1,16 @@
 /**
- * VENT BOOTLOADER: SEARCH SYSTEM
+ * VENT BOOTLOADER: SEARCH SUBSYSTEM
  * Purview: Sequential ignition of Data, Security, State, and UI Subsystems.
  * Role: The "Ignition Key" for the Search Feature domain.
  */
-async function initializeSearchSystem() {
+async function initializeSearchSubsystem() {
     try {
         console.log("Search Bootloader: Initiating domain handshake...");
 
         // 1. DATA PURVIEW (Re-homed from main.js)
         // We ensure the internal search dictionary is loaded before the UI exists.
-        if (window.AutocompleteSubsystem) {
-            await window.AutocompleteSubsystem.init('global_suggestions');
+        if (window.AutocompleteLogic) {
+            await window.AutocompleteLogic.init('global_suggestions');
         } else {
             throw new Error("Data Subsystem (Autocomplete) missing.");
         }
@@ -34,7 +34,7 @@ async function initializeSearchSystem() {
 
         // Bind via Bridge (The "Interaction Binding" fix)
         elements.input.addEventListener('input', (e) => {
-            const matches = window.AutocompleteSubsystem.getSuggestions(e.target.value);
+            const matches = window.AutocompleteLogic.getSuggestions(e.target.value);
             window.AutocompleteInteractionBridge.renderMatches(matches, elements.results);
         });
 
@@ -44,3 +44,5 @@ async function initializeSearchSystem() {
         throw e; // Bubble up to main.js so 'success' becomes false
     }
 }
+
+window.initializeSearchSubsystem = initializeSearchSubsystem

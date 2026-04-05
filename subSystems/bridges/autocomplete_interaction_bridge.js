@@ -1,5 +1,5 @@
 /**
- * VENT BRIDGE: INTERACTION
+ * VENT BRIDGE: AUTOCOMPLETE INTERACTION
  * Purview: Mapping data matches to UI elements and binding handlers.
  */
 const AutocompleteInteractionBridge = (() => {

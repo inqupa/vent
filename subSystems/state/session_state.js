@@ -12,7 +12,7 @@ const SessionState = (() => {
          */
         prime: (schema) => {
             _store = { ...schema };
-            console.log("State: Memory Map Primed.");
+            console.log("Session State: Memory Map Primed.");
         },
 
         /**

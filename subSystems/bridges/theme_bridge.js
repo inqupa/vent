@@ -1,8 +1,8 @@
 /**
- * VENT BRIDGE: LAYOUT
+ * VENT BRIDGE: THEME
  * Purview: Fetching CSS definitions and passing them to the Layout Subsystem.
  */
-const LayoutBridge = (() => {
+const ThemeBridge = (() => {
     return {
         /**
          * Synchronizes the UI with the Registry-defined styles.
@@ -11,20 +11,20 @@ const LayoutBridge = (() => {
         syncStyles: async (dataKey) => {
             try {
                 const path = window.VentSecurity.getSubsystemPath(dataKey);
-                console.log("LayoutBridge: Fetching from ->", path); // DEBUG
-                if (!path) throw new Error("LayoutBridge: Shield denied access.");
+                console.log("ThemeBridge: Fetching from ->", path); // DEBUG
+                if (!path) throw new Error("ThemeBridge: Shield denied access.");
 
                 const response = await fetch(path);
                 const themeData = await response.json();
-                console.log("LayoutBridge: Data Received ->", themeData); // DEBUG
+                console.log("ThemeBridge: Data Received ->", themeData); // DEBUG
 
                 if (window.SearchLayout) {
                     window.SearchLayout.applyTheme(themeData);
                 }
             } catch (e) {
-                console.error("Layout Bridge Failure: " + e.message);
+                console.error("Theme Bridge Failure: " + e.message);
             }
         }
     };
 })();
-window.LayoutBridge = LayoutBridge;
+window.ThemeBridge = ThemeBridge;

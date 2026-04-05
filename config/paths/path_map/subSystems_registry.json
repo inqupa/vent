@@ -2,22 +2,23 @@
   "comment": "AUTO-GENERATED REGISTRY: DO NOT EDIT MANUALLY. USE THE PYTHON REFINERY.  The 'Active Roster' or the 'Certified List'. This is the Final Authority. The Bootloader only trusts the Registry. If a file is on the 'Path' but hasn't been 'Registered' by the PYTHON REFINERY, the Bootloader will ignore it.",
   "metadata": {
     "source_schema": "SUBSYSTEMS_SCHEMA",
-    "generated_at": "2026-04-05 23:27:37",
+    "generated_at": "2026-04-06 03:13:06",
     "integrity": "verified"
   },
   "registry": {
     "bootloaders": {
-      "layout_init": "subSystems/bootloaders/layout_init.js",
-      "search_init": "subSystems/bootloaders/search_init.js"
+      "detail_init": "subSystems/bootloaders/detail_init.js",
+      "search_init": "subSystems/bootloaders/search_init.js",
+      "theme_init": "subSystems/bootloaders/theme_init.js"
     },
     "bridges": {
       "autocomplete_interaction_bridge": "subSystems/bridges/autocomplete_interaction_bridge.js",
-      "layout_bridge": "subSystems/bridges/layout_bridge.js",
+      "theme_bridge": "subSystems/bridges/theme_bridge.js",
       "state_bridge": "subSystems/bridges/state_bridge.js",
       "venting_security_bridge": "subSystems/bridges/venting_security_bridge.js"
     },
     "factories": {
-      "factory": "subSystems/factories/factory.js"
+      "UIFactory": "subSystems/factories/UIFactory.js"
     },
     "handlers": {
       "selection_handler": "subSystems/handlers/selection_handler.js"
@@ -26,7 +27,7 @@
       "autocomplete_logic": "subSystems/logic/autocomplete_logic.js"
     },
     "middlewares": {
-      "security": "subSystems/middlewares/security.js",
+      "vent_security": "subSystems/middlewares/vent_security.js",
       "input_validator": "subSystems/middlewares/input_validator.js"
     },
     "routers": {

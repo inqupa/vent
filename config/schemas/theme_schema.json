@@ -1,6 +1,7 @@
 {
   "comment": "Blueprint for all static JSON data sources.  This is the master map for all 'systems' files. refinery tools will verify these exist.",
   "map": {
-    "search_layout": "config/layouts/search_layout.json"
+    "search_theme": "config/themes/search_theme.json",
+    "detail_theme": "config/themes/detail_theme.json"
   }
 }

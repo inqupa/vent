@@ -1,0 +1,6 @@
+{
+  "#vent-detail-container": "display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh; text-align: center; font-family: monospace;",
+  "#vent-detail-title": "font-size: 3rem; color: #333; margin-bottom: 20px;",
+  "#vent-back-button": "padding: 10px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; transition: opacity 0.2s;",
+  "#vent-back-button:hover": "opacity: 0.8;"
+}

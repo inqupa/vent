@@ -1,9 +1,9 @@
 /*
- * VENT LOGIC: AUTOCOMPLETE SUBSYSTEM
+ * VENT LOGIC: AUTOCOMPLETE
  * Role: Fetches an Object and filters its values for the UI.
  */
 
-const AutocompleteSubsystem = (() => {
+const AutocompleteLogic = (() => {
     let _searchData = {}; // We initialize as an empty Object
 
     return {
@@ -19,9 +19,9 @@ const AutocompleteSubsystem = (() => {
                 // TARGET ACQUIRED: We extract the 'prompts' array specifically
                 _searchData = rawData.prompts || [];
 
-                console.log("Subsystem: " + _searchData.length + " prompts synced.");
+                console.log("Autocomplete Logic: " + _searchData.length + " prompts synced.");
             } catch (e) {
-                console.error("Subsystem: Ingestion Failed - " + e.message);
+                console.error("Autocomplete Logic: Ingestion Failed - " + e.message);
             }
         },
 
@@ -42,4 +42,4 @@ const AutocompleteSubsystem = (() => {
     };
 })();
 
-window.AutocompleteSubsystem = AutocompleteSubsystem;
+window.AutocompleteLogic = AutocompleteLogic;

@@ -19,8 +19,13 @@ const NavigationRouter = (() => {
             // 2. Logic Switch
             if (domain === 'DETAIL') {
                 // Ignite the Detail Bootloader
-                if (window.initializeDetailSystem) {
-                    await window.initializeDetailSystem(data);
+                if (window.initializeDetailSubsystem) {
+                    await window.initializeDetailSubsystem(data);
+                }
+            } else if (domain === 'SEARCH') {
+                // Return to the initial state
+                if (typeof initializeSearchSubsystem === 'function') {
+                    await initializeSearchSubsystem();
                 }
             }
         }

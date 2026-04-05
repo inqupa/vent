@@ -25,12 +25,12 @@ const VentSecurity = (() => {
             if (_certifiedRegistry) return;
             // Freeze the entire tree so no nested paths can be changed
             _certifiedRegistry = Object.freeze(registry);
-            console.log("Security: Shield Active. Registry Locked.");
+            console.log("Vent Security: Shield Active. Registry Locked.");
         },
 
         getSubsystemPath: (subsystemName) => {
             if (!_certifiedRegistry) {
-                console.error("Security: Not initialized!");
+                console.error("Vent Security: Not initialized!");
                 return null;
             }
 
@@ -39,7 +39,7 @@ const VentSecurity = (() => {
             if (path) {
                 return path;
             } else {
-                console.warn("Security: Access Denied for [" + subsystemName + "]");
+                console.warn("Vent Security: Access Denied for [" + subsystemName + "]");
                 return null;
             }
         }

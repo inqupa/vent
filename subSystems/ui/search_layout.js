@@ -11,7 +11,7 @@ const SearchLayout = (() => {
          * @param {Object} themeData - Key-value pairs of CSS selectors and rules.
          */
         applyTheme: (themeData) => {
-            console.log("Layout: Attempting to apply theme...", themeData); // DEBUG
+            console.log("Search Layout: Attempting to apply theme...", themeData); // DEBUG
             
             // Ensure the style tag exists in the <head>
             if (!_styleElement) {
