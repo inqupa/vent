@@ -12,11 +12,17 @@ async function initializeSearchSystem() {
             throw new Error("Instantiation: VentingSecurityBridge subsystem missing.");
         }
 
-        // 2. CONSTRUCTION (The Factory)
+        // 2. STATE HANDSHAKE (The New Step)
+        // We prime the SessionState with the external schema before interaction starts.
+        if (window.StateBridge) {
+            await window.StateBridge.synchronizeState('initial_state');
+        }
+
+        // 3. CONSTRUCTION (The Factory)
         const elements = window.UIFactory.createSearchInterface('app-root');
         if (!elements) throw new Error("Instantiation: UIFactory failed to build.");
 
-        // 3. INTERACTION BINDING
+        // 4. INTERACTION BINDING
         elements.input.addEventListener('input', (e) => {
             const query = e.target.value;
             const matches = window.AutocompleteSubsystem.getSuggestions(query);
@@ -26,7 +32,7 @@ async function initializeSearchSystem() {
                 const li = document.createElement('li');
                 li.textContent = match;
 
-                // 4. THE ZERO-TRUST EVENT FLOW
+                // 5. THE ZERO-TRUST EVENT FLOW
                 li.addEventListener('click', () => {
                     // Logic -> Middleware -> Handler
                     if (window.InputValidator && window.InputValidator.isSafe(match)) {
@@ -40,8 +46,8 @@ async function initializeSearchSystem() {
             });
         });
 
-        console.log("Instantiation: Secure Search Subsystem Online.");
+        console.log("Bootloader: Secure Search Subsystem Online.");
     } catch (e) {
-        console.error("Critical Instantiation Failure: " + e.message);
+        console.error("Critical Bootloader Failure: " + e.message);
     }
 }
