@@ -17,8 +17,8 @@ async function initializeSearchSystem() {
 
         // 2. SECURITY PURVIEW (The Bridge)
         // Sync the Middleware with the Data Registry policy.
-        if (window.SecurityBridge) {
-            await window.SecurityBridge.synchronizeValidator('malicious_inputs');
+        if (window.VentingSecurityBridge) {
+            await window.VentingSecurityBridge.synchronizeValidator('malicious_inputs');
         }
 
         // 3. STATE PURVIEW (The Bridge)
