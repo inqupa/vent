@@ -21,7 +21,7 @@ const StateBridge = (() => {
                 if (window.SessionState) {
                     // 3. PRIME: Initialize the state structure
                     window.SessionState.prime(schema);
-                    console.log("StateBridge: Subsystem primed with schema.");
+                    console.log("State Bridge: Subsystem primed with schema.");
 
                     // 4. RESTORE: Check for persistent session data via the Adapter
                     if (window.StorageAdapter) {
@@ -32,7 +32,7 @@ const StateBridge = (() => {
                             Object.keys(savedState).forEach(key => {
                                 window.SessionState.update(key, savedState[key]);
                             });
-                            console.log("StateBridge: Session data restored from persistence.");
+                            console.log("State Bridge: Session data restored from persistence.");
                         }
                     }
                 }

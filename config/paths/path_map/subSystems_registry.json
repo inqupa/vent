@@ -2,10 +2,13 @@
   "comment": "AUTO-GENERATED REGISTRY: DO NOT EDIT MANUALLY. USE THE PYTHON REFINERY.  The 'Active Roster' or the 'Certified List'. This is the Final Authority. The Bootloader only trusts the Registry. If a file is on the 'Path' but hasn't been 'Registered' by the PYTHON REFINERY, the Bootloader will ignore it.",
   "metadata": {
     "source_schema": "SUBSYSTEMS_SCHEMA",
-    "generated_at": "2026-04-06 03:13:06",
+    "generated_at": "2026-04-06 19:55:33",
     "integrity": "verified"
   },
   "registry": {
+    "adapters": {
+      "storage_adapter": "subSystems/adapters/storage_adapter.js"
+    },
     "bootloaders": {
       "detail_init": "subSystems/bootloaders/detail_init.js",
       "search_init": "subSystems/bootloaders/search_init.js",

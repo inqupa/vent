@@ -1,7 +1,9 @@
 {
   "comment": "The 'Blueprint' or the 'Ideal World'. This is the master map for all 'systems' files. refinery tools will verify these exist.",
   "map": {
-    "adapters": {},
+    "adapters": {
+      "storage_adapter": "subSystems/adapters/storage_adapter.js"
+    },
     "bootloaders": {
       "detail_init": "subSystems/bootloaders/detail_init.js",
       "search_init": "subSystems/bootloaders/search_init.js",
