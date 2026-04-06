@@ -3,7 +3,7 @@
  * Purview: Living memory container. No hardcoded schema.
  */
 const SessionState = (() => {
-    let _store = {}; // Starts as a void
+    let _state = {}; // Starts as a void
 
     return {
         /**
@@ -11,7 +11,7 @@ const SessionState = (() => {
          * @param {Object} schema 
          */
         prime: (schema) => {
-            _store = { ...schema };
+            _state = { ...schema };
             console.log("Session State: Memory Map Primed.");
         },
 
@@ -21,17 +21,24 @@ const SessionState = (() => {
          * @param {any} value 
          */
         update: (key, value) => {
-            if (_store.hasOwnProperty(key)) {
-                _store[key] = value;
-                _store.timestamp = Date.now(); // Auto-timestamp updates
+            if (_state.hasOwnProperty(key)) {
+                _state[key] = value;
+                _state.timestamp = Date.now(); // Auto-timestamp updates
+
+                // QUADRATIC SYNC: Tell the Adapter to save the new "Truth"
+                if (window.StorageAdapter) {
+                    window.StorageAdapter.persist(_state);
+                }
+                return true;
                 console.log(`State: [${key}] updated to ->`, value);
             }
+            return false;
         },
 
         /**
          * Read-only access to the current truth.
          */
-        getSnapshot: () => ({ ..._store })
+        getSnapshot: () => ({ ..._state })
     };
 })();
 window.SessionState = SessionState;
