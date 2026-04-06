@@ -51,22 +51,40 @@ const UIFactory = (() => {
          * @param {string} titleText 
          * @returns {Object} Hooks to the detail elements.
          */
-        createDetailInterface: (containerId, titleText) => {
+        createDetailInterface: (containerId, titleText, history) => {
             const container = document.getElementById(containerId);
             if (!container) return null;
+
+            // THE TYPE-SHIELD: If history isn't an array, make it one right now.
+            const safeHistory = Array.isArray(history) ? history : [];
 
             const wrapper = document.createElement('div');
             wrapper.id = 'vent-detail-container';
 
             const title = document.createElement('h1');
-            title.id = 'vent-detail-title';
             title.textContent = titleText;
+
+            const historyBox = document.createElement('div');
+            historyBox.innerHTML = '<h3>Recent Activity</h3>';
+            
+            const list = document.createElement('ul');
+            
+            // This is now 100% crash-proof
+            safeHistory.forEach(item => {
+                if (item && typeof item === 'string') {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    list.appendChild(li);
+                }
+            });
 
             const backBtn = document.createElement('button');
             backBtn.id = 'vent-back-button';
-            backBtn.textContent = '← Return to Search';
+            backBtn.textContent = '← Back';
 
             wrapper.appendChild(title);
+            wrapper.appendChild(historyBox);
+            historyBox.appendChild(list);
             wrapper.appendChild(backBtn);
             container.appendChild(wrapper);
 

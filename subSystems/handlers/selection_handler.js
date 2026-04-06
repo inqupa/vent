@@ -4,23 +4,22 @@
  */
 const SelectionHandler = (() => {
     return {
-        handle: (value) => {
-            // 1. UI Purview: Cleanup
-            const input = document.getElementById('vent-search-input');
-            const list = document.getElementById('vent-results-list');
-            if (input) input.value = value;
-            if (list) list.innerHTML = '';
+        handle: (selection) => {
+            console.log("Handler: Processing " + selection);
 
-            // 2. State Purview: Record Truth
-            if (window.SessionState) {
-                // We update the specific 'lastSelection' key defined in our external schema
-                window.SessionState.update('lastSelection', value);
-                window.SessionState.update('interactionCount', (window.SessionState.getSnapshot().interactionCount || 0) + 1);
-            }
+            // 1. SAFE STATE ACCESS
+            // Use the getter and provide a fallback object {} to prevent undefined errors
+            const currentState = window.SessionState ? window.SessionState.get('stats') || {} : {};
+            
+            // 2. DEFENSIVE LOGIC
+            // Use optional chaining (?.) to safely check interactionCount
+            const count = currentState?.interactionCount || 0;
+            
+            console.log(`Handler: Interaction Count is ${count}`);
 
-            // 3. Strategy Purview: Execute Action
+            // 3. DELEGATE TO STRATEGY
             if (window.SelectionStrategy) {
-                window.SelectionStrategy.execute(value);
+                window.SelectionStrategy.execute(selection);
             }
         }
     };

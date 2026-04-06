@@ -1,6 +1,7 @@
 {
-  "lastSelection": null,
-  "timestamp": null,
-  "interactionCount": 0,
-  "systemStatus": "IDLE"
+  "lastSelection": "",
+  "searchHistory": [],
+  "stats": {
+    "interactionCount": 0
+  }
 }
