@@ -1,0 +1,43 @@
+/**
+ * MODULE: VENT INTERFACE
+ * Purview: Aesthetics for the anonymous input buffer.
+ */
+
+#vent-interface-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 2rem;
+    background-color: #0a0a0a; /* The Deep Void */
+}
+
+#vent-input-field {
+    flex-grow: 1;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none; /* Crucial for "Always Ready" feel */
+    color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace; /* Monospaced for raw thought */
+    font-size: 1.4rem;
+    line-height: 1.6;
+    caret-color: #00ff41; /* "Matrix" green pulse */
+    resize: none;
+    cursor: text;
+}
+
+/* Optional: Soften the 'Purge' button to keep focus on the text */
+#vent-discard-btn {
+    align-self: flex-end;
+    background: transparent;
+    border: 1px solid #333;
+    color: #666;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#vent-discard-btn:hover {
+    border-color: #ff4444;
+    color: #ff4444;
+}

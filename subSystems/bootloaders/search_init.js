@@ -39,6 +39,13 @@ async function initializeSearchSubsystem() {
         const elements = window.UIFactory.createSearchInterface('app-root');
         if (!elements) throw new Error("UI Construction failed.");
         console.log("Search Bootloader: UI Factory Built.");
+        
+        // ALWAYS ACTIVE CURSOR
+        // We use the FocusHandler to lock the cursor into the search input
+        if (window.FocusHandler) {
+            // Assuming your search input ID is 'vent-search-input'
+            window.FocusHandler.lock('vent-search-input'); 
+        }
 
         // Delegate Interaction (The Refactor)
         // We pass the elements to the Bridge to handle the "Wiring."

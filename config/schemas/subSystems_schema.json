@@ -7,7 +7,8 @@
     "bootloaders": {
       "detail_init": "subSystems/bootloaders/detail_init.js",
       "search_init": "subSystems/bootloaders/search_init.js",
-      "theme_init": "subSystems/bootloaders/theme_init.js"
+      "theme_init": "subSystems/bootloaders/theme_init.js",
+      "vent_init": "subSystems/bootloaders/vent_init.js"
     },
     "bridges":{
       "autocomplete_interaction_bridge": "subSystems/bridges/autocomplete_interaction_bridge.js",
@@ -19,7 +20,8 @@
       "UIFactory": "subSystems/factories/UIFactory.js"
     },
     "handlers": {
-      "selection_handler": "subSystems/handlers/selection_handler.js"
+      "selection_handler": "subSystems/handlers/selection_handler.js",
+      "focus_handler": "subSystems/handlers/focus_handler.js"
     },
     "logic": {
       "autocomplete_logic": "subSystems/logic/autocomplete_logic.js"
