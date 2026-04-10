@@ -1,0 +1,6 @@
+{
+  "comment": "Blueprint for all i18n schema JSON.  This is the master map for all 'i18n schema' files. refinery tools will verify these exist.",
+  "map": {
+    "en": "config/i18n/en.json"
+  }
+}

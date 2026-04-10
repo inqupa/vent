@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "langCode": "en",
+    "region": "Global",
+    "direction": "ltr"
+  },
+  "lexicon": {
+    "neg": ["fail", "broken", "slow", "waste", "error"],
+    "pos": ["fix", "good", "solve", "work", "ideal"],
+    "int": ["urgent", "immediately", "now", "emergency"]
+  },
+  "ui": {
+    "search_placeholder": "Vent into the void...",
+    "submit_button": "Send",
+    "clear_cmd": "/clear",
+    "status_processing": "Void is processing..."
+  },
+  "rules": {
+    "min_vent_length": 3,
+    "max_delay_hours": 24
+  }
+}
